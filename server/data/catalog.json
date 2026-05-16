@@ -1,0 +1,4264 @@
+{
+  "appendToList": {
+    "name": "appendToList",
+    "signature": "void appendToList(list list, any typeTag)",
+    "description": "Appends a value to the end of a list. Accepts any Wombat type as the value.",
+    "aliases": [
+      "append"
+    ]
+  },
+  "append": {
+    "name": "append",
+    "signature": "void append(list list, any typeTag)",
+    "description": "Appends a value to the end of a list. Accepts any Wombat type as the value.",
+    "aliases": [
+      "appendToList"
+    ]
+  },
+  "clearList": {
+    "name": "clearList",
+    "signature": "void clearList(list list)",
+    "description": "Removes all elements from a list, leaving it empty.",
+    "aliases": [
+      "clearlist"
+    ]
+  },
+  "clearlist": {
+    "name": "clearlist",
+    "signature": "void clearlist(list list)",
+    "description": "Removes all elements from a list, leaving it empty.",
+    "aliases": [
+      "clearList"
+    ]
+  },
+  "concatList": {
+    "name": "concatList",
+    "signature": "void concatList(list dst, list src)",
+    "description": "Appends all elements of the source list onto the end of the destination list.",
+    "aliases": []
+  },
+  "copyList": {
+    "name": "copyList",
+    "signature": "void copyList(list dst, list src)",
+    "description": "Copies all elements from src into dst, replacing dst's contents.",
+    "aliases": [
+      "copylist"
+    ]
+  },
+  "copylist": {
+    "name": "copylist",
+    "signature": "void copylist(list dst, list src)",
+    "description": "Copies all elements from src into dst, replacing dst's contents.",
+    "aliases": [
+      "copyList"
+    ]
+  },
+  "getListItemType": {
+    "name": "getListItemType",
+    "signature": "int getListItemType(list list, int index)",
+    "description": "Returns the type-tag integer for the element at index in a list.",
+    "aliases": []
+  },
+  "insertInList": {
+    "name": "insertInList",
+    "signature": "void insertInList(list list, any typeTag, int value)",
+    "description": "Inserts a value at the specified index in a list, shifting subsequent elements.",
+    "aliases": [
+      "insert"
+    ]
+  },
+  "insert": {
+    "name": "insert",
+    "signature": "void insert(list list, any typeTag, int value)",
+    "description": "Inserts a value at the specified index in a list, shifting subsequent elements.",
+    "aliases": [
+      "insertInList"
+    ]
+  },
+  "isInList": {
+    "name": "isInList",
+    "signature": "int isInList(list list, any type)",
+    "description": "Returns 1 if the given value exists anywhere in the list, 0 otherwise.",
+    "aliases": [
+      "isinlist"
+    ]
+  },
+  "isinlist": {
+    "name": "isinlist",
+    "signature": "int isinlist(list list, any type)",
+    "description": "Returns 1 if the given value exists anywhere in the list, 0 otherwise.",
+    "aliases": [
+      "isInList"
+    ]
+  },
+  "numInList": {
+    "name": "numInList",
+    "signature": "int numInList(list list)",
+    "description": "Returns the number of elements currently in a list.",
+    "aliases": [
+      "numinlist"
+    ]
+  },
+  "numinlist": {
+    "name": "numinlist",
+    "signature": "int numinlist(list list)",
+    "description": "Returns the number of elements currently in a list.",
+    "aliases": [
+      "numInList"
+    ]
+  },
+  "prependToList": {
+    "name": "prependToList",
+    "signature": "void prependToList(list list, any typeTag)",
+    "description": "Inserts a value at the beginning of a list.",
+    "aliases": [
+      "prepend"
+    ]
+  },
+  "prepend": {
+    "name": "prepend",
+    "signature": "void prepend(list list, any typeTag)",
+    "description": "Inserts a value at the beginning of a list.",
+    "aliases": [
+      "prependToList"
+    ]
+  },
+  "printList": {
+    "name": "printList",
+    "signature": "void printList(list list)",
+    "description": "Prints the contents of a list to the server debug log.",
+    "aliases": []
+  },
+  "removeItem": {
+    "name": "removeItem",
+    "signature": "void removeItem(list list, int index)",
+    "description": "Removes the element at the given index from a list.",
+    "aliases": [
+      "removeitem"
+    ]
+  },
+  "removeitem": {
+    "name": "removeitem",
+    "signature": "void removeitem(list list, int index)",
+    "description": "Removes the element at the given index from a list.",
+    "aliases": [
+      "removeItem"
+    ]
+  },
+  "removeSpecificItem": {
+    "name": "removeSpecificItem",
+    "signature": "void removeSpecificItem(list list, any typeTag)",
+    "description": "Removes the first occurrence of a specific value from a list.",
+    "aliases": [
+      "removespecificitem"
+    ]
+  },
+  "removespecificitem": {
+    "name": "removespecificitem",
+    "signature": "void removespecificitem(list list, any typeTag)",
+    "description": "Removes the first occurrence of a specific value from a list.",
+    "aliases": [
+      "removeSpecificItem"
+    ]
+  },
+  "setItem": {
+    "name": "setItem",
+    "signature": "void setItem(list list, any typeTag, int value)",
+    "description": "Replaces the element at the specified index in a list with a new value.",
+    "aliases": [
+      "setitem"
+    ]
+  },
+  "setitem": {
+    "name": "setitem",
+    "signature": "void setitem(list list, any typeTag, int value)",
+    "description": "Replaces the element at the specified index in a list with a new value.",
+    "aliases": [
+      "setItem"
+    ]
+  },
+  "setLocItem": {
+    "name": "setLocItem",
+    "signature": "void setLocItem(list list, loc locPtr, int index)",
+    "description": "Sets the element at the specified index in a list to a loc (location) value.",
+    "aliases": []
+  },
+  "sortList": {
+    "name": "sortList",
+    "signature": "void sortList(list list, int flags)",
+    "description": "Sorts a list in place. The flags parameter controls ascending/descending order.",
+    "aliases": []
+  },
+  "truncateList": {
+    "name": "truncateList",
+    "signature": "void truncateList(list list, int index)",
+    "description": "Truncates a list to at most index elements.",
+    "aliases": []
+  },
+  "getArticle": {
+    "name": "getArticle",
+    "signature": "string getArticle(int arg1)",
+    "description": "Returns the English article (&quot;a&quot; or &quot;an&quot;) appropriate for the given type ID's name.",
+    "aliases": []
+  },
+  "getHeShe": {
+    "name": "getHeShe",
+    "signature": "string getHeShe(obj arg1)",
+    "description": "Returns the pronoun &quot;he&quot; or &quot;she&quot; appropriate to the entity's sex.",
+    "aliases": []
+  },
+  "getHimHer": {
+    "name": "getHimHer",
+    "signature": "string getHimHer(obj arg1)",
+    "description": "Returns the object pronoun &quot;him&quot; or &quot;her&quot; appropriate to the entity's sex.",
+    "aliases": []
+  },
+  "getHisHer": {
+    "name": "getHisHer",
+    "signature": "string getHisHer(obj arg1)",
+    "description": "Returns the possessive pronoun &quot;his&quot; or &quot;her&quot; appropriate to the entity's sex.",
+    "aliases": []
+  },
+  "getNameByType": {
+    "name": "getNameByType",
+    "signature": "string getNameByType(int arg1)",
+    "description": "Returns the default display name string for the given tile/type ID.",
+    "aliases": []
+  },
+  "getTitledName": {
+    "name": "getTitledName",
+    "signature": "string getTitledName(obj arg1)",
+    "description": "Returns the entity's name including any applicable title (e.g., &quot;Lord Blackthorn&quot;).",
+    "aliases": []
+  },
+  "objToStr": {
+    "name": "objToStr",
+    "signature": "string objToStr(obj arg1)",
+    "description": "Converts an object serial to its string-form name as known to the engine.",
+    "aliases": []
+  },
+  "removeLeadingWords": {
+    "name": "removeLeadingWords",
+    "signature": "void removeLeadingWords(string&amp; str, int count)",
+    "description": "Removes the first count space-delimited words from a string in place.",
+    "aliases": []
+  },
+  "removePrefix": {
+    "name": "removePrefix",
+    "signature": "void removePrefix(string&amp; str, string prefix)",
+    "description": "Removes a leading prefix string from str if present.",
+    "aliases": []
+  },
+  "scoreToSpace": {
+    "name": "scoreToSpace",
+    "signature": "void scoreToSpace(string str)",
+    "description": "Replaces all underscore characters in a string with spaces, modifying it in place.",
+    "aliases": []
+  },
+  "split": {
+    "name": "split",
+    "signature": "void split(list list, string str)",
+    "description": "Splits a string on whitespace, filling a list with the resulting tokens.",
+    "aliases": []
+  },
+  "splitCommaDelimitedString": {
+    "name": "splitCommaDelimitedString",
+    "signature": "void splitCommaDelimitedString(list list, string str)",
+    "description": "Splits a comma-delimited string into a list of substrings.",
+    "aliases": []
+  },
+  "strContains": {
+    "name": "strContains",
+    "signature": "int strContains(string haystack, string needle)",
+    "description": "Returns 1 if haystack contains needle as a substring, 0 otherwise.",
+    "aliases": []
+  },
+  "strlen": {
+    "name": "strlen",
+    "signature": "int strlen(string str)",
+    "description": "Returns the length (number of characters) of a string.",
+    "aliases": []
+  },
+  "strtoi": {
+    "name": "strtoi",
+    "signature": "int strtoi(string str)",
+    "description": "Converts a string to an integer.",
+    "aliases": []
+  },
+  "textSubstitute": {
+    "name": "textSubstitute",
+    "signature": "int textSubstitute(string&amp; dest, string src, string find, string replace)",
+    "description": "Replaces all occurrences of find in src with replace, storing the result in dest. Returns 1 on success.",
+    "aliases": []
+  },
+  "toUpper": {
+    "name": "toUpper",
+    "signature": "void toUpper(string&amp; str, int start, int end)",
+    "description": "Converts a substring of str (from start to end) to uppercase in place.",
+    "aliases": []
+  },
+  "wordWrap": {
+    "name": "wordWrap",
+    "signature": "int wordWrap(list list, string str, int wrapWidth)",
+    "description": "Word-wraps str at wrapWidth characters, returning the wrapped lines in a list.",
+    "aliases": []
+  },
+  "deleteArray": {
+    "name": "deleteArray",
+    "signature": "void deleteArray(int id)",
+    "description": "Frees a previously allocated 2D array by ID.",
+    "aliases": []
+  },
+  "getArrayHeight": {
+    "name": "getArrayHeight",
+    "signature": "int getArrayHeight(int id)",
+    "description": "Returns the height (number of rows) of the 2D array.",
+    "aliases": []
+  },
+  "getArrayIntElem": {
+    "name": "getArrayIntElem",
+    "signature": "int getArrayIntElem(int id, int x, int y)",
+    "description": "Gets the integer value at (x, y) from the 2D array.",
+    "aliases": []
+  },
+  "getArrayStrElem": {
+    "name": "getArrayStrElem",
+    "signature": "string getArrayStrElem(int arg1, int arg2, int arg3)",
+    "description": "Gets the string value at (x, y) from the 2D array.",
+    "aliases": []
+  },
+  "getArrayUStrElem": {
+    "name": "getArrayUStrElem",
+    "signature": "ustring getArrayUStrElem(int arg1, int arg2, int arg3)",
+    "description": "Gets the unicode-string value at (x, y) from the 2D array.",
+    "aliases": []
+  },
+  "getArrayWidth": {
+    "name": "getArrayWidth",
+    "signature": "int getArrayWidth(int id)",
+    "description": "Returns the width (number of columns) of the 2D array.",
+    "aliases": []
+  },
+  "initArray": {
+    "name": "initArray",
+    "signature": "void initArray(int id, int width, int height, list typeList)",
+    "description": "Allocates a 2D array with the given dimensions and element types from a type list.",
+    "aliases": []
+  },
+  "initArrayFromFile": {
+    "name": "initArrayFromFile",
+    "signature": "void initArrayFromFile(int id, int width, int height, string filename)",
+    "description": "Loads a 2D integer array from a flat file with the specified dimensions.",
+    "aliases": []
+  },
+  "isArrayInit": {
+    "name": "isArrayInit",
+    "signature": "int isArrayInit(int id)",
+    "description": "Returns 1 if the 2D array with the given ID has been initialized.",
+    "aliases": []
+  },
+  "setArrayElems": {
+    "name": "setArrayElems",
+    "signature": "void setArrayElems(int id, int x, int y, list list)",
+    "description": "Sets a row of elements at (x, y) in the 2D array from a list.",
+    "aliases": []
+  },
+  "setArrayIntElem": {
+    "name": "setArrayIntElem",
+    "signature": "void setArrayIntElem(int id, int x, int y, int val)",
+    "description": "Sets the integer value at (x, y) in the 2D array.",
+    "aliases": []
+  },
+  "setArrayStrElem": {
+    "name": "setArrayStrElem",
+    "signature": "void setArrayStrElem(int id, int x, int y, string src)",
+    "description": "Sets the string value at (x, y) in the 2D array.",
+    "aliases": []
+  },
+  "setArrayUStrElem": {
+    "name": "setArrayUStrElem",
+    "signature": "void setArrayUStrElem(int id, int x, int y, ustring src)",
+    "description": "Sets the unicode-string value at (x, y) in the 2D array.",
+    "aliases": []
+  },
+  "containedBy": {
+    "name": "containedBy",
+    "signature": "obj containedBy(obj serial)",
+    "description": "Returns the serial of the container that directly holds this item, or 0.",
+    "aliases": []
+  },
+  "facingEachOther": {
+    "name": "facingEachOther",
+    "signature": "int facingEachOther(obj serial1, obj serial2)",
+    "description": "Returns 1 if the two mobiles are facing each other.",
+    "aliases": []
+  },
+  "getCorpseBodyType": {
+    "name": "getCorpseBodyType",
+    "signature": "int getCorpseBodyType(obj serial)",
+    "description": "Returns the body-type ID stored in a corpse (the type of the creature that died).",
+    "aliases": []
+  },
+  "getDefaultAlignment": {
+    "name": "getDefaultAlignment",
+    "signature": "int getDefaultAlignment(int templateId)",
+    "description": "Returns the default alignment value for a given template ID.",
+    "aliases": []
+  },
+  "getDirection": {
+    "name": "getDirection",
+    "signature": "string getDirection(loc arg1, loc arg2)",
+    "description": "Returns the compass direction string from loc1 to loc2.",
+    "aliases": []
+  },
+  "getDistance": {
+    "name": "getDistance",
+    "signature": "string getDistance(loc arg1, loc arg2)",
+    "description": "Returns the distance string (e.g. &quot;nearby&quot;) between two locations.",
+    "aliases": []
+  },
+  "getDistanceInTiles": {
+    "name": "getDistanceInTiles",
+    "signature": "int getDistanceInTiles(loc loc1, loc loc2)",
+    "description": "Returns the tile distance (Chebyshev) between two locations.",
+    "aliases": []
+  },
+  "getEncumbrance": {
+    "name": "getEncumbrance",
+    "signature": "int getEncumbrance(obj serial)",
+    "description": "Returns the current encumbrance (carried weight vs. capacity) for a mobile.",
+    "aliases": []
+  },
+  "getFacing": {
+    "name": "getFacing",
+    "signature": "int getFacing(obj serial)",
+    "description": "Returns the current facing direction (0–7) of a mobile.",
+    "aliases": []
+  },
+  "getHeight": {
+    "name": "getHeight",
+    "signature": "int getHeight(obj serial)",
+    "description": "Returns the visual height of an entity in tiles.",
+    "aliases": []
+  },
+  "getHue": {
+    "name": "getHue",
+    "signature": "int getHue(obj serial)",
+    "description": "Returns the current hue (colour index) of an object or mobile.",
+    "aliases": []
+  },
+  "getLocation": {
+    "name": "getLocation",
+    "signature": "loc getLocation(obj arg1)",
+    "description": "Returns the current (x, y, z) location of an entity.",
+    "aliases": []
+  },
+  "getMasterObjLoc": {
+    "name": "getMasterObjLoc",
+    "signature": "loc getMasterObjLoc(int arg1)",
+    "description": "Returns the location of the master object by index (used for relay/multi systems).",
+    "aliases": []
+  },
+  "getMiscData": {
+    "name": "getMiscData",
+    "signature": "int getMiscData(obj serial)",
+    "description": "Returns the miscellaneous data field of an object (usage varies by type).",
+    "aliases": []
+  },
+  "getMovementType": {
+    "name": "getMovementType",
+    "signature": "int getMovementType(obj serial)",
+    "description": "Returns the movement-type flag of a mobile (walk, run, fly, etc.).",
+    "aliases": []
+  },
+  "getName": {
+    "name": "getName",
+    "signature": "string getName(obj arg1)",
+    "description": "Returns the display name string of an entity.",
+    "aliases": []
+  },
+  "getObjType": {
+    "name": "getObjType",
+    "signature": "int getObjType(obj serial)",
+    "description": "Returns the tile/graphic type ID of an object.",
+    "aliases": []
+  },
+  "getQuality": {
+    "name": "getQuality",
+    "signature": "int getQuality(obj serial)",
+    "description": "Returns the quality value of a crafted item.",
+    "aliases": []
+  },
+  "getQuantity": {
+    "name": "getQuantity",
+    "signature": "int getQuantity(obj serial)",
+    "description": "Returns the stack quantity of an item.",
+    "aliases": []
+  },
+  "getRealName": {
+    "name": "getRealName",
+    "signature": "string getRealName(obj arg1)",
+    "description": "Returns the real (unaliased) name of a mobile, ignoring disguises.",
+    "aliases": []
+  },
+  "getRelayLoc": {
+    "name": "getRelayLoc",
+    "signature": "loc getRelayLoc(obj arg1)",
+    "description": "Returns the relay location associated with an entity.",
+    "aliases": []
+  },
+  "getSex": {
+    "name": "getSex",
+    "signature": "int getSex(obj serial)",
+    "description": "Returns 0 for male or 1 for female for the given mobile.",
+    "aliases": []
+  },
+  "getSurfaceHeight": {
+    "name": "getSurfaceHeight",
+    "signature": "int getSurfaceHeight(obj serial)",
+    "description": "Returns the surface height of an entity (top of object, usable as ground).",
+    "aliases": []
+  },
+  "getTemplate": {
+    "name": "getTemplate",
+    "signature": "int getTemplate(obj serial)",
+    "description": "Returns the NPC template ID for the given mobile.",
+    "aliases": []
+  },
+  "getTileHeight": {
+    "name": "getTileHeight",
+    "signature": "int getTileHeight(int type)",
+    "description": "Returns the height of a tile by its type ID.",
+    "aliases": []
+  },
+  "getValue": {
+    "name": "getValue",
+    "signature": "int getValue(obj serial)",
+    "description": "Returns the &quot;value&quot; field of an object (gold worth or similar data).",
+    "aliases": []
+  },
+  "getWeight": {
+    "name": "getWeight",
+    "signature": "int getWeight(obj serial)",
+    "description": "Returns the total weight of an entity (including contents if a container).",
+    "aliases": []
+  },
+  "isBashing": {
+    "name": "isBashing",
+    "signature": "int isBashing(obj serial)",
+    "description": "Returns 1 if the weapon deals bashing damage.",
+    "aliases": []
+  },
+  "isChaosGuard": {
+    "name": "isChaosGuard",
+    "signature": "int isChaosGuard(obj serial)",
+    "description": "Returns 1 if the player is currently aligned as a Chaos Guard.",
+    "aliases": []
+  },
+  "isContainer": {
+    "name": "isContainer",
+    "signature": "int isContainer(obj serial)",
+    "description": "Returns 1 if the object is a container type (including corpses).",
+    "aliases": []
+  },
+  "isCorpse": {
+    "name": "isCorpse",
+    "signature": "int isCorpse(obj serial)",
+    "description": "Returns 1 if the object is a corpse.",
+    "aliases": []
+  },
+  "isDead": {
+    "name": "isDead",
+    "signature": "int isDead(obj serial)",
+    "description": "Returns 1 if the mobile is currently dead.",
+    "aliases": []
+  },
+  "isEditing": {
+    "name": "isEditing",
+    "signature": "int isEditing(obj serial)",
+    "description": "Returns 1 if the mobile is currently in world-editor mode.",
+    "aliases": []
+  },
+  "isEquipped": {
+    "name": "isEquipped",
+    "signature": "int isEquipped(obj serial)",
+    "description": "Returns 1 if the item is currently equipped on a mobile.",
+    "aliases": []
+  },
+  "isFacingPerson": {
+    "name": "isFacingPerson",
+    "signature": "int isFacingPerson(obj serial, obj targetSerial)",
+    "description": "Returns 1 if the first mobile is facing toward the second.",
+    "aliases": []
+  },
+  "isFacingPlace": {
+    "name": "isFacingPlace",
+    "signature": "int isFacingPlace(obj serial, loc loc)",
+    "description": "Returns 1 if the mobile is facing toward the given location.",
+    "aliases": []
+  },
+  "isFreelyUsable": {
+    "name": "isFreelyUsable",
+    "signature": "int isFreelyUsable(obj thingSerial, obj playerSerial)",
+    "description": "Returns 1 if the player can use the item without ownership restrictions.",
+    "aliases": []
+  },
+  "isFreelyViewable": {
+    "name": "isFreelyViewable",
+    "signature": "int isFreelyViewable(obj thingSerial, obj playerSerial)",
+    "description": "Returns 1 if the player can inspect the item's properties freely.",
+    "aliases": []
+  },
+  "isGuard": {
+    "name": "isGuard",
+    "signature": "int isGuard(obj serial)",
+    "description": "Returns 1 if the NPC is flagged as a guard.",
+    "aliases": []
+  },
+  "isHair": {
+    "name": "isHair",
+    "signature": "int isHair(obj serial)",
+    "description": "Returns 1 if the item is a hair or beard item.",
+    "aliases": []
+  },
+  "isHidden": {
+    "name": "isHidden",
+    "signature": "int isHidden(obj serial)",
+    "description": "Returns 1 if the entity is hidden from normal visibility.",
+    "aliases": []
+  },
+  "isHuman": {
+    "name": "isHuman",
+    "signature": "int isHuman(obj serial)",
+    "description": "Returns 1 if the entity is a human mobile (player or NPC with human body type).",
+    "aliases": []
+  },
+  "isHumanBodyType": {
+    "name": "isHumanBodyType",
+    "signature": "int isHumanBodyType(obj serial)",
+    "description": "Returns 1 if the mobile's body type corresponds to a human graphic.",
+    "aliases": []
+  },
+  "isInCamp": {
+    "name": "isInCamp",
+    "signature": "int isInCamp(obj serial)",
+    "description": "Returns 1 if the entity is currently within a campfire area.",
+    "aliases": []
+  },
+  "isInContainer": {
+    "name": "isInContainer",
+    "signature": "int isInContainer(obj serial)",
+    "description": "Returns 1 if the item is currently inside any container.",
+    "aliases": []
+  },
+  "isInvisible": {
+    "name": "isInvisible",
+    "signature": "int isInvisible(obj serial)",
+    "description": "Returns 1 if the mobile has the invisible (magical) flag set.",
+    "aliases": []
+  },
+  "isMap": {
+    "name": "isMap",
+    "signature": "int isMap(obj serial)",
+    "description": "Returns 1 if the object is a cartographic map item.",
+    "aliases": []
+  },
+  "isMobile": {
+    "name": "isMobile",
+    "signature": "int isMobile(obj serial)",
+    "description": "Returns 1 if the serial refers to a mobile (NPC or player character).",
+    "aliases": []
+  },
+  "isMoveable": {
+    "name": "isMoveable",
+    "signature": "int isMoveable(obj thingSerial, obj playerSerial)",
+    "description": "Returns 1 if the player can physically pick up or move the item.",
+    "aliases": []
+  },
+  "isMultiComp": {
+    "name": "isMultiComp",
+    "signature": "int isMultiComp(obj serial)",
+    "description": "Returns 1 if the entity is a component tile of a multi-tile structure.",
+    "aliases": []
+  },
+  "isMultiSlave": {
+    "name": "isMultiSlave",
+    "signature": "int isMultiSlave(obj serial)",
+    "description": "Returns 1 if the entity is a slave (linked) component of a multi.",
+    "aliases": []
+  },
+  "isNoDrawType": {
+    "name": "isNoDrawType",
+    "signature": "int isNoDrawType(int bodyType)",
+    "description": "Returns 1 if the body type corresponds to a no-draw (invisible) tile.",
+    "aliases": []
+  },
+  "isNPC": {
+    "name": "isNPC",
+    "signature": "int isNPC(obj serial)",
+    "description": "Returns 1 if the serial refers to a non-player character.",
+    "aliases": []
+  },
+  "isOnline": {
+    "name": "isOnline",
+    "signature": "int isOnline(obj serial)",
+    "description": "Returns 1 if the player associated with the serial is currently online.",
+    "aliases": []
+  },
+  "isOrderGuard": {
+    "name": "isOrderGuard",
+    "signature": "int isOrderGuard(obj serial)",
+    "description": "Returns 1 if the player is currently aligned as an Order Guard.",
+    "aliases": []
+  },
+  "isPiercing": {
+    "name": "isPiercing",
+    "signature": "int isPiercing(obj serial)",
+    "description": "Returns 1 if the weapon deals piercing damage.",
+    "aliases": []
+  },
+  "isPlayer": {
+    "name": "isPlayer",
+    "signature": "int isPlayer(obj serial)",
+    "description": "Returns 1 if the serial refers to a player character.",
+    "aliases": []
+  },
+  "isRanged": {
+    "name": "isRanged",
+    "signature": "int isRanged(obj serial)",
+    "description": "Returns 1 if the weapon is a ranged weapon (bow, crossbow).",
+    "aliases": []
+  },
+  "isRealContainer": {
+    "name": "isRealContainer",
+    "signature": "int isRealContainer(obj serial)",
+    "description": "Returns 1 if the object is a true container (not a corpse or map).",
+    "aliases": []
+  },
+  "isReallyWeapon": {
+    "name": "isReallyWeapon",
+    "signature": "int isReallyWeapon(obj serial)",
+    "description": "Returns 1 if the item is a true weapon (not a staff or tool used as one).",
+    "aliases": []
+  },
+  "isRidable": {
+    "name": "isRidable",
+    "signature": "int isRidable(obj serial)",
+    "description": "Returns 1 if the mobile can be ridden as a mount.",
+    "aliases": []
+  },
+  "isRiding": {
+    "name": "isRiding",
+    "signature": "int isRiding(obj serial)",
+    "description": "Returns 1 if the mobile is currently riding a mount.",
+    "aliases": []
+  },
+  "isShopkeeper": {
+    "name": "isShopkeeper",
+    "signature": "int isShopkeeper(obj serial)",
+    "description": "Returns 1 if the NPC is flagged as a shopkeeper.",
+    "aliases": []
+  },
+  "isSlashing": {
+    "name": "isSlashing",
+    "signature": "int isSlashing(obj serial)",
+    "description": "Returns 1 if the weapon deals slashing damage.",
+    "aliases": []
+  },
+  "isSpellbook": {
+    "name": "isSpellbook",
+    "signature": "int isSpellbook(obj serial)",
+    "description": "Returns 1 if the object is a spellbook.",
+    "aliases": []
+  },
+  "isUsingVirtueShield": {
+    "name": "isUsingVirtueShield",
+    "signature": "int isUsingVirtueShield(obj serial)",
+    "description": "Returns 1 if the player has a Virtue Shield active.",
+    "aliases": []
+  },
+  "isValid": {
+    "name": "isValid",
+    "signature": "int isValid(obj serial)",
+    "description": "Returns 1 if the serial refers to a valid (still-existing) entity.",
+    "aliases": []
+  },
+  "isValidMap": {
+    "name": "isValidMap",
+    "signature": "int isValidMap(obj serial)",
+    "description": "Returns 1 if the item is a valid (properly initialized) map object.",
+    "aliases": []
+  },
+  "isVirtueGuard": {
+    "name": "isVirtueGuard",
+    "signature": "int isVirtueGuard(obj serial)",
+    "description": "Returns 1 if the player is currently aligned as a Virtue Guard.",
+    "aliases": []
+  },
+  "isWeapon": {
+    "name": "isWeapon",
+    "signature": "int isWeapon(obj serial)",
+    "description": "Returns 1 if the item can function as a weapon.",
+    "aliases": []
+  },
+  "numInContainer": {
+    "name": "numInContainer",
+    "signature": "int numInContainer(obj serial)",
+    "description": "Returns the number of items directly inside a container.",
+    "aliases": []
+  },
+  "sameSex": {
+    "name": "sameSex",
+    "signature": "int sameSex(obj serial1, obj serial2)",
+    "description": "Returns 1 if both mobiles have the same sex.",
+    "aliases": []
+  },
+  "unRide": {
+    "name": "unRide",
+    "signature": "int unRide(obj serial)",
+    "description": "Forces the mobile to dismount from its current mount.",
+    "aliases": []
+  },
+  "whereIs": {
+    "name": "whereIs",
+    "signature": "loc whereIs(obj arg1)",
+    "description": "Returns the effective world location of an entity, resolving relay/multi offsets.",
+    "aliases": []
+  },
+  "createStatic": {
+    "name": "createStatic",
+    "signature": "void createStatic(loc loc, int typeID)",
+    "description": "Creates a static world tile at the given location.",
+    "aliases": []
+  },
+  "createStaticHued": {
+    "name": "createStaticHued",
+    "signature": "void createStaticHued(loc loc, int typeID, int hue)",
+    "description": "Creates a static world tile with a specific hue at the given location.",
+    "aliases": []
+  },
+  "getDefaultTextHue": {
+    "name": "getDefaultTextHue",
+    "signature": "int getDefaultTextHue(obj serial)",
+    "description": "Returns the current default text hue for the entity.",
+    "aliases": []
+  },
+  "getLightTime": {
+    "name": "getLightTime",
+    "signature": "int getLightTime(obj serial)",
+    "description": "Returns the remaining duration (in pulses) of an entity's light emission.",
+    "aliases": []
+  },
+  "getLightVal": {
+    "name": "getLightVal",
+    "signature": "int getLightVal(obj serial)",
+    "description": "Returns the current light value emitted by an entity.",
+    "aliases": []
+  },
+  "makeValueless": {
+    "name": "makeValueless",
+    "signature": "int makeValueless(obj serial)",
+    "description": "Clears the gold/value field of an item, making it valueless to shopkeepers.",
+    "aliases": []
+  },
+  "setCursed": {
+    "name": "setCursed",
+    "signature": "void setCursed(obj serial, int value)",
+    "description": "Sets or clears the cursed status on an item or mobile.",
+    "aliases": []
+  },
+  "setDefaultTextHue": {
+    "name": "setDefaultTextHue",
+    "signature": "void setDefaultTextHue(obj serial, int hue)",
+    "description": "Sets the default text hue used when this entity speaks.",
+    "aliases": []
+  },
+  "setElevation": {
+    "name": "setElevation",
+    "signature": "void setElevation(loc loc, int elevation)",
+    "description": "Sets the elevation (Z height) at a world location.",
+    "aliases": []
+  },
+  "setHidden": {
+    "name": "setHidden",
+    "signature": "void setHidden(obj serial, int value)",
+    "description": "Sets or clears the hidden flag on an entity.",
+    "aliases": []
+  },
+  "setHue": {
+    "name": "setHue",
+    "signature": "void setHue(obj serial, int hue)",
+    "description": "Sets the hue (colour) of an object or mobile.",
+    "aliases": []
+  },
+  "setInvisible": {
+    "name": "setInvisible",
+    "signature": "void setInvisible(obj serial, int value)",
+    "description": "Sets or clears the magical invisible flag on a mobile.",
+    "aliases": []
+  },
+  "setLight": {
+    "name": "setLight",
+    "signature": "void setLight(obj serial, int lightVal, int lightTime)",
+    "description": "Sets the light level emitted by an entity and the duration it persists.",
+    "aliases": []
+  },
+  "setLooksLikeTemplate": {
+    "name": "setLooksLikeTemplate",
+    "signature": "void setLooksLikeTemplate(obj serial, int templateId)",
+    "description": "Makes an object visually appear as another template while retaining its real type.",
+    "aliases": []
+  },
+  "setMapProperties": {
+    "name": "setMapProperties",
+    "signature": "void setMapProperties(obj serial, int unused, int x1, int y1, int x2, int y2, int width, int height)",
+    "description": "Sets the internal mapping properties (bounds and display dimensions) on a map item.",
+    "aliases": []
+  },
+  "setMovementType": {
+    "name": "setMovementType",
+    "signature": "void setMovementType(obj serial, int moveType)",
+    "description": "Sets the movement-type flag of a mobile (controls walk/run/fly behaviour).",
+    "aliases": []
+  },
+  "setPartialHue": {
+    "name": "setPartialHue",
+    "signature": "void setPartialHue(obj serial, int hue)",
+    "description": "Sets a partial-hue flag on an object, tinting only part of the graphic.",
+    "aliases": []
+  },
+  "setPoisoned": {
+    "name": "setPoisoned",
+    "signature": "void setPoisoned(obj serial, int value)",
+    "description": "Sets or clears the poisoned status on a mobile.",
+    "aliases": []
+  },
+  "setRealName": {
+    "name": "setRealName",
+    "signature": "void setRealName(obj serial, string str)",
+    "description": "Sets the real (internal) name of a mobile.",
+    "aliases": []
+  },
+  "setRealNameFromTemplate": {
+    "name": "setRealNameFromTemplate",
+    "signature": "void setRealNameFromTemplate(obj serial, int templateId)",
+    "description": "Sets the mobile's real name to the default name from the given template.",
+    "aliases": []
+  },
+  "setROBookNum": {
+    "name": "setROBookNum",
+    "signature": "void setROBookNum(obj serial, int bookNum)",
+    "description": "Assigns a read-only book number to a book item, linking it to static book content.",
+    "aliases": []
+  },
+  "setTile": {
+    "name": "setTile",
+    "signature": "void setTile(loc loc, int tileID)",
+    "description": "Sets the terrain tile at a world location.",
+    "aliases": []
+  },
+  "setType": {
+    "name": "setType",
+    "signature": "void setType(obj serial, int typeID)",
+    "description": "Changes the graphic/tile type ID of an object.",
+    "aliases": []
+  },
+  "canExistAt": {
+    "name": "canExistAt",
+    "signature": "int canExistAt(loc loc, int currentZ, int stepHeight)",
+    "description": "Returns 1 if an entity can occupy the given location without collision.",
+    "aliases": []
+  },
+  "changeLoc": {
+    "name": "changeLoc",
+    "signature": "void changeLoc(loc&amp; loc, int dx, int dy, int dz)",
+    "description": "Adjusts a location by (dx, dy, dz) offsets.",
+    "aliases": []
+  },
+  "dropCheck": {
+    "name": "dropCheck",
+    "signature": "int dropCheck(loc&amp; loc, obj serial, int stepHeight)",
+    "description": "Returns 1 if an object can be dropped at the given location.",
+    "aliases": []
+  },
+  "dropObj": {
+    "name": "dropObj",
+    "signature": "int dropObj(obj serial, loc loc)",
+    "description": "Drops an item to the ground at a location, respecting gravity. Returns 1 on success.",
+    "aliases": []
+  },
+  "faceHere": {
+    "name": "faceHere",
+    "signature": "void faceHere(obj serial, int dir)",
+    "description": "Sets the facing direction of a mobile to the given compass value.",
+    "aliases": []
+  },
+  "findGoodSpotNear": {
+    "name": "findGoodSpotNear",
+    "signature": "int findGoodSpotNear(loc&amp; loc, int zMax, int range, int height)",
+    "description": "Finds a valid spawn location near a given location. Returns 1 if found.",
+    "aliases": []
+  },
+  "findGoodSpotNearMin": {
+    "name": "findGoodSpotNearMin",
+    "signature": "int findGoodSpotNearMin(loc&amp; loc, int zMin, int zMax, int range, int height)",
+    "description": "Finds a valid spawn location near a given location within Z bounds.",
+    "aliases": []
+  },
+  "findGoodSpotNearWithElev": {
+    "name": "findGoodSpotNearWithElev",
+    "signature": "int findGoodSpotNearWithElev(loc&amp; loc, int minElev, int maxElev, int zMax, int range, int height)",
+    "description": "Finds a valid spawn location constrained by both Z and elevation ranges.",
+    "aliases": []
+  },
+  "findGoodZ": {
+    "name": "findGoodZ",
+    "signature": "int findGoodZ(loc loc, int currentZ, int direction, int stepHeight, int height)",
+    "description": "Finds a valid Z coordinate for movement in the given direction from a location.",
+    "aliases": []
+  },
+  "getElevationAt": {
+    "name": "getElevationAt",
+    "signature": "int getElevationAt(int x, int y)",
+    "description": "Returns the ground elevation at the given (x, y) coordinate.",
+    "aliases": []
+  },
+  "getX": {
+    "name": "getX",
+    "signature": "int getX(loc loc)",
+    "description": "Returns the X coordinate of a location.",
+    "aliases": []
+  },
+  "getY": {
+    "name": "getY",
+    "signature": "int getY(loc loc)",
+    "description": "Returns the Y coordinate of a location.",
+    "aliases": []
+  },
+  "getZ": {
+    "name": "getZ",
+    "signature": "int getZ(loc loc)",
+    "description": "Returns the Z (elevation) coordinate of a location.",
+    "aliases": []
+  },
+  "goLoiter": {
+    "name": "goLoiter",
+    "signature": "void goLoiter(obj serial, loc loc, int range)",
+    "description": "Commands an NPC to walk to a location and then loiter within range.",
+    "aliases": []
+  },
+  "interpose": {
+    "name": "interpose",
+    "signature": "loc interpose(loc arg1, loc arg2)",
+    "description": "Returns a location midway between two locations.",
+    "aliases": []
+  },
+  "isInMap": {
+    "name": "isInMap",
+    "signature": "int isInMap(loc loc)",
+    "description": "Returns 1 if the location is within the playable map boundaries.",
+    "aliases": []
+  },
+  "isInWorld": {
+    "name": "isInWorld",
+    "signature": "int isInWorld(loc loc)",
+    "description": "Returns 1 if the location is within the world boundaries (wider than map check).",
+    "aliases": []
+  },
+  "loiter": {
+    "name": "loiter",
+    "signature": "void loiter(obj serial, int range)",
+    "description": "Commands an NPC to wander randomly within a given radius.",
+    "aliases": []
+  },
+  "makeBeelineFailPathfind": {
+    "name": "makeBeelineFailPathfind",
+    "signature": "void makeBeelineFailPathfind(obj serial, int flag)",
+    "description": "Forces the NPC to treat its next pathfind attempt as a failure.",
+    "aliases": []
+  },
+  "moveDir": {
+    "name": "moveDir",
+    "signature": "void moveDir(loc&amp; loc, int dir)",
+    "description": "Adjusts a location by one tile in the given direction.",
+    "aliases": []
+  },
+  "run": {
+    "name": "run",
+    "signature": "int run(obj serial, int dir)",
+    "description": "Commands a mobile to run one step in the given direction. Returns 1 on success.",
+    "aliases": []
+  },
+  "runAway": {
+    "name": "runAway",
+    "signature": "void runAway(obj serial, obj targetSerial)",
+    "description": "Commands an NPC to flee away from the target mobile.",
+    "aliases": []
+  },
+  "setLastValidTerrainLoc": {
+    "name": "setLastValidTerrainLoc",
+    "signature": "void setLastValidTerrainLoc(obj serial, loc loc)",
+    "description": "Stores a location as the last valid terrain position for the entity.",
+    "aliases": []
+  },
+  "setX": {
+    "name": "setX",
+    "signature": "void setX(loc&amp; loc, int value)",
+    "description": "Sets the X coordinate of a location variable.",
+    "aliases": []
+  },
+  "setY": {
+    "name": "setY",
+    "signature": "void setY(loc&amp; loc, int value)",
+    "description": "Sets the Y coordinate of a location variable.",
+    "aliases": []
+  },
+  "setZ": {
+    "name": "setZ",
+    "signature": "void setZ(loc&amp; loc, int value)",
+    "description": "Sets the Z (elevation) coordinate of a location variable.",
+    "aliases": []
+  },
+  "teleport": {
+    "name": "teleport",
+    "signature": "int teleport(obj serial, loc loc)",
+    "description": "Teleports an entity to a location. Returns 1 on success (may fail due to Z validation).",
+    "aliases": []
+  },
+  "teleportNoFall": {
+    "name": "teleportNoFall",
+    "signature": "int teleportNoFall(obj serial, loc loc)",
+    "description": "Teleports an entity to a location without applying fall-through Z validation.",
+    "aliases": []
+  },
+  "walk": {
+    "name": "walk",
+    "signature": "int walk(obj serial, int dir)",
+    "description": "Commands a mobile to take one step in the given direction. Returns 1 on success.",
+    "aliases": []
+  },
+  "walkTo": {
+    "name": "walkTo",
+    "signature": "void walkTo(obj serial, loc loc, int range)",
+    "description": "Commands an NPC to pathfind toward a location within range tiles.",
+    "aliases": []
+  },
+  "addFatigue": {
+    "name": "addFatigue",
+    "signature": "void addFatigue(obj serial, int amount)",
+    "description": "Adds stamina to a mobile (capped at maximum stamina).",
+    "aliases": []
+  },
+  "addHP": {
+    "name": "addHP",
+    "signature": "void addHP(obj serial, int amount)",
+    "description": "Adds hit points to a mobile (capped at maximum HP).",
+    "aliases": []
+  },
+  "addMana": {
+    "name": "addMana",
+    "signature": "void addMana(obj serial, int amount)",
+    "description": "Adds mana to a mobile (capped at maximum mana).",
+    "aliases": []
+  },
+  "attack": {
+    "name": "attack",
+    "signature": "void attack(obj attackerSerial, obj victimSerial)",
+    "description": "Commands the attacker mobile to immediately attack the victim.",
+    "aliases": []
+  },
+  "doDamage": {
+    "name": "doDamage",
+    "signature": "void doDamage(obj attacker, obj defender, int damage)",
+    "description": "Applies direct damage from attacker to defender, triggering normal combat events.",
+    "aliases": []
+  },
+  "doDamageFight": {
+    "name": "doDamageFight",
+    "signature": "void doDamageFight(obj attacker, obj defender, int damage, int flag)",
+    "description": "Applies damage in a combat context, with a flag controlling fight-mode entry.",
+    "aliases": []
+  },
+  "doDamageType": {
+    "name": "doDamageType",
+    "signature": "void doDamageType(obj attacker, obj defender, int damage, int type)",
+    "description": "Applies typed damage (fire, poison, etc.) from attacker to defender.",
+    "aliases": []
+  },
+  "doDamageWithWeapon": {
+    "name": "doDamageWithWeapon",
+    "signature": "void doDamageWithWeapon(obj attacker, obj defender, obj weapon, int damage)",
+    "description": "Applies weapon damage from attacker to defender using the specified weapon item.",
+    "aliases": []
+  },
+  "getAC": {
+    "name": "getAC",
+    "signature": "int getAC(obj serial)",
+    "description": "Returns the effective total armour class of a mobile.",
+    "aliases": []
+  },
+  "getAttackers": {
+    "name": "getAttackers",
+    "signature": "void getAttackers(list list, obj serial)",
+    "description": "Fills a list with the serials of all entities currently attacking the target.",
+    "aliases": []
+  },
+  "getAttackersNearby": {
+    "name": "getAttackersNearby",
+    "signature": "void getAttackersNearby(list list, obj serial)",
+    "description": "Fills a list with nearby attackers of the target mobile.",
+    "aliases": []
+  },
+  "getCanCarry": {
+    "name": "getCanCarry",
+    "signature": "int getCanCarry(obj serial)",
+    "description": "Returns the maximum carry capacity (in stones) of the mobile.",
+    "aliases": []
+  },
+  "getCurFatigue": {
+    "name": "getCurFatigue",
+    "signature": "int getCurFatigue(obj serial)",
+    "description": "Returns a mobile's current stamina.",
+    "aliases": []
+  },
+  "getCurHP": {
+    "name": "getCurHP",
+    "signature": "int getCurHP(obj serial)",
+    "description": "Returns a mobile's current hit points.",
+    "aliases": []
+  },
+  "getCurMana": {
+    "name": "getCurMana",
+    "signature": "int getCurMana(obj serial)",
+    "description": "Returns a mobile's current mana.",
+    "aliases": []
+  },
+  "getFatigueLevel": {
+    "name": "getFatigueLevel",
+    "signature": "int getFatigueLevel(obj serial)",
+    "description": "Returns the stamina level (0–3) for a mobile.",
+    "aliases": []
+  },
+  "getFirstTarget": {
+    "name": "getFirstTarget",
+    "signature": "obj getFirstTarget(obj serial)",
+    "description": "Returns the serial of the first entity in the mobile's target list.",
+    "aliases": []
+  },
+  "getHPLevel": {
+    "name": "getHPLevel",
+    "signature": "int getHPLevel(obj serial)",
+    "description": "Returns the HP level (0–3: dead, low, medium, full) for a mobile.",
+    "aliases": []
+  },
+  "getManaLevel": {
+    "name": "getManaLevel",
+    "signature": "int getManaLevel(obj serial)",
+    "description": "Returns the mana level (0–3) for a mobile.",
+    "aliases": []
+  },
+  "getMaxFatigue": {
+    "name": "getMaxFatigue",
+    "signature": "int getMaxFatigue(obj serial)",
+    "description": "Returns a mobile's maximum stamina.",
+    "aliases": []
+  },
+  "getMaxHP": {
+    "name": "getMaxHP",
+    "signature": "int getMaxHP(obj serial)",
+    "description": "Returns a mobile's maximum hit points.",
+    "aliases": []
+  },
+  "getMaxMana": {
+    "name": "getMaxMana",
+    "signature": "int getMaxMana(obj serial)",
+    "description": "Returns a mobile's maximum mana.",
+    "aliases": []
+  },
+  "getNaturalAC": {
+    "name": "getNaturalAC",
+    "signature": "int getNaturalAC(obj serial)",
+    "description": "Returns the base (natural) armour class of a mobile.",
+    "aliases": []
+  },
+  "getNumAttackers": {
+    "name": "getNumAttackers",
+    "signature": "int getNumAttackers(obj serial)",
+    "description": "Returns the number of entities currently attacking the mobile.",
+    "aliases": []
+  },
+  "getNumTargets": {
+    "name": "getNumTargets",
+    "signature": "int getNumTargets(obj serial)",
+    "description": "Returns the number of entities the mobile is currently targeting.",
+    "aliases": []
+  },
+  "getTargets": {
+    "name": "getTargets",
+    "signature": "void getTargets(list list, obj serial)",
+    "description": "Fills a list with the serials of entities the mobile is currently targeting.",
+    "aliases": []
+  },
+  "handleHealthGain": {
+    "name": "handleHealthGain",
+    "signature": "void handleHealthGain(obj serial)",
+    "description": "Triggers the server's normal hit-point regeneration tick for a mobile.",
+    "aliases": []
+  },
+  "loseFatigue": {
+    "name": "loseFatigue",
+    "signature": "void loseFatigue(obj serial, int amount)",
+    "description": "Reduces a mobile's current stamina/fatigue by the given amount.",
+    "aliases": []
+  },
+  "loseHP": {
+    "name": "loseHP",
+    "signature": "void loseHP(obj serial, int amount)",
+    "description": "Reduces a mobile's current hit points by the given amount (no combat events).",
+    "aliases": []
+  },
+  "loseMana": {
+    "name": "loseMana",
+    "signature": "void loseMana(obj serial, int amount)",
+    "description": "Reduces a mobile's current mana by the given amount.",
+    "aliases": []
+  },
+  "peace": {
+    "name": "peace",
+    "signature": "void peace(obj serial)",
+    "description": "Clears the combat state of a mobile, ending its current fight.",
+    "aliases": []
+  },
+  "restoreFatigue": {
+    "name": "restoreFatigue",
+    "signature": "void restoreFatigue(obj serial)",
+    "description": "Restores a mobile's stamina to maximum.",
+    "aliases": []
+  },
+  "restoreHP": {
+    "name": "restoreHP",
+    "signature": "void restoreHP(obj serial)",
+    "description": "Restores a mobile's hit points to maximum.",
+    "aliases": []
+  },
+  "restoreMana": {
+    "name": "restoreMana",
+    "signature": "void restoreMana(obj serial)",
+    "description": "Restores a mobile's mana to maximum.",
+    "aliases": []
+  },
+  "restoreMobile": {
+    "name": "restoreMobile",
+    "signature": "void restoreMobile(obj serial)",
+    "description": "Fully restores hit points, mana, and stamina on a mobile.",
+    "aliases": []
+  },
+  "resurrect": {
+    "name": "resurrect",
+    "signature": "int resurrect(obj serial, int flag)",
+    "description": "Resurrects a dead mobile. The flag controls whether resources are restored.",
+    "aliases": []
+  },
+  "setCurFatigue": {
+    "name": "setCurFatigue",
+    "signature": "void setCurFatigue(obj serial, int stamina)",
+    "description": "Sets a mobile's current stamina/fatigue to an exact value.",
+    "aliases": []
+  },
+  "setCurHP": {
+    "name": "setCurHP",
+    "signature": "void setCurHP(obj serial, int hp)",
+    "description": "Sets a mobile's current hit points to an exact value.",
+    "aliases": []
+  },
+  "setCurMana": {
+    "name": "setCurMana",
+    "signature": "void setCurMana(obj serial, int mana)",
+    "description": "Sets a mobile's current mana to an exact value.",
+    "aliases": []
+  },
+  "setMaxFatigue": {
+    "name": "setMaxFatigue",
+    "signature": "void setMaxFatigue(obj serial, int maxstam)",
+    "description": "Sets a mobile's maximum stamina/fatigue.",
+    "aliases": []
+  },
+  "setMaxHP": {
+    "name": "setMaxHP",
+    "signature": "void setMaxHP(obj serial, int maxhp)",
+    "description": "Sets a mobile's maximum hit points.",
+    "aliases": []
+  },
+  "setMaxMana": {
+    "name": "setMaxMana",
+    "signature": "void setMaxMana(obj serial, int maxmana)",
+    "description": "Sets a mobile's maximum mana.",
+    "aliases": []
+  },
+  "setNaturalAC": {
+    "name": "setNaturalAC",
+    "signature": "void setNaturalAC(obj serial, int ac)",
+    "description": "Sets the base (natural) armour class of a mobile.",
+    "aliases": []
+  },
+  "stopAttack": {
+    "name": "stopAttack",
+    "signature": "void stopAttack(obj serial)",
+    "description": "Clears the attack target of a mobile without ending its entire fight state.",
+    "aliases": []
+  },
+  "stopFight": {
+    "name": "stopFight",
+    "signature": "void stopFight(obj serial1, obj serial2)",
+    "description": "Ends the fight relationship between two specific mobiles.",
+    "aliases": []
+  },
+  "addSkillLevel": {
+    "name": "addSkillLevel",
+    "signature": "void addSkillLevel(obj serial, int skillId, int delta)",
+    "description": "Adds a delta to the mobile's skill level.",
+    "aliases": []
+  },
+  "canWield": {
+    "name": "canWield",
+    "signature": "int canWield(obj mobSerial, obj itemSerial)",
+    "description": "Returns 1 if the mobile meets the requirements to wield the given item.",
+    "aliases": []
+  },
+  "getCappedSkillTotal": {
+    "name": "getCappedSkillTotal",
+    "signature": "int getCappedSkillTotal(obj serial)",
+    "description": "Returns the sum of all effective skill levels, capped at the server's skill cap.",
+    "aliases": []
+  },
+  "getDexterity": {
+    "name": "getDexterity",
+    "signature": "int getDexterity(obj serial)",
+    "description": "Returns the effective Dexterity of a mobile (with modifiers applied).",
+    "aliases": []
+  },
+  "getIntelligence": {
+    "name": "getIntelligence",
+    "signature": "int getIntelligence(obj serial)",
+    "description": "Returns the effective Intelligence of a mobile (with modifiers applied).",
+    "aliases": []
+  },
+  "getMobFlag": {
+    "name": "getMobFlag",
+    "signature": "int getMobFlag(obj serial, int flagId)",
+    "description": "Returns the value of a specific flag bit on the mobile.",
+    "aliases": []
+  },
+  "getRealDexterity": {
+    "name": "getRealDexterity",
+    "signature": "int getRealDexterity(obj serial)",
+    "description": "Returns the base (unmodified) Dexterity of a mobile.",
+    "aliases": []
+  },
+  "getRealIntelligence": {
+    "name": "getRealIntelligence",
+    "signature": "int getRealIntelligence(obj serial)",
+    "description": "Returns the base (unmodified) Intelligence of a mobile.",
+    "aliases": []
+  },
+  "getRealStat": {
+    "name": "getRealStat",
+    "signature": "int getRealStat(obj serial, int statId)",
+    "description": "Returns the base value of a stat by ID.",
+    "aliases": []
+  },
+  "getRealStrength": {
+    "name": "getRealStrength",
+    "signature": "int getRealStrength(obj serial)",
+    "description": "Returns the base (unmodified) Strength of a mobile.",
+    "aliases": []
+  },
+  "getSkillLevel": {
+    "name": "getSkillLevel",
+    "signature": "int getSkillLevel(obj serial, int skillId)",
+    "description": "Returns the effective skill level (0–1000) including modifiers.",
+    "aliases": []
+  },
+  "getSkillLevelNoStat": {
+    "name": "getSkillLevelNoStat",
+    "signature": "int getSkillLevelNoStat(obj serial, int skillId)",
+    "description": "Returns the skill level excluding stat bonuses.",
+    "aliases": []
+  },
+  "getSkillLevelNoStatNoMod": {
+    "name": "getSkillLevelNoStatNoMod",
+    "signature": "int getSkillLevelNoStatNoMod(obj serial, int skillId)",
+    "description": "Returns the raw stored skill level with no bonuses applied.",
+    "aliases": []
+  },
+  "getSkillLevelReal": {
+    "name": "getSkillLevelReal",
+    "signature": "int getSkillLevelReal(obj serial, int skillId)",
+    "description": "Returns the base (unmodified) skill level.",
+    "aliases": []
+  },
+  "getSkillLevelRealStat": {
+    "name": "getSkillLevelRealStat",
+    "signature": "int getSkillLevelRealStat(obj serial, int skillId)",
+    "description": "Returns the skill level including stat contributions but not modifiers.",
+    "aliases": []
+  },
+  "getSkillMod": {
+    "name": "getSkillMod",
+    "signature": "int getSkillMod(obj serial, int skillId)",
+    "description": "Returns the current modifier for the given skill.",
+    "aliases": []
+  },
+  "getSkillName": {
+    "name": "getSkillName",
+    "signature": "string getSkillName(int arg1)",
+    "description": "Returns the display name string for the given skill ID.",
+    "aliases": []
+  },
+  "getSkillNumber": {
+    "name": "getSkillNumber",
+    "signature": "int getSkillNumber(string skillName)",
+    "description": "Returns the skill ID integer for the given skill name string.",
+    "aliases": []
+  },
+  "getSkillSuccessChance": {
+    "name": "getSkillSuccessChance",
+    "signature": "int getSkillSuccessChance(obj serial, int skillId, int difficulty, int range)",
+    "description": "Returns the percentage chance (0–100) of a skill check succeeding.",
+    "aliases": []
+  },
+  "getSkillTotal": {
+    "name": "getSkillTotal",
+    "signature": "int getSkillTotal(obj serial)",
+    "description": "Returns the raw sum of all skill levels without applying the cap.",
+    "aliases": []
+  },
+  "getStat": {
+    "name": "getStat",
+    "signature": "int getStat(obj serial, int statId)",
+    "description": "Returns the effective value of a stat by ID (Str=0, Dex=1, Int=2).",
+    "aliases": []
+  },
+  "getStatAttributeMax": {
+    "name": "getStatAttributeMax",
+    "signature": "int getStatAttributeMax(obj serial, int statId)",
+    "description": "Returns the stat cap (maximum) for the given stat on this mobile.",
+    "aliases": []
+  },
+  "getStatMod": {
+    "name": "getStatMod",
+    "signature": "int getStatMod(obj serial, int statId)",
+    "description": "Returns the current modifier applied to the given stat.",
+    "aliases": []
+  },
+  "getStrength": {
+    "name": "getStrength",
+    "signature": "int getStrength(obj serial)",
+    "description": "Returns the effective Strength of a mobile (with modifiers applied).",
+    "aliases": []
+  },
+  "handleWatchingSkill": {
+    "name": "handleWatchingSkill",
+    "signature": "void handleWatchingSkill(obj serial, int skillId)",
+    "description": "Triggers a gain check for skills that are &quot;watched&quot; (passively trained by observing).",
+    "aliases": []
+  },
+  "loseSkillLevel": {
+    "name": "loseSkillLevel",
+    "signature": "void loseSkillLevel(obj serial, int skillId, int delta)",
+    "description": "Subtracts a delta from the mobile's skill level.",
+    "aliases": []
+  },
+  "modifyRealStat": {
+    "name": "modifyRealStat",
+    "signature": "int modifyRealStat(obj serial, int statId, int value)",
+    "description": "Modifies the base stat value by a delta.",
+    "aliases": []
+  },
+  "modifySkillMod": {
+    "name": "modifySkillMod",
+    "signature": "int modifySkillMod(obj serial, int skillId, int delta)",
+    "description": "Adjusts the skill modifier by a delta.",
+    "aliases": []
+  },
+  "modifyStat": {
+    "name": "modifyStat",
+    "signature": "int modifyStat(obj serial, int statId, int value)",
+    "description": "Adds a temporary modifier to a stat. Returns the new modified value.",
+    "aliases": []
+  },
+  "setMobFlag": {
+    "name": "setMobFlag",
+    "signature": "void setMobFlag(obj serial, int flagId, int value)",
+    "description": "Sets a specific flag bit on the mobile to 0 or 1.",
+    "aliases": []
+  },
+  "setRealStat": {
+    "name": "setRealStat",
+    "signature": "int setRealStat(obj serial, int statId, int value)",
+    "description": "Sets the base stat value directly.",
+    "aliases": []
+  },
+  "setSkillLevel": {
+    "name": "setSkillLevel",
+    "signature": "void setSkillLevel(obj serial, int skillId, int value)",
+    "description": "Sets the current skill level for a mobile.",
+    "aliases": []
+  },
+  "setSkillMod": {
+    "name": "setSkillMod",
+    "signature": "int setSkillMod(obj serial, int skillId, int value)",
+    "description": "Sets an absolute modifier for the given skill.",
+    "aliases": []
+  },
+  "setStatAttributeMax": {
+    "name": "setStatAttributeMax",
+    "signature": "int setStatAttributeMax(obj serial, int statId, int value)",
+    "description": "Sets the stat cap for the given stat on this mobile.",
+    "aliases": []
+  },
+  "setStatMod": {
+    "name": "setStatMod",
+    "signature": "int setStatMod(obj serial, int statId, int value)",
+    "description": "Sets the modifier for a stat to an absolute value.",
+    "aliases": []
+  },
+  "testAndLearnSkill": {
+    "name": "testAndLearnSkill",
+    "signature": "int testAndLearnSkill(obj serial, int skillId, int difficulty, int range)",
+    "description": "Performs a skill check; if successful, the skill may advance. Returns 1 on success.",
+    "aliases": []
+  },
+  "testSkill": {
+    "name": "testSkill",
+    "signature": "int testSkill(obj serial, int skillId)",
+    "description": "Performs a skill check using effective (modified) skill value. Returns 1 on success.",
+    "aliases": [
+      "skillTest"
+    ]
+  },
+  "skillTest": {
+    "name": "skillTest",
+    "signature": "int skillTest(obj serial, int skillId)",
+    "description": "Performs a skill check using effective (modified) skill value. Returns 1 on success.",
+    "aliases": [
+      "testSkill"
+    ]
+  },
+  "testSkillReal": {
+    "name": "testSkillReal",
+    "signature": "int testSkillReal(obj serial, int skillId)",
+    "description": "Performs a skill check using the base (unmodified) skill value.",
+    "aliases": [
+      "skillTestReal"
+    ]
+  },
+  "skillTestReal": {
+    "name": "skillTestReal",
+    "signature": "int skillTestReal(obj serial, int skillId)",
+    "description": "Performs a skill check using the base (unmodified) skill value.",
+    "aliases": [
+      "testSkillReal"
+    ]
+  },
+  "canHold": {
+    "name": "canHold",
+    "signature": "int canHold(obj containerSerial, obj itemSerial)",
+    "description": "Returns 1 if the container can hold the given item without weight or space violation.",
+    "aliases": []
+  },
+  "containsObj": {
+    "name": "containsObj",
+    "signature": "int containsObj(obj containerSerial, obj entitySerial)",
+    "description": "Returns 1 if the container holds the given item serial (recursively).",
+    "aliases": []
+  },
+  "containsObjType": {
+    "name": "containsObjType",
+    "signature": "obj containsObjType(obj containerSerial, int type)",
+    "description": "Returns the serial of the first matching item type found inside a container, or 0.",
+    "aliases": [
+      "takeMoney"
+    ]
+  },
+  "takeMoney": {
+    "name": "takeMoney",
+    "signature": "obj takeMoney(obj containerSerial, int type)",
+    "description": "Returns the serial of the first matching item type found inside a container, or 0.",
+    "aliases": [
+      "containsObjType"
+    ]
+  },
+  "destroyContents": {
+    "name": "destroyContents",
+    "signature": "void destroyContents(obj containerSerial)",
+    "description": "Destroys all items inside a container.",
+    "aliases": []
+  },
+  "destroyGeneric": {
+    "name": "destroyGeneric",
+    "signature": "void destroyGeneric(obj mobileSerial, int itemType, int count)",
+    "description": "Destroys a specified quantity of a generic item type from a mobile's inventory.",
+    "aliases": []
+  },
+  "doTakeMoney": {
+    "name": "doTakeMoney",
+    "signature": "obj doTakeMoney(obj containerSerial, int bodyType, int amount)",
+    "description": "Withdraws a specific amount of gold (by type) from a container. Returns the gold serial.",
+    "aliases": []
+  },
+  "equipObj": {
+    "name": "equipObj",
+    "signature": "int equipObj(obj itemSerial, obj targetSerial, int layer)",
+    "description": "Equips an item onto a mobile at the given layer slot. Returns 1 on success.",
+    "aliases": []
+  },
+  "getBackpack": {
+    "name": "getBackpack",
+    "signature": "obj getBackpack(obj serial)",
+    "description": "Returns the serial of the mobile's backpack container, or 0.",
+    "aliases": []
+  },
+  "getContainersOnMobile": {
+    "name": "getContainersOnMobile",
+    "signature": "void getContainersOnMobile(list list, obj serial)",
+    "description": "Fills a list with serials of all containers currently on the mobile.",
+    "aliases": []
+  },
+  "getContents": {
+    "name": "getContents",
+    "signature": "void getContents(list list, obj serial)",
+    "description": "Fills a list with the serials of all items directly inside a container.",
+    "aliases": [
+      "getcontents"
+    ]
+  },
+  "getcontents": {
+    "name": "getcontents",
+    "signature": "void getcontents(list list, obj serial)",
+    "description": "Fills a list with the serials of all items directly inside a container.",
+    "aliases": [
+      "getContents"
+    ]
+  },
+  "getEquipment": {
+    "name": "getEquipment",
+    "signature": "void getEquipment(list list, obj serial)",
+    "description": "Fills a list with the serials of all items equipped on a mobile.",
+    "aliases": [
+      "getequipment"
+    ]
+  },
+  "getequipment": {
+    "name": "getequipment",
+    "signature": "void getequipment(list list, obj serial)",
+    "description": "Fills a list with the serials of all items equipped on a mobile.",
+    "aliases": [
+      "getEquipment"
+    ]
+  },
+  "getEquipSlot": {
+    "name": "getEquipSlot",
+    "signature": "int getEquipSlot(obj serial)",
+    "description": "Returns the equipment layer slot number the item occupies.",
+    "aliases": []
+  },
+  "getFreeHandSlot": {
+    "name": "getFreeHandSlot",
+    "signature": "int getFreeHandSlot(obj serial)",
+    "description": "Returns the layer slot ID of a free hand on the mobile, or -1 if both are full.",
+    "aliases": []
+  },
+  "getGeneric": {
+    "name": "getGeneric",
+    "signature": "int getGeneric(obj serial, int type)",
+    "description": "Returns the quantity of a generic item type possessed by the mobile.",
+    "aliases": []
+  },
+  "getItemAtSlot": {
+    "name": "getItemAtSlot",
+    "signature": "obj getItemAtSlot(obj serial, int slot)",
+    "description": "Returns the serial of the item equipped at the given layer slot on the mobile.",
+    "aliases": []
+  },
+  "getMoney": {
+    "name": "getMoney",
+    "signature": "int getMoney(obj serial)",
+    "description": "Returns the amount of gold (all forms) the mobile is carrying.",
+    "aliases": []
+  },
+  "getObjectsOfTypeIn": {
+    "name": "getObjectsOfTypeIn",
+    "signature": "void getObjectsOfTypeIn(list list, obj containerSerial, int typeId)",
+    "description": "Fills a list with all items of a specific type inside a container.",
+    "aliases": []
+  },
+  "getTopmostContainer": {
+    "name": "getTopmostContainer",
+    "signature": "obj getTopmostContainer(obj serial)",
+    "description": "Returns the serial of the outermost container holding the item, or the item itself.",
+    "aliases": []
+  },
+  "getWeapon": {
+    "name": "getWeapon",
+    "signature": "obj getWeapon(obj serial)",
+    "description": "Returns the serial of the weapon currently in the mobile's primary hand.",
+    "aliases": []
+  },
+  "giveItem": {
+    "name": "giveItem",
+    "signature": "obj giveItem(obj mobSerial, obj itemSerial)",
+    "description": "Transfers an item to the mobile's backpack. Returns the item serial on success.",
+    "aliases": []
+  },
+  "hasObj": {
+    "name": "hasObj",
+    "signature": "int hasObj(obj mobSerial, obj objSerial)",
+    "description": "Returns 1 if the mobile currently possesses the specific item serial.",
+    "aliases": []
+  },
+  "hasObjEquipped": {
+    "name": "hasObjEquipped",
+    "signature": "int hasObjEquipped(obj mobSerial, obj objSerial)",
+    "description": "Returns 1 if the specific item is currently equipped on the mobile.",
+    "aliases": []
+  },
+  "hasObjType": {
+    "name": "hasObjType",
+    "signature": "int hasObjType(obj mobSerial, int type)",
+    "description": "Returns 1 if the mobile has at least one item of the given type anywhere on their person.",
+    "aliases": []
+  },
+  "hasObjTypeEquipped": {
+    "name": "hasObjTypeEquipped",
+    "signature": "int hasObjTypeEquipped(obj serial, int type)",
+    "description": "Returns 1 if the mobile has any item of the given type equipped.",
+    "aliases": []
+  },
+  "hasObjTypeInBank": {
+    "name": "hasObjTypeInBank",
+    "signature": "int hasObjTypeInBank(obj mobSerial, int type)",
+    "description": "Returns 1 if the mobile's bank box contains at least one item of the given type.",
+    "aliases": []
+  },
+  "isArmed": {
+    "name": "isArmed",
+    "signature": "int isArmed(obj serial)",
+    "description": "Returns 1 if the mobile is currently holding a weapon.",
+    "aliases": []
+  },
+  "mobileContainsObj": {
+    "name": "mobileContainsObj",
+    "signature": "int mobileContainsObj(obj mobSerial, obj targetSerial)",
+    "description": "Returns 1 if the mobile has the given item anywhere on their person (all containers).",
+    "aliases": []
+  },
+  "mobileContainsObjType": {
+    "name": "mobileContainsObjType",
+    "signature": "obj mobileContainsObjType(obj mobSerial, int type)",
+    "description": "Returns the serial of the first matching item type found on the mobile.",
+    "aliases": []
+  },
+  "mobileHasObjWithListObjOfObj": {
+    "name": "mobileHasObjWithListObjOfObj",
+    "signature": "obj mobileHasObjWithListObjOfObj(obj mobSerial, string name, obj containerSerial)",
+    "description": "Searches a mobile for an item whose named ObjVar matches a container's contents.",
+    "aliases": []
+  },
+  "openContainer": {
+    "name": "openContainer",
+    "signature": "int openContainer(obj playerSerial, obj containerSerial)",
+    "description": "Opens a container for a player, sending the container gump. Returns 1 on success.",
+    "aliases": []
+  },
+  "putMobContainer": {
+    "name": "putMobContainer",
+    "signature": "int putMobContainer(obj thingSerial, obj containerSerial)",
+    "description": "Moves an item into a mobile's backpack. Returns 1 on success.",
+    "aliases": []
+  },
+  "putObjBank": {
+    "name": "putObjBank",
+    "signature": "int putObjBank(obj mobileSerial, obj thingSerial)",
+    "description": "Moves an item into the mobile's bank box. Returns 1 on success.",
+    "aliases": []
+  },
+  "putObjContainer": {
+    "name": "putObjContainer",
+    "signature": "int putObjContainer(obj thingSerial, obj containerSerial)",
+    "description": "Moves an item into a container. Returns 1 on success.",
+    "aliases": []
+  },
+  "toMobile": {
+    "name": "toMobile",
+    "signature": "int toMobile(obj thingSerial, obj mobileSerial)",
+    "description": "Moves an item to the top-level of a mobile's possession (unequipped). Returns 1 on success.",
+    "aliases": []
+  },
+  "transferGenericToContainer": {
+    "name": "transferGenericToContainer",
+    "signature": "obj transferGenericToContainer(obj containerSerial, obj mobileSerial, int itemType, int count)",
+    "description": "Transfers a quantity of a generic item type from a mobile to a container.",
+    "aliases": []
+  },
+  "transferGenericToWorld": {
+    "name": "transferGenericToWorld",
+    "signature": "obj transferGenericToWorld(loc loc, obj mobileSerial, int itemType, int count)",
+    "description": "Drops a quantity of a generic item type from a mobile to a world location.",
+    "aliases": []
+  },
+  "addToObjVarListSet": {
+    "name": "addToObjVarListSet",
+    "signature": "int addToObjVarListSet(obj serial, string varname, any typeTag)",
+    "description": "Adds a value to a list-set ObjVar on an entity (no duplicates). Returns 1 if added.",
+    "aliases": []
+  },
+  "copyAllObjVars": {
+    "name": "copyAllObjVars",
+    "signature": "void copyAllObjVars(obj destSerial, obj srcSerial)",
+    "description": "Copies all ObjVars from a source entity to a destination entity.",
+    "aliases": []
+  },
+  "copyObjVar": {
+    "name": "copyObjVar",
+    "signature": "void copyObjVar(obj destSerial, obj srcSerial, string varname)",
+    "description": "Copies a single named ObjVar from one entity to another.",
+    "aliases": []
+  },
+  "getObjListVar": {
+    "name": "getObjListVar",
+    "signature": "void getObjListVar(list list, obj serial, string varname)",
+    "description": "Fills a list with the contents of a named list ObjVar on an entity.",
+    "aliases": []
+  },
+  "getObjVar": {
+    "name": "getObjVar",
+    "signature": "obj getObjVar(obj serial, string varname)",
+    "description": "Returns an object-serial ObjVar value from an entity.",
+    "aliases": [
+      "getobjvar_obj"
+    ]
+  },
+  "getobjvar_int": {
+    "name": "getobjvar_int",
+    "signature": "int getobjvar_int(obj serial, string varname)",
+    "description": "Returns an integer ObjVar value from an entity.",
+    "aliases": [
+      "getObjVar"
+    ]
+  },
+  "getobjvar_str": {
+    "name": "getobjvar_str",
+    "signature": "string getobjvar_str(obj arg1, string arg2)",
+    "description": "Returns a string ObjVar value from an entity.",
+    "aliases": [
+      "getObjVar"
+    ]
+  },
+  "getobjvar_loc": {
+    "name": "getobjvar_loc",
+    "signature": "loc getobjvar_loc(obj arg1, string arg2)",
+    "description": "Returns a location ObjVar value from an entity.",
+    "aliases": [
+      "getObjVar"
+    ]
+  },
+  "getobjvar_obj": {
+    "name": "getobjvar_obj",
+    "signature": "obj getobjvar_obj(obj serial, string varname)",
+    "description": "Returns an object-serial ObjVar value from an entity.",
+    "aliases": [
+      "getObjVar"
+    ]
+  },
+  "hasObjListVar": {
+    "name": "hasObjListVar",
+    "signature": "int hasObjListVar(obj serial, string varname)",
+    "description": "Returns 1 if the entity has a named list ObjVar set.",
+    "aliases": []
+  },
+  "hasObjVar": {
+    "name": "hasObjVar",
+    "signature": "int hasObjVar(obj serial, string varname)",
+    "description": "Returns 1 if the entity has a named ObjVar set.",
+    "aliases": []
+  },
+  "isInObjVarListSet": {
+    "name": "isInObjVarListSet",
+    "signature": "int isInObjVarListSet(obj serial, string varname, any typeTag)",
+    "description": "Returns 1 if the value is already present in the list-set ObjVar.",
+    "aliases": []
+  },
+  "removeObjVar": {
+    "name": "removeObjVar",
+    "signature": "void removeObjVar(obj serial, string varname)",
+    "description": "Removes a named ObjVar from an entity.",
+    "aliases": []
+  },
+  "setObjVar": {
+    "name": "setObjVar",
+    "signature": "void setObjVar(obj serial, string varname, any typeTag)",
+    "description": "Sets a named ObjVar on an entity to any value type.",
+    "aliases": []
+  },
+  "actionBark": {
+    "name": "actionBark",
+    "signature": "void actionBark(obj serial, int hue, string text1, string text2)",
+    "description": "Displays a two-line bark with an associated action animation colour.",
+    "aliases": []
+  },
+  "bark": {
+    "name": "bark",
+    "signature": "void bark(obj serial, ustring text)",
+    "description": "Makes an entity speak unicode text aloud (for non-ASCII languages).",
+    "aliases": []
+  },
+  "barkTo": {
+    "name": "barkTo",
+    "signature": "void barkTo(obj speakerSerial, obj targetSerial, ustring text)",
+    "description": "Makes an entity speak unicode text directly addressed to a specific player.",
+    "aliases": []
+  },
+  "barkToHued": {
+    "name": "barkToHued",
+    "signature": "void barkToHued(obj speakerSerial, obj targetSerial, int hue, string text)",
+    "description": "Makes an entity speak unicode text to a specific player in a chosen text colour.",
+    "aliases": []
+  },
+  "closeGump": {
+    "name": "closeGump",
+    "signature": "void closeGump(obj serial, int gumpId)",
+    "description": "Closes a specific gump dialog on the player's client.",
+    "aliases": []
+  },
+  "ebark": {
+    "name": "ebark",
+    "signature": "void ebark(obj serial, ustring text)",
+    "description": "Like barkUnicode, but displayed as an emote.",
+    "aliases": []
+  },
+  "ebarkTo": {
+    "name": "ebarkTo",
+    "signature": "void ebarkTo(obj speakerSerial, obj targetSerial, ustring text)",
+    "description": "Like barkToUnicode, but displayed as an emote.",
+    "aliases": []
+  },
+  "openGenericGump": {
+    "name": "openGenericGump",
+    "signature": "void openGenericGump(obj entitySerial, obj playerSerial, int gumpId, int x, int y, list cmdList, list textList)",
+    "description": "Opens a fully custom gump built from command and text lists.",
+    "aliases": []
+  },
+  "openGump": {
+    "name": "openGump",
+    "signature": "void openGump(obj serial, int gumpId)",
+    "description": "Opens a predefined gump dialog on the player's client.",
+    "aliases": []
+  },
+  "replyTo": {
+    "name": "replyTo",
+    "signature": "void replyTo(obj npcSerial, obj targetSerial, string speechStr)",
+    "description": "Makes an NPC reply to a player with speech, without triggering a bark overhead.",
+    "aliases": []
+  },
+  "replyToMobAbout": {
+    "name": "replyToMobAbout",
+    "signature": "void replyToMobAbout(obj speakerSerial, obj targetSerial, obj aboutSerial, string speechStr)",
+    "description": "Makes an NPC speak to a player about a third entity.",
+    "aliases": []
+  },
+  "selectHue": {
+    "name": "selectHue",
+    "signature": "void selectHue(obj playerSerial, obj serial, int typeID, int hue)",
+    "description": "Opens a hue-selection dialog for the player.",
+    "aliases": []
+  },
+  "selectType": {
+    "name": "selectType",
+    "signature": "void selectType(obj playerSerial, obj serial, int dialogId, string title, list list)",
+    "description": "Opens a type-selection dialog for the player to choose from a list.",
+    "aliases": []
+  },
+  "selectTypeAndHue": {
+    "name": "selectTypeAndHue",
+    "signature": "void selectTypeAndHue(obj playerSerial, obj serial, int dialogId, string title, list list)",
+    "description": "Opens a combined type-and-hue selection dialog for the player.",
+    "aliases": []
+  },
+  "setConvoRet": {
+    "name": "setConvoRet",
+    "signature": "void setConvoRet(string str)",
+    "description": "Sets the conversation return string used by the dialogue system.",
+    "aliases": []
+  },
+  "stringQuery": {
+    "name": "stringQuery",
+    "signature": "void stringQuery(obj playerSerial, obj serial, int type, string question, int cancel, int style, int maxLen, string title)",
+    "description": "Opens a named string-query dialog on the player's client.",
+    "aliases": []
+  },
+  "superBark": {
+    "name": "superBark",
+    "signature": "int superBark(obj serial, string text, int hue, int type, int font)",
+    "description": "Sends a speech message with full control over hue, type, and font.",
+    "aliases": []
+  },
+  "systemMessage": {
+    "name": "systemMessage",
+    "signature": "void systemMessage(obj serial, string str)",
+    "description": "Sends a private system message string to a player's client.",
+    "aliases": []
+  },
+  "systemMessageHued": {
+    "name": "systemMessageHued",
+    "signature": "void systemMessageHued(obj serial, int hue, string str)",
+    "description": "Sends a private system message in a specific hue to a player.",
+    "aliases": []
+  },
+  "textEntry": {
+    "name": "textEntry",
+    "signature": "void textEntry(obj serial, obj playerSerial, int gumpId, int parentId, string text)",
+    "description": "Opens a text-entry gump on the player's client for text input.",
+    "aliases": []
+  },
+  "textMessage": {
+    "name": "textMessage",
+    "signature": "int textMessage(obj serial, string text, int hue, int font, int speechType)",
+    "description": "Sends a message packet with full control over hue, font, and speech type.",
+    "aliases": []
+  },
+  "webBrowse": {
+    "name": "webBrowse",
+    "signature": "void webBrowse(obj serial, string str)",
+    "description": "Sends a URL to the player's client to open in their web browser.",
+    "aliases": []
+  },
+  "addFragment": {
+    "name": "addFragment",
+    "signature": "void addFragment(obj serial, string fragName)",
+    "description": "Adds a named script fragment to an entity.",
+    "aliases": [
+      "addFrag",
+      "addfragment",
+      "addfrag"
+    ]
+  },
+  "addFrag": {
+    "name": "addFrag",
+    "signature": "void addFrag(obj serial, string fragName)",
+    "description": "Adds a named script fragment to an entity.",
+    "aliases": [
+      "addFragment"
+    ]
+  },
+  "addfragment": {
+    "name": "addfragment",
+    "signature": "void addfragment(obj serial, string fragName)",
+    "description": "Adds a named script fragment to an entity.",
+    "aliases": [
+      "addFragment"
+    ]
+  },
+  "addfrag": {
+    "name": "addfrag",
+    "signature": "void addfrag(obj serial, string fragName)",
+    "description": "Adds a named script fragment to an entity.",
+    "aliases": [
+      "addFragment"
+    ]
+  },
+  "attachScript": {
+    "name": "attachScript",
+    "signature": "void attachScript(obj serial, string scriptName)",
+    "description": "Attaches a named script to an entity, loading it if not already present.",
+    "aliases": [
+      "attachscript"
+    ]
+  },
+  "attachscript": {
+    "name": "attachscript",
+    "signature": "void attachscript(obj serial, string scriptName)",
+    "description": "Attaches a named script to an entity, loading it if not already present.",
+    "aliases": [
+      "attachScript"
+    ]
+  },
+  "callBack": {
+    "name": "callBack",
+    "signature": "void callBack(obj serial, int delay, int callbackId)",
+    "description": "Schedules a callback event on an entity after a given delay (in 1/10-second ticks).",
+    "aliases": [
+      "callback"
+    ]
+  },
+  "callback": {
+    "name": "callback",
+    "signature": "void callback(obj serial, int delay, int callbackId)",
+    "description": "Schedules a callback event on an entity after a given delay (in 1/10-second ticks).",
+    "aliases": [
+      "callBack"
+    ]
+  },
+  "callbackAdvanced": {
+    "name": "callbackAdvanced",
+    "signature": "void callbackAdvanced(obj serial, int delay, int eventType, int callbackId)",
+    "description": "Schedules a callback with an event type, allowing discrimination at the handler.",
+    "aliases": []
+  },
+  "detachScript": {
+    "name": "detachScript",
+    "signature": "void detachScript(obj serial, string scriptName)",
+    "description": "Detaches a named script from an entity.",
+    "aliases": [
+      "detachscript"
+    ]
+  },
+  "detachscript": {
+    "name": "detachscript",
+    "signature": "void detachscript(obj serial, string scriptName)",
+    "description": "Detaches a named script from an entity.",
+    "aliases": [
+      "detachScript"
+    ]
+  },
+  "doLookAt": {
+    "name": "doLookAt",
+    "signature": "void doLookAt(obj playerSerial, obj targetSerial)",
+    "description": "Makes a player inspect/look at a target entity, triggering the look sequence.",
+    "aliases": []
+  },
+  "escript": {
+    "name": "escript",
+    "signature": "void escript(obj serial, string scriptName, string args)",
+    "description": "Executes a named script on an entity with an argument string.",
+    "aliases": []
+  },
+  "getScripts": {
+    "name": "getScripts",
+    "signature": "void getScripts(list list, obj serial)",
+    "description": "Fills a list with the names of all scripts currently attached to an entity.",
+    "aliases": []
+  },
+  "hasCallback": {
+    "name": "hasCallback",
+    "signature": "int hasCallback(obj serial, int callbackId)",
+    "description": "Returns 1 if the entity has a pending callback with the given ID.",
+    "aliases": []
+  },
+  "hasCallbackAdvanced": {
+    "name": "hasCallbackAdvanced",
+    "signature": "int hasCallbackAdvanced(obj serial, int eventType, int callbackId)",
+    "description": "Returns 1 if the entity has a pending typed callback with the given ID.",
+    "aliases": []
+  },
+  "hasScript": {
+    "name": "hasScript",
+    "signature": "int hasScript(obj serial, string scriptName)",
+    "description": "Returns 1 if the entity has the named script currently attached.",
+    "aliases": [
+      "hasscript"
+    ]
+  },
+  "hasscript": {
+    "name": "hasscript",
+    "signature": "int hasscript(obj serial, string scriptName)",
+    "description": "Returns 1 if the entity has the named script currently attached.",
+    "aliases": [
+      "hasScript"
+    ]
+  },
+  "message": {
+    "name": "message",
+    "signature": "void message(obj targetSerial, string msgName, list listArgs)",
+    "description": "Sends a named message with a list of arguments to an entity's script.",
+    "aliases": []
+  },
+  "messageret": {
+    "name": "messageret",
+    "signature": "int messageret(obj senderSerial, obj targetSerial, string msgName, list listArgs)",
+    "description": "Sends a message from one entity to another and returns the int result.",
+    "aliases": []
+  },
+  "messageToRange": {
+    "name": "messageToRange",
+    "signature": "void messageToRange(loc loc, int range, string text, list args)",
+    "description": "Sends a text message to all entities within range of a location.",
+    "aliases": []
+  },
+  "multiMessage": {
+    "name": "multiMessage",
+    "signature": "void multiMessage(obj serial, string msgName, list listArgs)",
+    "description": "Sends a named message to all scripts on an entity.",
+    "aliases": [
+      "multimessage"
+    ]
+  },
+  "multimessage": {
+    "name": "multimessage",
+    "signature": "void multimessage(obj serial, string msgName, list listArgs)",
+    "description": "Sends a named message to all scripts on an entity.",
+    "aliases": [
+      "multiMessage"
+    ]
+  },
+  "multiMessageToLoc": {
+    "name": "multiMessageToLoc",
+    "signature": "void multiMessageToLoc(loc loc, string msgName, list listArgs)",
+    "description": "Sends a named message to all entities at a location.",
+    "aliases": []
+  },
+  "multiMessageToRange": {
+    "name": "multiMessageToRange",
+    "signature": "void multiMessageToRange(loc loc, int range, string msgName, list listArgs)",
+    "description": "Sends a named message to all entities within range of a location.",
+    "aliases": []
+  },
+  "processTriggerCmds": {
+    "name": "processTriggerCmds",
+    "signature": "void processTriggerCmds(obj serial, string cmdStr)",
+    "description": "Processes a trigger command string on an entity.",
+    "aliases": []
+  },
+  "removeCallback": {
+    "name": "removeCallback",
+    "signature": "void removeCallback(obj serial, int callbackId)",
+    "description": "Cancels a pending callback by ID on the entity.",
+    "aliases": []
+  },
+  "removeCallbackAdvanced": {
+    "name": "removeCallbackAdvanced",
+    "signature": "void removeCallbackAdvanced(obj serial, int eventType, int callbackId)",
+    "description": "Cancels a pending typed callback by ID on the entity.",
+    "aliases": []
+  },
+  "removeFragment": {
+    "name": "removeFragment",
+    "signature": "void removeFragment(obj serial, string fragName)",
+    "description": "Removes a named script fragment from an entity.",
+    "aliases": [
+      "removefragment"
+    ]
+  },
+  "removefragment": {
+    "name": "removefragment",
+    "signature": "void removefragment(obj serial, string fragName)",
+    "description": "Removes a named script fragment from an entity.",
+    "aliases": [
+      "removeFragment"
+    ]
+  },
+  "scriptTrig": {
+    "name": "scriptTrig",
+    "signature": "void scriptTrig(obj serial, int trigType, obj objArgSerial)",
+    "description": "Fires a trigger event on an entity, passing an object argument.",
+    "aliases": []
+  },
+  "sendToNearbyPlayers": {
+    "name": "sendToNearbyPlayers",
+    "signature": "void sendToNearbyPlayers(obj serial, int flags)",
+    "description": "Sends a network packet to all players within range of an entity.",
+    "aliases": []
+  },
+  "shortCallback": {
+    "name": "shortCallback",
+    "signature": "void shortCallback(obj serial, int delay, int callbackId)",
+    "description": "Schedules a short callback with a small delay (lighter-weight than callback).",
+    "aliases": [
+      "shortcallback"
+    ]
+  },
+  "shortcallback": {
+    "name": "shortcallback",
+    "signature": "void shortcallback(obj serial, int delay, int callbackId)",
+    "description": "Schedules a short callback with a small delay (lighter-weight than callback).",
+    "aliases": [
+      "shortCallback"
+    ]
+  },
+  "useItem": {
+    "name": "useItem",
+    "signature": "void useItem(obj playerSerial, obj itemSerial)",
+    "description": "Simulates the player double-clicking/using an item.",
+    "aliases": []
+  },
+  "canSeeLoc": {
+    "name": "canSeeLoc",
+    "signature": "int canSeeLoc(obj serial, loc loc)",
+    "description": "Returns 1 if the entity has line-of-sight to the given location.",
+    "aliases": []
+  },
+  "canSeeObj": {
+    "name": "canSeeObj",
+    "signature": "int canSeeObj(obj serialA, obj serialB)",
+    "description": "Returns 1 if entity A has line-of-sight to entity B.",
+    "aliases": []
+  },
+  "getClosestMobile": {
+    "name": "getClosestMobile",
+    "signature": "obj getClosestMobile(loc loc, int range)",
+    "description": "Returns the serial of the closest mobile to the location within range.",
+    "aliases": []
+  },
+  "getClosestMobileOrOnlinePlayer": {
+    "name": "getClosestMobileOrOnlinePlayer",
+    "signature": "obj getClosestMobileOrOnlinePlayer(loc loc, int range)",
+    "description": "Returns the closest mobile or online player within range.",
+    "aliases": []
+  },
+  "getClosestOnlinePlayer": {
+    "name": "getClosestOnlinePlayer",
+    "signature": "obj getClosestOnlinePlayer(loc loc, int range)",
+    "description": "Returns the serial of the closest online player to the location within range.",
+    "aliases": []
+  },
+  "getClosestPlayer": {
+    "name": "getClosestPlayer",
+    "signature": "obj getClosestPlayer(loc loc, int range)",
+    "description": "Returns the serial of the closest player to the location within range.",
+    "aliases": []
+  },
+  "getClosestVisibleOnlinePlayer": {
+    "name": "getClosestVisibleOnlinePlayer",
+    "signature": "obj getClosestVisibleOnlinePlayer(loc loc, int range)",
+    "description": "Returns the closest online player who can be seen from the location.",
+    "aliases": []
+  },
+  "getFirstObjectOfType": {
+    "name": "getFirstObjectOfType",
+    "signature": "obj getFirstObjectOfType(loc loc, int bodyType)",
+    "description": "Returns the first object of a given type at a location.",
+    "aliases": []
+  },
+  "getFirstVisableTarget": {
+    "name": "getFirstVisableTarget",
+    "signature": "obj getFirstVisableTarget(obj serial)",
+    "description": "Returns the serial of the first visible combat target of the mobile.",
+    "aliases": []
+  },
+  "getFirstVisableTargetInRange": {
+    "name": "getFirstVisableTargetInRange",
+    "signature": "obj getFirstVisableTargetInRange(obj serial, int range)",
+    "description": "Returns the first visible combat target within a specific range.",
+    "aliases": []
+  },
+  "getMobsAt": {
+    "name": "getMobsAt",
+    "signature": "void getMobsAt(list list, loc loc)",
+    "description": "Fills a list with serials of all mobiles at an exact location.",
+    "aliases": []
+  },
+  "getMobsInRange": {
+    "name": "getMobsInRange",
+    "signature": "void getMobsInRange(list list, loc loc, int range)",
+    "description": "Fills a list with serials of all mobiles within range of a location.",
+    "aliases": []
+  },
+  "getMobsInRangeOld": {
+    "name": "getMobsInRangeOld",
+    "signature": "void getMobsInRangeOld(list list, loc loc, int range)",
+    "description": "Legacy version of getMobsInRange.",
+    "aliases": []
+  },
+  "getNextObjectOfType": {
+    "name": "getNextObjectOfType",
+    "signature": "obj getNextObjectOfType(loc loc, int bodyType, obj lastSerial)",
+    "description": "Returns the next object of a given type at a location, after a known serial.",
+    "aliases": []
+  },
+  "getNPCsAt": {
+    "name": "getNPCsAt",
+    "signature": "void getNPCsAt(list list, loc loc)",
+    "description": "Fills a list with serials of all NPCs at an exact location.",
+    "aliases": []
+  },
+  "getNPCsInRange": {
+    "name": "getNPCsInRange",
+    "signature": "void getNPCsInRange(list list, loc loc, int range)",
+    "description": "Fills a list with serials of all NPCs within range of a location.",
+    "aliases": []
+  },
+  "getNPCsInRangeOld": {
+    "name": "getNPCsInRangeOld",
+    "signature": "void getNPCsInRangeOld(list list, loc loc, int range)",
+    "description": "Legacy version of getNPCsInRange.",
+    "aliases": []
+  },
+  "getNumAllObjectsInRangeWithFlags": {
+    "name": "getNumAllObjectsInRangeWithFlags",
+    "signature": "int getNumAllObjectsInRangeWithFlags(loc loc, int range, int flags)",
+    "description": "Returns the count of all objects (including hidden) in range matching flags.",
+    "aliases": []
+  },
+  "getObjectFlags": {
+    "name": "getObjectFlags",
+    "signature": "int getObjectFlags(obj serial, int mask)",
+    "description": "Returns the object flags of an entity, masked by the mask argument.",
+    "aliases": []
+  },
+  "getObjectsAt": {
+    "name": "getObjectsAt",
+    "signature": "void getObjectsAt(list list, loc loc)",
+    "description": "Fills a list with serials of all objects at an exact location.",
+    "aliases": []
+  },
+  "getObjectsAtInZRange": {
+    "name": "getObjectsAtInZRange",
+    "signature": "void getObjectsAtInZRange(list list, loc loc, int zMin, int zMax)",
+    "description": "Fills a list with objects at a location within a Z-height range.",
+    "aliases": []
+  },
+  "getObjectsInRange": {
+    "name": "getObjectsInRange",
+    "signature": "void getObjectsInRange(list list, loc loc, int range)",
+    "description": "Fills a list with serials of all objects (items and mobiles) within range.",
+    "aliases": []
+  },
+  "getObjectsInRangeOfType": {
+    "name": "getObjectsInRangeOfType",
+    "signature": "void getObjectsInRangeOfType(list list, loc loc, int range, int bodyType)",
+    "description": "Fills a list with objects of a specific body type within range.",
+    "aliases": []
+  },
+  "getObjectsInRangeWithFlags": {
+    "name": "getObjectsInRangeWithFlags",
+    "signature": "void getObjectsInRangeWithFlags(list list, loc loc, int range, int flags)",
+    "description": "Fills a list with objects in range filtered by object flags.",
+    "aliases": []
+  },
+  "getObjectsInSpecRange": {
+    "name": "getObjectsInSpecRange",
+    "signature": "void getObjectsInSpecRange(list list, loc loc, int minRange, int maxRange)",
+    "description": "Fills a list with objects in a specific min–max distance ring.",
+    "aliases": []
+  },
+  "getPlayersAt": {
+    "name": "getPlayersAt",
+    "signature": "void getPlayersAt(list list, loc loc)",
+    "description": "Fills a list with serials of all players at an exact location.",
+    "aliases": []
+  },
+  "getPlayersInRange": {
+    "name": "getPlayersInRange",
+    "signature": "void getPlayersInRange(list list, loc loc, int range)",
+    "description": "Fills a list with serials of all online players within range of a location.",
+    "aliases": []
+  },
+  "getStaticObjectsAtXY": {
+    "name": "getStaticObjectsAtXY",
+    "signature": "void getStaticObjectsAtXY(list list, loc loc)",
+    "description": "Fills a list with all static (non-dynamic) objects at a location.",
+    "aliases": [
+      "getStaticObjectsAt"
+    ]
+  },
+  "getStaticObjectsAt": {
+    "name": "getStaticObjectsAt",
+    "signature": "void getStaticObjectsAt(list list, loc loc)",
+    "description": "Fills a list with all static (non-dynamic) objects at a location.",
+    "aliases": [
+      "getStaticObjectsAtXY"
+    ]
+  },
+  "getStaticObjectsAtXYZ": {
+    "name": "getStaticObjectsAtXYZ",
+    "signature": "void getStaticObjectsAtXYZ(list list, loc loc)",
+    "description": "Fills a list with static objects at an exact (x, y, z) location.",
+    "aliases": []
+  },
+  "getTerrainFlags": {
+    "name": "getTerrainFlags",
+    "signature": "int getTerrainFlags(int tileID, int mask)",
+    "description": "Returns the terrain flags at a tile, masked by the mask argument.",
+    "aliases": []
+  },
+  "getTileAt": {
+    "name": "getTileAt",
+    "signature": "int getTileAt(loc loc)",
+    "description": "Returns the terrain tile ID at a given location.",
+    "aliases": []
+  },
+  "getVisableTargets": {
+    "name": "getVisableTargets",
+    "signature": "void getVisableTargets(list list, obj serial)",
+    "description": "Fills a list with visible combat targets of a mobile.",
+    "aliases": []
+  },
+  "objectsNearby": {
+    "name": "objectsNearby",
+    "signature": "int objectsNearby(list list, loc&amp; loc, int range, int filterType)",
+    "description": "Fills a list with objects near a location, optionally filtering by type.",
+    "aliases": []
+  },
+  "objIsInRange": {
+    "name": "objIsInRange",
+    "signature": "int objIsInRange(loc loc, int range)",
+    "description": "Returns 1 if an object (by serial) is within range of a location.",
+    "aliases": []
+  },
+  "animateMobile": {
+    "name": "animateMobile",
+    "signature": "void animateMobile(obj serial, int animType, int action, int frameCount, int repeat, int backwards)",
+    "description": "Plays an animation sequence on a mobile (attack, hit, death, etc.).",
+    "aliases": []
+  },
+  "beginSequence": {
+    "name": "beginSequence",
+    "signature": "void beginSequence()",
+    "description": "Begins a batched animation sequence (to be closed with endSequence).",
+    "aliases": []
+  },
+  "doLightning": {
+    "name": "doLightning",
+    "signature": "void doLightning(obj serial)",
+    "description": "Plays the lightning strike visual effect on a mobile.",
+    "aliases": []
+  },
+  "doLocAnimation": {
+    "name": "doLocAnimation",
+    "signature": "void doLocAnimation(loc loc, int effectId, int speed, int duration, int hue, int renderMode)",
+    "description": "Plays a static animation effect at a world location.",
+    "aliases": []
+  },
+  "doMissile_Loc2Loc": {
+    "name": "doMissile_Loc2Loc",
+    "signature": "void doMissile_Loc2Loc(loc srcLoc, loc dstLoc, int effectId, int speed, int duration, int hue)",
+    "description": "Plays a missile animation from one location to another.",
+    "aliases": []
+  },
+  "doMissile_Loc2Mob": {
+    "name": "doMissile_Loc2Mob",
+    "signature": "void doMissile_Loc2Mob(loc srcLoc, obj dstSerial, int effectId, int speed, int duration, int hue)",
+    "description": "Plays a missile animation from a location to a mobile.",
+    "aliases": []
+  },
+  "doMissile_Mob2Loc": {
+    "name": "doMissile_Mob2Loc",
+    "signature": "void doMissile_Mob2Loc(obj srcSerial, loc dstLoc, int effectId, int speed, int duration, int hue)",
+    "description": "Plays a missile animation from a mobile to a location.",
+    "aliases": []
+  },
+  "doMissile_Mob2Mob": {
+    "name": "doMissile_Mob2Mob",
+    "signature": "void doMissile_Mob2Mob(obj srcSerial, obj dstSerial, int effectId, int speed, int duration, int hue)",
+    "description": "Plays a missile animation from one mobile to another.",
+    "aliases": []
+  },
+  "doMobAnimation": {
+    "name": "doMobAnimation",
+    "signature": "void doMobAnimation(obj serial, int effectId, int speed, int duration, int hue, int renderMode)",
+    "description": "Plays a moving animation effect on a mobile.",
+    "aliases": []
+  },
+  "endSequence": {
+    "name": "endSequence",
+    "signature": "void endSequence(int actionId)",
+    "description": "Ends a batched animation sequence and sends it to the client.",
+    "aliases": []
+  },
+  "musicTo": {
+    "name": "musicTo",
+    "signature": "void musicTo(obj serial, int musicID)",
+    "description": "Plays a music track for a specific player.",
+    "aliases": []
+  },
+  "sfx": {
+    "name": "sfx",
+    "signature": "void sfx(loc loc, int soundID, int volume)",
+    "description": "Plays a sound effect at a location for all nearby players.",
+    "aliases": []
+  },
+  "sfxTo": {
+    "name": "sfxTo",
+    "signature": "void sfxTo(obj serial, int soundID, int volume)",
+    "description": "Plays a sound effect addressed to a specific entity for all nearby players.",
+    "aliases": []
+  },
+  "addGlobalQuantity": {
+    "name": "addGlobalQuantity",
+    "signature": "void addGlobalQuantity(obj serial, int quantity)",
+    "description": "Adds to a global quantity tracker for an entity.",
+    "aliases": []
+  },
+  "amtGoldInBank": {
+    "name": "amtGoldInBank",
+    "signature": "int amtGoldInBank(obj mobileSerial)",
+    "description": "Returns the total amount of gold in the mobile's bank box.",
+    "aliases": []
+  },
+  "depositIntoBank": {
+    "name": "depositIntoBank",
+    "signature": "int depositIntoBank(obj mobileSerial, obj entitySerial, int amount)",
+    "description": "Deposits an amount of gold from an item into the mobile's bank. Returns 1 on success.",
+    "aliases": []
+  },
+  "openBank": {
+    "name": "openBank",
+    "signature": "void openBank(obj serial)",
+    "description": "Opens the mobile's bank gump for them.",
+    "aliases": []
+  },
+  "requestAddQuantity": {
+    "name": "requestAddQuantity",
+    "signature": "int requestAddQuantity(obj serial, int quantity)",
+    "description": "Requests to add a quantity to a stackable item. Returns 1 on success.",
+    "aliases": []
+  },
+  "returnAllResourcesToBank": {
+    "name": "returnAllResourcesToBank",
+    "signature": "void returnAllResourcesToBank(obj serial)",
+    "description": "Returns all resources on the mobile back to their bank.",
+    "aliases": []
+  },
+  "returnResourcesToBank": {
+    "name": "returnResourcesToBank",
+    "signature": "void returnResourcesToBank(obj serial, int amount, string resName)",
+    "description": "Returns a specific quantity of a resource from the mobile to their bank.",
+    "aliases": []
+  },
+  "transferAllResources": {
+    "name": "transferAllResources",
+    "signature": "void transferAllResources(obj dstSerial, obj srcSerial)",
+    "description": "Transfers all resources from one mobile to another.",
+    "aliases": []
+  },
+  "transferGeneric": {
+    "name": "transferGeneric",
+    "signature": "void transferGeneric(obj srcSerial, obj dstSerial, int bodyType)",
+    "description": "Moves all of a given generic item type from source to destination.",
+    "aliases": []
+  },
+  "transferResources": {
+    "name": "transferResources",
+    "signature": "void transferResources(obj dstSerial, obj srcSerial, int amount, string resName)",
+    "description": "Moves a specified amount of a named resource from source to destination.",
+    "aliases": []
+  },
+  "withdrawAndDestroy": {
+    "name": "withdrawAndDestroy",
+    "signature": "int withdrawAndDestroy(obj serial, int amount)",
+    "description": "Withdraws and deletes gold from the bank (for NPC transactions). Returns 1 on success.",
+    "aliases": []
+  },
+  "withdrawFromBank": {
+    "name": "withdrawFromBank",
+    "signature": "int withdrawFromBank(obj serial, int amount)",
+    "description": "Withdraws gold from the mobile's bank. Returns 1 on success.",
+    "aliases": []
+  },
+  "areBehaviorsEnabled": {
+    "name": "areBehaviorsEnabled",
+    "signature": "int areBehaviorsEnabled(obj serial)",
+    "description": "Returns 1 if the NPC's automatic AI behaviors are currently enabled.",
+    "aliases": []
+  },
+  "clearBehavior": {
+    "name": "clearBehavior",
+    "signature": "void clearBehavior(obj serial, int flags)",
+    "description": "Clears behavior flags on an NPC.",
+    "aliases": []
+  },
+  "disableBehaviors": {
+    "name": "disableBehaviors",
+    "signature": "void disableBehaviors(obj serial)",
+    "description": "Disables all automatic AI behaviors on an NPC.",
+    "aliases": []
+  },
+  "doNPCHandleStates": {
+    "name": "doNPCHandleStates",
+    "signature": "int doNPCHandleStates(obj serial)",
+    "description": "Manually triggers the state-handling step of NPC AI.",
+    "aliases": []
+  },
+  "doNPCHeartBeat": {
+    "name": "doNPCHeartBeat",
+    "signature": "int doNPCHeartBeat(obj serial)",
+    "description": "Manually triggers one heartbeat tick of NPC AI for the given mobile.",
+    "aliases": []
+  },
+  "enableBehaviors": {
+    "name": "enableBehaviors",
+    "signature": "void enableBehaviors(obj serial)",
+    "description": "Re-enables automatic AI behaviors on an NPC.",
+    "aliases": []
+  },
+  "followNpc": {
+    "name": "followNpc",
+    "signature": "void followNpc(obj serial, obj leaderSerial, int range)",
+    "description": "Commands an NPC to follow a leader mobile within the given range.",
+    "aliases": []
+  },
+  "getDesireLevel": {
+    "name": "getDesireLevel",
+    "signature": "int getDesireLevel(obj serial)",
+    "description": "Returns the current desire level of an NPC.",
+    "aliases": []
+  },
+  "getLeader": {
+    "name": "getLeader",
+    "signature": "obj getLeader(obj serial)",
+    "description": "Returns the serial of the mobile this NPC is currently following.",
+    "aliases": []
+  },
+  "getNPCState": {
+    "name": "getNPCState",
+    "signature": "int getNPCState(obj serial)",
+    "description": "Returns the current AI state integer of an NPC.",
+    "aliases": []
+  },
+  "goSleep": {
+    "name": "goSleep",
+    "signature": "int goSleep(obj serial, int steps, int returnState)",
+    "description": "Commands an NPC to enter a sleep state for a number of steps, then return to a given state.",
+    "aliases": []
+  },
+  "setBehavior": {
+    "name": "setBehavior",
+    "signature": "void setBehavior(obj serial, int flags)",
+    "description": "Sets behavior flags on an NPC, enabling specific AI modes.",
+    "aliases": []
+  },
+  "setDesireLevel": {
+    "name": "setDesireLevel",
+    "signature": "void setDesireLevel(obj serial, int desireLevel)",
+    "description": "Sets the desire/motivation level used by NPC AI decision-making.",
+    "aliases": []
+  },
+  "setLoiterMode": {
+    "name": "setLoiterMode",
+    "signature": "void setLoiterMode(obj serial, int mode)",
+    "description": "Sets the loitering movement mode for an NPC.",
+    "aliases": []
+  },
+  "setNPCState": {
+    "name": "setNPCState",
+    "signature": "int setNPCState(obj serial, int state)",
+    "description": "Sets the AI state of an NPC. Returns 1 on success.",
+    "aliases": []
+  },
+  "setWaitState": {
+    "name": "setWaitState",
+    "signature": "void setWaitState(obj serial, int value)",
+    "description": "Sets the wait-state counter for an NPC.",
+    "aliases": []
+  },
+  "stopFollowing": {
+    "name": "stopFollowing",
+    "signature": "void stopFollowing(obj serial)",
+    "description": "Commands an NPC to stop following its current leader.",
+    "aliases": []
+  },
+  "waitState": {
+    "name": "waitState",
+    "signature": "int waitState(obj serial)",
+    "description": "Returns the current wait-state counter for an NPC.",
+    "aliases": []
+  },
+  "addNotoriety": {
+    "name": "addNotoriety",
+    "signature": "void addNotoriety(obj serial, int amount)",
+    "description": "Adds to the mobile's notoriety counter.",
+    "aliases": []
+  },
+  "canBeFreelyAggressedBy": {
+    "name": "canBeFreelyAggressedBy",
+    "signature": "int canBeFreelyAggressedBy(obj victimSerial, obj attackerSerial)",
+    "description": "Returns 1 if the victim can be attacked by the aggressor without criminal penalty.",
+    "aliases": []
+  },
+  "changeFame": {
+    "name": "changeFame",
+    "signature": "void changeFame(obj serial, int amount)",
+    "description": "Adjusts the mobile's fame by an amount (positive or negative).",
+    "aliases": []
+  },
+  "changeKarma": {
+    "name": "changeKarma",
+    "signature": "void changeKarma(obj serial, int amount)",
+    "description": "Adjusts the mobile's karma by an amount.",
+    "aliases": []
+  },
+  "committedCrimeAt": {
+    "name": "committedCrimeAt",
+    "signature": "void committedCrimeAt(obj serial, loc loc, int duration)",
+    "description": "Records that the mobile committed a crime at a location for the given duration.",
+    "aliases": []
+  },
+  "criminalAct": {
+    "name": "criminalAct",
+    "signature": "void criminalAct(obj criminalSerial, obj victimSerial, int fameAmount, int crimeWeight)",
+    "description": "Records a criminal act by a mobile against a victim, adjusting fame and crime weight.",
+    "aliases": []
+  },
+  "criminalActAdvanced": {
+    "name": "criminalActAdvanced",
+    "signature": "void criminalActAdvanced(obj criminalSerial, obj victimSerial, int fameAmount, int crimeWeight, int bound, int flags)",
+    "description": "Records a criminal act with extended parameters including bounds and flags.",
+    "aliases": []
+  },
+  "gainFame": {
+    "name": "gainFame",
+    "signature": "void gainFame(obj serial, int amount)",
+    "description": "Increases the mobile's fame by the given amount (triggers fame-gain events).",
+    "aliases": []
+  },
+  "getAdjFame": {
+    "name": "getAdjFame",
+    "signature": "int getAdjFame(obj serial)",
+    "description": "Returns the fame value adjusted by alignment and other factors.",
+    "aliases": []
+  },
+  "getAdjKarma": {
+    "name": "getAdjKarma",
+    "signature": "int getAdjKarma(obj serial)",
+    "description": "Returns karma adjusted by alignment modifiers.",
+    "aliases": []
+  },
+  "getFame": {
+    "name": "getFame",
+    "signature": "int getFame(obj serial)",
+    "description": "Returns the raw fame value of a mobile.",
+    "aliases": []
+  },
+  "getFameLevel": {
+    "name": "getFameLevel",
+    "signature": "int getFameLevel(obj serial)",
+    "description": "Returns a fame tier level integer for the mobile.",
+    "aliases": []
+  },
+  "getKarma": {
+    "name": "getKarma",
+    "signature": "int getKarma(obj serial)",
+    "description": "Returns the raw karma value of a mobile.",
+    "aliases": []
+  },
+  "getKarmaLevel": {
+    "name": "getKarmaLevel",
+    "signature": "int getKarmaLevel(obj serial)",
+    "description": "Returns a karma tier level integer for the mobile.",
+    "aliases": []
+  },
+  "getMurderCount": {
+    "name": "getMurderCount",
+    "signature": "int getMurderCount(obj serial)",
+    "description": "Returns the mobile's current murder count.",
+    "aliases": []
+  },
+  "getNotoriety": {
+    "name": "getNotoriety",
+    "signature": "int getNotoriety(obj serial)",
+    "description": "Returns the raw notoriety value of a mobile.",
+    "aliases": []
+  },
+  "getNotorietyLevel": {
+    "name": "getNotorietyLevel",
+    "signature": "int getNotorietyLevel(obj serial)",
+    "description": "Returns a 0–7 notoriety level (innocent=0, murderer=6, criminal=5, etc.).",
+    "aliases": []
+  },
+  "getNotorietyLevelByNot": {
+    "name": "getNotorietyLevelByNot",
+    "signature": "int getNotorietyLevelByNot(int value)",
+    "description": "Returns the notoriety level for a given raw notoriety value.",
+    "aliases": []
+  },
+  "isCriminal": {
+    "name": "isCriminal",
+    "signature": "int isCriminal(obj serial)",
+    "description": "Returns 1 if the mobile currently has criminal status.",
+    "aliases": []
+  },
+  "isMurderer": {
+    "name": "isMurderer",
+    "signature": "int isMurderer(obj serial)",
+    "description": "Returns 1 if the mobile's murder count exceeds the killer threshold.",
+    "aliases": []
+  },
+  "loseFame": {
+    "name": "loseFame",
+    "signature": "void loseFame(obj serial, int amount)",
+    "description": "Decreases the mobile's fame by the given amount.",
+    "aliases": []
+  },
+  "NotorietyCompare": {
+    "name": "NotorietyCompare",
+    "signature": "int NotorietyCompare(obj serial1, obj serial2)",
+    "description": "Compares the notoriety levels of two mobiles. Returns -1, 0, or 1.",
+    "aliases": [
+      "notorietyCompare"
+    ]
+  },
+  "notorietyCompare": {
+    "name": "notorietyCompare",
+    "signature": "int notorietyCompare(obj serial1, obj serial2)",
+    "description": "Compares the notoriety levels of two mobiles. Returns -1, 0, or 1.",
+    "aliases": [
+      "NotorietyCompare"
+    ]
+  },
+  "receiveAggressionFrom": {
+    "name": "receiveAggressionFrom",
+    "signature": "void receiveAggressionFrom(obj victimSerial, obj aggressorSerial)",
+    "description": "Records that the victim received aggression from the given entity.",
+    "aliases": []
+  },
+  "receiveHelpfulActionFrom": {
+    "name": "receiveHelpfulActionFrom",
+    "signature": "void receiveHelpfulActionFrom(obj playerSerial, obj helperSerial)",
+    "description": "Records a helpful action toward the player, affecting notoriety.",
+    "aliases": []
+  },
+  "receiveUnhealthyActionFrom": {
+    "name": "receiveUnhealthyActionFrom",
+    "signature": "void receiveUnhealthyActionFrom(obj victimSerial, obj attackerSerial)",
+    "description": "Records an unhealthy action (e.g., stealing) against the victim.",
+    "aliases": []
+  },
+  "refreshAggression": {
+    "name": "refreshAggression",
+    "signature": "void refreshAggression(obj serial)",
+    "description": "Refreshes the aggression timer on a mobile.",
+    "aliases": []
+  },
+  "removeNotoriety": {
+    "name": "removeNotoriety",
+    "signature": "void removeNotoriety(obj serial, int amount)",
+    "description": "Removes from the mobile's notoriety counter.",
+    "aliases": []
+  },
+  "setCriminal": {
+    "name": "setCriminal",
+    "signature": "void setCriminal(obj serial, int duration)",
+    "description": "Flags the mobile as criminal for the given duration (in seconds).",
+    "aliases": []
+  },
+  "setFame": {
+    "name": "setFame",
+    "signature": "void setFame(obj serial, int fame)",
+    "description": "Sets the mobile's fame to an exact value.",
+    "aliases": []
+  },
+  "setKarma": {
+    "name": "setKarma",
+    "signature": "void setKarma(obj serial, int karma)",
+    "description": "Sets the mobile's karma to an exact value.",
+    "aliases": []
+  },
+  "setMurderCount": {
+    "name": "setMurderCount",
+    "signature": "void setMurderCount(obj serial, int count)",
+    "description": "Sets the mobile's murder count to an exact value.",
+    "aliases": []
+  },
+  "setNotoriety": {
+    "name": "setNotoriety",
+    "signature": "void setNotoriety(obj serial, int not_val)",
+    "description": "Sets the mobile's notoriety to an exact value.",
+    "aliases": []
+  },
+  "witnessCrime": {
+    "name": "witnessCrime",
+    "signature": "int witnessCrime(loc loc, obj criminalSerial, obj victimSerial, string str, int delay, int priority, int crimeType)",
+    "description": "Notifies nearby entities of a crime event at a location, triggering guard calls.",
+    "aliases": []
+  },
+  "becomeTemplate": {
+    "name": "becomeTemplate",
+    "signature": "void becomeTemplate(obj serial, int templateId)",
+    "description": "Changes an entity to match a template (type, stats, name, scripts, etc.).",
+    "aliases": []
+  },
+  "createGlobalNPCAt": {
+    "name": "createGlobalNPCAt",
+    "signature": "obj createGlobalNPCAt(int templateId, loc loc, int flags)",
+    "description": "Spawns a global NPC by template ID at a location. Returns its serial.",
+    "aliases": []
+  },
+  "createGlobalNPCAtSpecificLoc": {
+    "name": "createGlobalNPCAtSpecificLoc",
+    "signature": "obj createGlobalNPCAtSpecificLoc(int templateId, loc loc)",
+    "description": "Spawns a global NPC at an exact world location.",
+    "aliases": []
+  },
+  "createGlobalObjectAt": {
+    "name": "createGlobalObjectAt",
+    "signature": "obj createGlobalObjectAt(int artId, loc loc)",
+    "description": "Creates a new global object by art ID at a world location. Returns its serial.",
+    "aliases": []
+  },
+  "createGlobalObjectIn": {
+    "name": "createGlobalObjectIn",
+    "signature": "obj createGlobalObjectIn(int artId, obj containerSerial)",
+    "description": "Creates a new global object by art ID inside a container. Returns its serial.",
+    "aliases": []
+  },
+  "createGlobalObjectOn": {
+    "name": "createGlobalObjectOn",
+    "signature": "obj createGlobalObjectOn(obj entitySerial, int artId)",
+    "description": "Creates an object on top of another entity (e.g., placed on the ground beneath it).",
+    "aliases": []
+  },
+  "createNoResObjectAt": {
+    "name": "createNoResObjectAt",
+    "signature": "obj createNoResObjectAt(int artId, loc loc)",
+    "description": "Creates an object that does not consume server resources at a location.",
+    "aliases": []
+  },
+  "createNoResObjectIn": {
+    "name": "createNoResObjectIn",
+    "signature": "obj createNoResObjectIn(int artId, obj containerSerial)",
+    "description": "Creates an object that does not consume server resources inside a container.",
+    "aliases": []
+  },
+  "deleteIfValid": {
+    "name": "deleteIfValid",
+    "signature": "void deleteIfValid(obj serial, int bodyType)",
+    "description": "Deletes the entity only if it exists and matches the given body type.",
+    "aliases": []
+  },
+  "deleteIfValidNoFall": {
+    "name": "deleteIfValidNoFall",
+    "signature": "void deleteIfValidNoFall(obj serial, int bodyType)",
+    "description": "Deletes the entity without fall if it matches the given body type.",
+    "aliases": []
+  },
+  "deleteObject": {
+    "name": "deleteObject",
+    "signature": "void deleteObject(obj serial)",
+    "description": "Deletes an entity from the world, applying a gravity-drop to items above.",
+    "aliases": []
+  },
+  "deleteObjectNoFall": {
+    "name": "deleteObjectNoFall",
+    "signature": "void deleteObjectNoFall(obj serial)",
+    "description": "Deletes an entity without triggering item drops on the tile.",
+    "aliases": []
+  },
+  "destroyOne": {
+    "name": "destroyOne",
+    "signature": "void destroyOne(obj serial)",
+    "description": "Destroys exactly one instance of the item, even if it is a stack.",
+    "aliases": []
+  },
+  "requestCreateNPCAt": {
+    "name": "requestCreateNPCAt",
+    "signature": "obj requestCreateNPCAt(int templateId, loc loc, int noWander)",
+    "description": "Requests NPC creation (may be deferred). Returns serial or 0.",
+    "aliases": []
+  },
+  "requestCreateObjectAt": {
+    "name": "requestCreateObjectAt",
+    "signature": "obj requestCreateObjectAt(int artId, loc loc)",
+    "description": "Requests object creation (may be deferred by server load). Returns serial or 0.",
+    "aliases": []
+  },
+  "requestCreateObjectIn": {
+    "name": "requestCreateObjectIn",
+    "signature": "obj requestCreateObjectIn(int artId, obj containerSerial)",
+    "description": "Requests object creation inside a container (may be deferred).",
+    "aliases": []
+  },
+  "returnObject": {
+    "name": "returnObject",
+    "signature": "void returnObject(obj serial)",
+    "description": "Returns an entity to its owner or home point.",
+    "aliases": []
+  },
+  "setAlignment": {
+    "name": "setAlignment",
+    "signature": "void setAlignment(obj serial, int alignment)",
+    "description": "Sets the alignment (Order/Chaos/Neutral) value on a mobile.",
+    "aliases": []
+  },
+  "areMobilesInMultiArea": {
+    "name": "areMobilesInMultiArea",
+    "signature": "int areMobilesInMultiArea(int multiSerial, loc loc)",
+    "description": "Returns 1 if any mobiles are inside the area of the multi.",
+    "aliases": []
+  },
+  "areObjectsOn": {
+    "name": "areObjectsOn",
+    "signature": "int areObjectsOn(obj serial)",
+    "description": "Returns 1 if any moveable objects are resting on top of the entity.",
+    "aliases": []
+  },
+  "canMultiExistAt": {
+    "name": "canMultiExistAt",
+    "signature": "int canMultiExistAt(obj serial, loc loc, int moveType)",
+    "description": "Returns 1 if the multi entity can be placed at the given location.",
+    "aliases": []
+  },
+  "getMultiComponentOffset": {
+    "name": "getMultiComponentOffset",
+    "signature": "loc getMultiComponentOffset(obj arg1)",
+    "description": "Returns the relative position offset of a multi component from its master.",
+    "aliases": []
+  },
+  "getMultiExtents": {
+    "name": "getMultiExtents",
+    "signature": "int getMultiExtents(int typeId, loc&amp; minLoc, loc&amp; maxLoc)",
+    "description": "Returns the bounding-box extents (min loc, max loc) of a multi type.",
+    "aliases": []
+  },
+  "getMultiSlaveId": {
+    "name": "getMultiSlaveId",
+    "signature": "obj getMultiSlaveId(obj serial)",
+    "description": "Returns the slave ID serial for a multi slave component.",
+    "aliases": []
+  },
+  "getMultiType": {
+    "name": "getMultiType",
+    "signature": "int getMultiType(obj serial)",
+    "description": "Returns the multi type ID of a multi entity.",
+    "aliases": []
+  },
+  "getNumInMultiType": {
+    "name": "getNumInMultiType",
+    "signature": "int getNumInMultiType(int typeId)",
+    "description": "Returns the count of multis of a given type currently in the world.",
+    "aliases": []
+  },
+  "getObjectsOnMulti": {
+    "name": "getObjectsOnMulti",
+    "signature": "void getObjectsOnMulti(list list, obj serial)",
+    "description": "Fills a list with serials of all objects currently on the multi.",
+    "aliases": []
+  },
+  "getPlayersOnMulti": {
+    "name": "getPlayersOnMulti",
+    "signature": "void getPlayersOnMulti(list list, obj serial)",
+    "description": "Fills a list with serials of players currently on the multi.",
+    "aliases": []
+  },
+  "isAnyMultiAt": {
+    "name": "isAnyMultiAt",
+    "signature": "obj isAnyMultiAt(loc loc)",
+    "description": "Returns the serial of any multi present at the given location, or 0.",
+    "aliases": []
+  },
+  "isAnyMultiBelow": {
+    "name": "isAnyMultiBelow",
+    "signature": "obj isAnyMultiBelow(loc loc)",
+    "description": "Returns the serial of any multi below the given location, or 0.",
+    "aliases": []
+  },
+  "isHousingOkay": {
+    "name": "isHousingOkay",
+    "signature": "int isHousingOkay(loc loc, int arg)",
+    "description": "Returns 1 if a house/multi can legally be placed at the location.",
+    "aliases": []
+  },
+  "isOnAnyMulti": {
+    "name": "isOnAnyMulti",
+    "signature": "obj isOnAnyMulti(obj entitySerial)",
+    "description": "Returns the serial of any multi the entity is standing on, or 0.",
+    "aliases": []
+  },
+  "isOnMulti": {
+    "name": "isOnMulti",
+    "signature": "int isOnMulti(obj entitySerial, obj multiSerial)",
+    "description": "Returns 1 if an entity is physically standing on the given multi.",
+    "aliases": []
+  },
+  "makeMultiInst": {
+    "name": "makeMultiInst",
+    "signature": "obj makeMultiInst(loc loc, int bodyType)",
+    "description": "Creates a multi-tile structure (house, ship, etc.) at a location. Returns its serial.",
+    "aliases": []
+  },
+  "makeMultiInstCheck": {
+    "name": "makeMultiInstCheck",
+    "signature": "obj makeMultiInstCheck(loc loc, int bodyType, int x, int y, int&amp; z, int checkNum, int artworkId, int validate)",
+    "description": "Creates a multi with validation checks. Returns serial on success.",
+    "aliases": []
+  },
+  "moveMulti": {
+    "name": "moveMulti",
+    "signature": "int moveMulti(obj serial, loc loc)",
+    "description": "Moves a multi-tile structure to a new location. Returns 1 on success.",
+    "aliases": []
+  },
+  "moveMultiCheck": {
+    "name": "moveMultiCheck",
+    "signature": "int moveMultiCheck(obj serial, loc loc, int checkFlag)",
+    "description": "Validates whether a multi can be moved to a new location. Returns 1 if valid.",
+    "aliases": []
+  },
+  "moveMultiMapSwitch": {
+    "name": "moveMultiMapSwitch",
+    "signature": "int moveMultiMapSwitch(obj serial, loc loc, int mapId)",
+    "description": "Moves a multi to a new location on a different map.",
+    "aliases": []
+  },
+  "multiCanExistAt": {
+    "name": "multiCanExistAt",
+    "signature": "int multiCanExistAt(loc loc, int typeId, int moveType)",
+    "description": "Returns 1 if a multi by type can be placed at the location with the given move type.",
+    "aliases": []
+  },
+  "multiCompSetSendSlave": {
+    "name": "multiCompSetSendSlave",
+    "signature": "void multiCompSetSendSlave(obj serial, int value)",
+    "description": "Enables or disables slave-update packets for a multi component.",
+    "aliases": []
+  },
+  "recycleMulti": {
+    "name": "recycleMulti",
+    "signature": "int recycleMulti(obj serial, int bodyType)",
+    "description": "Removes a multi-tile structure and reclaims its resources.",
+    "aliases": []
+  },
+  "recycleMultiCheck": {
+    "name": "recycleMultiCheck",
+    "signature": "int recycleMultiCheck(obj serial, int bodyType, int checkFlag)",
+    "description": "Validates recycling of a multi. Returns 1 if valid.",
+    "aliases": []
+  },
+  "recycleMultiCheckRotate": {
+    "name": "recycleMultiCheckRotate",
+    "signature": "int recycleMultiCheckRotate(obj serial, int bodyType, int rotation, int checkFlag)",
+    "description": "Validates recycling with a rotation check.",
+    "aliases": []
+  },
+  "resetMultiCarriedDecay": {
+    "name": "resetMultiCarriedDecay",
+    "signature": "void resetMultiCarriedDecay(obj serial)",
+    "description": "Resets the decay timer for items being carried on a multi (ship cargo).",
+    "aliases": []
+  },
+  "sendPlayerZmoveStuff": {
+    "name": "sendPlayerZmoveStuff",
+    "signature": "void sendPlayerZmoveStuff(obj serial)",
+    "description": "Forces the client to re-sync Z-axis state for a player (after multi movement).",
+    "aliases": []
+  },
+  "areSpellsOkay": {
+    "name": "areSpellsOkay",
+    "signature": "int areSpellsOkay(loc loc)",
+    "description": "Returns 1 if spell casting is allowed at the given location.",
+    "aliases": []
+  },
+  "findClosestArea": {
+    "name": "findClosestArea",
+    "signature": "int findClosestArea(string&amp; resultName_str, loc&amp; resultLoc, string namePrefix_str, loc fromLoc, int flag)",
+    "description": "Finds the closest area with the given name prefix to a location.",
+    "aliases": []
+  },
+  "getElevation": {
+    "name": "getElevation",
+    "signature": "int getElevation(loc loc)",
+    "description": "Returns the map elevation at a given location.",
+    "aliases": []
+  },
+  "getFeluccaPhase": {
+    "name": "getFeluccaPhase",
+    "signature": "int getFeluccaPhase()",
+    "description": "Returns the current phase of Felucca (0–7).",
+    "aliases": []
+  },
+  "getLocalizedDesc": {
+    "name": "getLocalizedDesc",
+    "signature": "int getLocalizedDesc(string&amp; outStr, loc&amp; outLoc, loc inLoc1, loc inLoc2)",
+    "description": "Returns a localised description string for a location.",
+    "aliases": []
+  },
+  "getMoonGateDest": {
+    "name": "getMoonGateDest",
+    "signature": "int getMoonGateDest(int arg)",
+    "description": "Returns the destination tile type for the given moon-gate phase argument.",
+    "aliases": []
+  },
+  "getMoonPhaseStr": {
+    "name": "getMoonPhaseStr",
+    "signature": "string getMoonPhaseStr(int arg1)",
+    "description": "Returns a string name (&quot;new moon&quot;, &quot;waxing crescent&quot;, etc.) for the given phase.",
+    "aliases": []
+  },
+  "getSmallestArea": {
+    "name": "getSmallestArea",
+    "signature": "int getSmallestArea(string&amp; outName_str, loc loc)",
+    "description": "Returns the name and bounds of the smallest area containing the location.",
+    "aliases": []
+  },
+  "getTile": {
+    "name": "getTile",
+    "signature": "int getTile(loc loc)",
+    "description": "Returns the terrain tile ID at a given location.",
+    "aliases": []
+  },
+  "getTrammelPhase": {
+    "name": "getTrammelPhase",
+    "signature": "int getTrammelPhase()",
+    "description": "Returns the current phase of Trammel (0–7).",
+    "aliases": []
+  },
+  "inJusticeRegion": {
+    "name": "inJusticeRegion",
+    "signature": "int inJusticeRegion(loc loc)",
+    "description": "Returns 1 if the location is within a justice (guard) region.",
+    "aliases": []
+  },
+  "isInArea": {
+    "name": "isInArea",
+    "signature": "int isInArea(string namePrefix_str, loc loc, int flag)",
+    "description": "Returns 1 if the location is within the named area.",
+    "aliases": []
+  },
+  "isInCityRegion": {
+    "name": "isInCityRegion",
+    "signature": "int isInCityRegion(loc loc)",
+    "description": "Returns 1 if the location is within a named city region.",
+    "aliases": []
+  },
+  "isInRegionWithPrefix": {
+    "name": "isInRegionWithPrefix",
+    "signature": "int isInRegionWithPrefix(string&amp; prefix_str, loc loc)",
+    "description": "Returns 1 if the location is in a region whose name starts with the prefix.",
+    "aliases": []
+  },
+  "applyWeaponTemplate": {
+    "name": "applyWeaponTemplate",
+    "signature": "int applyWeaponTemplate(obj serial, int templateId)",
+    "description": "Applies the stats from a weapon template to the item. Returns 1 on success.",
+    "aliases": []
+  },
+  "getAmmoType": {
+    "name": "getAmmoType",
+    "signature": "int getAmmoType(obj serial)",
+    "description": "Returns the ammunition type ID required by a ranged weapon.",
+    "aliases": []
+  },
+  "getAverageDamage": {
+    "name": "getAverageDamage",
+    "signature": "int getAverageDamage(obj serial)",
+    "description": "Returns the average damage value for the weapon's damage dice.",
+    "aliases": []
+  },
+  "getBow": {
+    "name": "getBow",
+    "signature": "int getBow(obj serial)",
+    "description": "Returns the bow serial associated with a quiver or ammo stack.",
+    "aliases": []
+  },
+  "getCurArmorClass": {
+    "name": "getCurArmorClass",
+    "signature": "int getCurArmorClass(obj serial)",
+    "description": "Returns the current (worn/damaged) armour class of a piece of armour.",
+    "aliases": []
+  },
+  "getMaxArmorClass": {
+    "name": "getMaxArmorClass",
+    "signature": "int getMaxArmorClass(obj serial)",
+    "description": "Returns the maximum armour class of a piece of armour.",
+    "aliases": []
+  },
+  "getWeaponClass": {
+    "name": "getWeaponClass",
+    "signature": "void getWeaponClass(obj serial, int&amp; outNumDice, int&amp; outDiceFaces, int&amp; outBonus, int&amp; outPad)",
+    "description": "Returns the weapon class stats (dice faces, num dice, bonus, pad) via out params.",
+    "aliases": []
+  },
+  "getWeaponCurHP": {
+    "name": "getWeaponCurHP",
+    "signature": "int getWeaponCurHP(obj serial)",
+    "description": "Returns the weapon's current hit points (condition).",
+    "aliases": []
+  },
+  "getWeaponHandedness": {
+    "name": "getWeaponHandedness",
+    "signature": "int getWeaponHandedness(obj serial)",
+    "description": "Returns 1 if the weapon is two-handed, 0 if one-handed.",
+    "aliases": []
+  },
+  "getWeaponHitSfx": {
+    "name": "getWeaponHitSfx",
+    "signature": "int getWeaponHitSfx(obj serial)",
+    "description": "Returns the sound effect ID played on a successful weapon hit.",
+    "aliases": []
+  },
+  "getWeaponMaxHP": {
+    "name": "getWeaponMaxHP",
+    "signature": "int getWeaponMaxHP(obj serial)",
+    "description": "Returns the weapon's maximum hit points.",
+    "aliases": []
+  },
+  "getWeaponMinRange": {
+    "name": "getWeaponMinRange",
+    "signature": "int getWeaponMinRange(obj serial)",
+    "description": "Returns the minimum attack range of a weapon (usually 1).",
+    "aliases": []
+  },
+  "getWeaponMinStr": {
+    "name": "getWeaponMinStr",
+    "signature": "int getWeaponMinStr(obj serial)",
+    "description": "Returns the minimum Strength required to wield the weapon.",
+    "aliases": []
+  },
+  "getWeaponMissSfx": {
+    "name": "getWeaponMissSfx",
+    "signature": "int getWeaponMissSfx(obj serial)",
+    "description": "Returns the sound effect ID played on a weapon miss.",
+    "aliases": []
+  },
+  "getWeaponName": {
+    "name": "getWeaponName",
+    "signature": "string getWeaponName(obj arg1)",
+    "description": "Returns the display name of the weapon.",
+    "aliases": []
+  },
+  "getWeaponRange": {
+    "name": "getWeaponRange",
+    "signature": "int getWeaponRange(obj serial)",
+    "description": "Returns the maximum attack range of a weapon.",
+    "aliases": []
+  },
+  "getWeaponSpeed": {
+    "name": "getWeaponSpeed",
+    "signature": "int getWeaponSpeed(obj serial)",
+    "description": "Returns the speed rating of a weapon (lower is faster).",
+    "aliases": []
+  },
+  "setMaxArmorClass": {
+    "name": "setMaxArmorClass",
+    "signature": "int setMaxArmorClass(obj serial, int maxAC)",
+    "description": "Sets the maximum armour class of a piece of armour. Returns the new value.",
+    "aliases": []
+  },
+  "setWeaponClass": {
+    "name": "setWeaponClass",
+    "signature": "void setWeaponClass(obj serial, int numDice, int diceFaces, int bonus, int pad)",
+    "description": "Sets the weapon class stats (damage dice) on a weapon.",
+    "aliases": []
+  },
+  "setWeaponCurHP": {
+    "name": "setWeaponCurHP",
+    "signature": "int setWeaponCurHP(obj serial, int curHP)",
+    "description": "Sets the weapon's current hit points.",
+    "aliases": []
+  },
+  "setWeaponMaxHP": {
+    "name": "setWeaponMaxHP",
+    "signature": "int setWeaponMaxHP(obj serial, int maxHP)",
+    "description": "Sets the weapon's maximum hit points.",
+    "aliases": []
+  },
+  "checkTransferAccount": {
+    "name": "checkTransferAccount",
+    "signature": "void checkTransferAccount(obj sourceSerial, obj targetSerial)",
+    "description": "Checks whether a player can be transferred to another account/character.",
+    "aliases": []
+  },
+  "getAccountNum": {
+    "name": "getAccountNum",
+    "signature": "int getAccountNum(obj serial)",
+    "description": "Returns the account number of the player.",
+    "aliases": []
+  },
+  "getCharacterNum": {
+    "name": "getCharacterNum",
+    "signature": "int getCharacterNum(obj serial)",
+    "description": "Returns the character slot number of the player on their account.",
+    "aliases": []
+  },
+  "getCombatMode": {
+    "name": "getCombatMode",
+    "signature": "int getCombatMode(obj serial)",
+    "description": "Returns 1 if the player is currently in combat (war) mode.",
+    "aliases": []
+  },
+  "getPlayAge": {
+    "name": "getPlayAge",
+    "signature": "int getPlayAge(obj serial)",
+    "description": "Returns the total play age (time online) of a player in game minutes.",
+    "aliases": []
+  },
+  "getPlayerBugStat": {
+    "name": "getPlayerBugStat",
+    "signature": "int getPlayerBugStat(list list, int threshold)",
+    "description": "Fills a list with players exceeding a bug-report threshold. Returns count.",
+    "aliases": []
+  },
+  "isGoldAccount": {
+    "name": "isGoldAccount",
+    "signature": "int isGoldAccount(obj serial)",
+    "description": "Returns 1 if the player's account is a gold (paid) account.",
+    "aliases": []
+  },
+  "isInvulnerable": {
+    "name": "isInvulnerable",
+    "signature": "int isInvulnerable(obj serial)",
+    "description": "Returns 1 if the mobile has the invulnerable flag set.",
+    "aliases": []
+  },
+  "isManifesting": {
+    "name": "isManifesting",
+    "signature": "int isManifesting(obj serial)",
+    "description": "Returns 1 if the player is in the ghost-manifestation state.",
+    "aliases": []
+  },
+  "logOut": {
+    "name": "logOut",
+    "signature": "void logOut(obj serial)",
+    "description": "Logs a player out immediately.",
+    "aliases": []
+  },
+  "makeInvulnerable": {
+    "name": "makeInvulnerable",
+    "signature": "void makeInvulnerable(obj serial)",
+    "description": "Sets the mobile as invulnerable (immune to damage).",
+    "aliases": []
+  },
+  "makeVulnerable": {
+    "name": "makeVulnerable",
+    "signature": "void makeVulnerable(obj serial)",
+    "description": "Removes the invulnerable flag from a mobile.",
+    "aliases": []
+  },
+  "removePlayerFromGame": {
+    "name": "removePlayerFromGame",
+    "signature": "int removePlayerFromGame(obj serial)",
+    "description": "Forcibly removes a player from the game session.",
+    "aliases": []
+  },
+  "safeLogOut": {
+    "name": "safeLogOut",
+    "signature": "void safeLogOut(obj serial)",
+    "description": "Logs a player out safely, waiting for an idle state if possible.",
+    "aliases": [
+      "safeLogout"
+    ]
+  },
+  "safeLogout": {
+    "name": "safeLogout",
+    "signature": "void safeLogout(obj serial)",
+    "description": "Logs a player out safely, waiting for an idle state if possible.",
+    "aliases": [
+      "safeLogOut"
+    ]
+  },
+  "transferPlayer": {
+    "name": "transferPlayer",
+    "signature": "void transferPlayer(obj sourceSerial, obj targetSerial, string serverStr)",
+    "description": "Transfers a player character to a different server.",
+    "aliases": []
+  },
+  "addSatiety": {
+    "name": "addSatiety",
+    "signature": "void addSatiety(obj serial, int amount)",
+    "description": "Increases the mobile's satiety (food satisfaction) by the given amount.",
+    "aliases": []
+  },
+  "eatObject": {
+    "name": "eatObject",
+    "signature": "int eatObject(obj serial, obj foodSerial)",
+    "description": "Makes the mobile eat a food item. Returns 1 on success.",
+    "aliases": []
+  },
+  "getDecayCount": {
+    "name": "getDecayCount",
+    "signature": "int getDecayCount(obj serial)",
+    "description": "Returns the current decay countdown for an item.",
+    "aliases": []
+  },
+  "getDecayInterval": {
+    "name": "getDecayInterval",
+    "signature": "int getDecayInterval()",
+    "description": "Returns the server tick interval between decay checks.",
+    "aliases": []
+  },
+  "getDecayMax": {
+    "name": "getDecayMax",
+    "signature": "int getDecayMax(obj serial)",
+    "description": "Returns the maximum decay count (full lifespan) for an item.",
+    "aliases": []
+  },
+  "getDefaultDieDecay": {
+    "name": "getDefaultDieDecay",
+    "signature": "int getDefaultDieDecay()",
+    "description": "Returns the decay amount applied when a mobile dies.",
+    "aliases": []
+  },
+  "getHomeDecayRate": {
+    "name": "getHomeDecayRate",
+    "signature": "int getHomeDecayRate()",
+    "description": "Returns the global decay rate for items on their home multi.",
+    "aliases": []
+  },
+  "getHungerLevel": {
+    "name": "getHungerLevel",
+    "signature": "int getHungerLevel(obj serial)",
+    "description": "Returns a hunger level integer (0 = starving, higher = full) for the mobile.",
+    "aliases": []
+  },
+  "getNonHomeDecayRate": {
+    "name": "getNonHomeDecayRate",
+    "signature": "int getNonHomeDecayRate()",
+    "description": "Returns the global decay rate for items not on their home multi.",
+    "aliases": []
+  },
+  "getSatiety": {
+    "name": "getSatiety",
+    "signature": "int getSatiety(obj serial)",
+    "description": "Returns the mobile's current satiety value.",
+    "aliases": []
+  },
+  "setDecayCount": {
+    "name": "setDecayCount",
+    "signature": "int setDecayCount(obj serial, int decayCount)",
+    "description": "Sets the decay countdown for an item. Returns the new value.",
+    "aliases": []
+  },
+  "setDecayTest": {
+    "name": "setDecayTest",
+    "signature": "void setDecayTest(int mode)",
+    "description": "Enables or disables decay testing mode for debugging.",
+    "aliases": []
+  },
+  "addConsumer": {
+    "name": "addConsumer",
+    "signature": "void addConsumer(loc&amp; loc, string templateIndex, int amount, int templateValue)",
+    "description": "Registers a consumer for a resource at a location.",
+    "aliases": []
+  },
+  "defineResource": {
+    "name": "defineResource",
+    "signature": "int defineResource(obj serial, string resourceName, int type, int value1, int value2)",
+    "description": "Defines a new resource on an entity with type, name, and initial values.",
+    "aliases": []
+  },
+  "getChunkEgg": {
+    "name": "getChunkEgg",
+    "signature": "obj getChunkEgg(loc loc)",
+    "description": "Returns the chunk egg (resource anchor) serial for the given location.",
+    "aliases": []
+  },
+  "getResource": {
+    "name": "getResource",
+    "signature": "int getResource(int&amp; outAmount, obj serial, string resName, int resType, int flags)",
+    "description": "Retrieves the amount and details of a named resource on an entity.",
+    "aliases": []
+  },
+  "getResourceName": {
+    "name": "getResourceName",
+    "signature": "string getResourceName(string arg1, int arg2)",
+    "description": "Returns the display name string for a resource by ID.",
+    "aliases": []
+  },
+  "getResourcesOnObj": {
+    "name": "getResourcesOnObj",
+    "signature": "int getResourcesOnObj(obj serial, int flags, list list)",
+    "description": "Fills a list with resource entries on an entity filtered by flags.",
+    "aliases": []
+  },
+  "getResourceTypeIdByName": {
+    "name": "getResourceTypeIdByName",
+    "signature": "int getResourceTypeIdByName(int&amp; retval, string name)",
+    "description": "Returns the resource type ID for the given resource name string.",
+    "aliases": []
+  },
+  "hasResource": {
+    "name": "hasResource",
+    "signature": "int hasResource(obj serial, int resourceTypeId)",
+    "description": "Returns 1 if the entity has a resource of the given type ID.",
+    "aliases": []
+  },
+  "resourceTypeToId": {
+    "name": "resourceTypeToId",
+    "signature": "int resourceTypeToId(string name)",
+    "description": "Returns the type ID integer for a named resource type.",
+    "aliases": []
+  },
+  "whoIsLargestConsumer": {
+    "name": "whoIsLargestConsumer",
+    "signature": "int whoIsLargestConsumer(loc loc, int templateIndex)",
+    "description": "Returns the template index of the largest consumer at a location.",
+    "aliases": []
+  },
+  "getCurrentTimeStr": {
+    "name": "getCurrentTimeStr",
+    "signature": "void getCurrentTimeStr(string out)",
+    "description": "Returns the current time as a formatted string.",
+    "aliases": []
+  },
+  "getDay": {
+    "name": "getDay",
+    "signature": "int getDay()",
+    "description": "Returns the current in-game day (1–7).",
+    "aliases": []
+  },
+  "getHour": {
+    "name": "getHour",
+    "signature": "int getHour()",
+    "description": "Returns the current in-game hour (0–23).",
+    "aliases": []
+  },
+  "getMinute": {
+    "name": "getMinute",
+    "signature": "int getMinute()",
+    "description": "Returns the current in-game minute (0–59).",
+    "aliases": []
+  },
+  "getMonth": {
+    "name": "getMonth",
+    "signature": "int getMonth()",
+    "description": "Returns the current in-game month (1–12).",
+    "aliases": []
+  },
+  "getPulseNum": {
+    "name": "getPulseNum",
+    "signature": "int getPulseNum()",
+    "description": "Returns the current server pulse (heartbeat) number.",
+    "aliases": []
+  },
+  "getSeconds": {
+    "name": "getSeconds",
+    "signature": "int getSeconds()",
+    "description": "Returns the current in-game second (0–59).",
+    "aliases": []
+  },
+  "getTimeSecs": {
+    "name": "getTimeSecs",
+    "signature": "int getTimeSecs()",
+    "description": "Returns the current time as an integer number of seconds since the epoch.",
+    "aliases": []
+  },
+  "getWeek": {
+    "name": "getWeek",
+    "signature": "int getWeek()",
+    "description": "Returns the current in-game week (1–4).",
+    "aliases": []
+  },
+  "getYear": {
+    "name": "getYear",
+    "signature": "int getYear()",
+    "description": "Returns the current in-game year.",
+    "aliases": []
+  },
+  "abs": {
+    "name": "abs",
+    "signature": "int abs(int value)",
+    "description": "Returns the absolute value of an integer.",
+    "aliases": []
+  },
+  "addHelpRequestToQueue": {
+    "name": "addHelpRequestToQueue",
+    "signature": "void addHelpRequestToQueue(obj serial, int hasLevel, int level, string message)",
+    "description": "Adds a GM help request to the queue for the given mobile.",
+    "aliases": []
+  },
+  "callGuards": {
+    "name": "callGuards",
+    "signature": "void callGuards(obj serial1, obj serial2, int range)",
+    "description": "Summons guards on behalf of a victim against a criminal within range.",
+    "aliases": []
+  },
+  "canBeGeneric": {
+    "name": "canBeGeneric",
+    "signature": "int canBeGeneric(obj serial)",
+    "description": "Returns 1 if the item can be converted to a generic (stackable commodity).",
+    "aliases": []
+  },
+  "changeRange": {
+    "name": "changeRange",
+    "signature": "int changeRange(obj serial, int isString, int oldValue, int newValue)",
+    "description": "Changes the effective range of a value (for skill/stat adjustments). Returns result.",
+    "aliases": []
+  },
+  "createPlaceHolder": {
+    "name": "createPlaceHolder",
+    "signature": "void createPlaceHolder(obj arg1)",
+    "description": "createPlaceHolder: No description available.",
+    "aliases": []
+  },
+  "debugMessage": {
+    "name": "debugMessage",
+    "signature": "void debugMessage(string message)",
+    "description": "Outputs a debug message to the server console or log.",
+    "aliases": []
+  },
+  "dice": {
+    "name": "dice",
+    "signature": "int dice(int numDice, int numSides)",
+    "description": "Returns the result of rolling numDice dice each with numSides sides.",
+    "aliases": []
+  },
+  "doSCommand": {
+    "name": "doSCommand",
+    "signature": "void doSCommand(obj serial, string str)",
+    "description": "Executes a server command string (scommand) as the given entity.",
+    "aliases": []
+  },
+  "fixBank": {
+    "name": "fixBank",
+    "signature": "void fixBank(obj serial)",
+    "description": "Fixes corruption or inconsistencies in a player's bank box.",
+    "aliases": []
+  },
+  "getCompileFlag": {
+    "name": "getCompileFlag",
+    "signature": "int getCompileFlag(int flagId)",
+    "description": "Returns the value of a compile-time configuration flag by ID.",
+    "aliases": []
+  },
+  "getCreationLoc": {
+    "name": "getCreationLoc",
+    "signature": "loc getCreationLoc(obj arg1)",
+    "description": "Returns the location where the NPC was originally created.",
+    "aliases": []
+  },
+  "getGMCallStatus": {
+    "name": "getGMCallStatus",
+    "signature": "int getGMCallStatus()",
+    "description": "Returns the current GM call system status integer.",
+    "aliases": []
+  },
+  "getHome": {
+    "name": "getHome",
+    "signature": "loc getHome(obj arg1)",
+    "description": "Returns the NPC's designated home location.",
+    "aliases": []
+  },
+  "getStatus": {
+    "name": "getStatus",
+    "signature": "int getStatus(obj serial, int bit)",
+    "description": "Returns the value of a specific status bit on a mobile.",
+    "aliases": []
+  },
+  "hasHome": {
+    "name": "hasHome",
+    "signature": "int hasHome(obj serial)",
+    "description": "Returns 1 if the NPC has a home location set.",
+    "aliases": []
+  },
+  "hasShopKeyword": {
+    "name": "hasShopKeyword",
+    "signature": "int hasShopKeyword(list list)",
+    "description": "hasShopKeyword: No description available.",
+    "aliases": []
+  },
+  "intRet": {
+    "name": "intRet",
+    "signature": "void intRet(int value)",
+    "description": "Sets the integer return value of the current script function.",
+    "aliases": []
+  },
+  "isAtHome": {
+    "name": "isAtHome",
+    "signature": "int isAtHome(obj serial)",
+    "description": "Returns 1 if the NPC is at its designated home location.",
+    "aliases": []
+  },
+  "isCounselor": {
+    "name": "isCounselor",
+    "signature": "int isCounselor(obj serial)",
+    "description": "Returns 1 if the mobile has Counselor privileges.",
+    "aliases": []
+  },
+  "isGameMaster": {
+    "name": "isGameMaster",
+    "signature": "int isGameMaster(obj serial)",
+    "description": "Returns 1 if the mobile has GM privileges.",
+    "aliases": []
+  },
+  "isGeneric": {
+    "name": "isGeneric",
+    "signature": "int isGeneric(obj serial)",
+    "description": "Returns 1 if the item is currently in generic (stackable commodity) form.",
+    "aliases": []
+  },
+  "isObscene": {
+    "name": "isObscene",
+    "signature": "int isObscene(string text)",
+    "description": "Returns 1 if the given text string contains filtered profanity.",
+    "aliases": []
+  },
+  "isOwnedPet": {
+    "name": "isOwnedPet",
+    "signature": "int isOwnedPet(obj serial)",
+    "description": "Returns 1 if the mobile is a tamed pet owned by a player.",
+    "aliases": []
+  },
+  "logEntry": {
+    "name": "logEntry",
+    "signature": "void logEntry(int type, int subtype, obj serial, string str1, string str2, string str3, string str4)",
+    "description": "Writes a structured log entry to the server event log.",
+    "aliases": []
+  },
+  "mobileWillBuy": {
+    "name": "mobileWillBuy",
+    "signature": "int mobileWillBuy(obj npcSerial, obj itemSerial)",
+    "description": "mobileWillBuy: No description available.",
+    "aliases": []
+  },
+  "NULL": {
+    "name": "NULL",
+    "signature": "obj NULL()",
+    "description": "No-op placeholder handler; always returns 0.",
+    "aliases": []
+  },
+  "overloadWeight": {
+    "name": "overloadWeight",
+    "signature": "void overloadWeight(obj serial, int weight)",
+    "description": "Forces a mobile's encumbrance to a specific weight (bypassing normal calculation).",
+    "aliases": []
+  },
+  "random": {
+    "name": "random",
+    "signature": "int random(int min, int max)",
+    "description": "Returns a random integer between min and max (inclusive).",
+    "aliases": []
+  },
+  "recalcWeight": {
+    "name": "recalcWeight",
+    "signature": "void recalcWeight(obj serial)",
+    "description": "Triggers a full recalculation of the mobile's encumbrance.",
+    "aliases": []
+  },
+  "seance": {
+    "name": "seance",
+    "signature": "void seance(obj serial, int mode)",
+    "description": "Initiates or ends a seance communication session for the mobile.",
+    "aliases": []
+  },
+  "setDefaultReturn": {
+    "name": "setDefaultReturn",
+    "signature": "void setDefaultReturn(int value)",
+    "description": "Sets the script's default return value (used when a script exits without return).",
+    "aliases": []
+  },
+  "setGMCallStatus": {
+    "name": "setGMCallStatus",
+    "signature": "void setGMCallStatus(int value)",
+    "description": "Sets the GM call system status integer.",
+    "aliases": []
+  },
+  "setHome": {
+    "name": "setHome",
+    "signature": "void setHome(obj serial, loc loc)",
+    "description": "Sets the NPC's home location.",
+    "aliases": []
+  },
+  "setStatus": {
+    "name": "setStatus",
+    "signature": "void setStatus(obj serial, int bit, int value)",
+    "description": "Sets a specific status bit on a mobile.",
+    "aliases": []
+  },
+  "shopKeeperOpenBusiness": {
+    "name": "shopKeeperOpenBusiness",
+    "signature": "void shopKeeperOpenBusiness(obj npcSerial, obj playerSerial)",
+    "description": "shopKeeperOpenBusiness: No description available.",
+    "aliases": []
+  },
+  "shopKeeperOpenBuying": {
+    "name": "shopKeeperOpenBuying",
+    "signature": "void shopKeeperOpenBuying(obj npcSerial, obj playerSerial)",
+    "description": "shopKeeperOpenBuying: No description available.",
+    "aliases": []
+  },
+  "thinksItsAtHome": {
+    "name": "thinksItsAtHome",
+    "signature": "int thinksItsAtHome(obj serial)",
+    "description": "Returns 1 if the NPC believes it is at home (without verifying location).",
+    "aliases": []
+  },
+  "updatesOff": {
+    "name": "updatesOff",
+    "signature": "void updatesOff()",
+    "description": "updatesOff: No description available.",
+    "aliases": []
+  },
+  "updatesOn": {
+    "name": "updatesOn",
+    "signature": "void updatesOn()",
+    "description": "updatesOn: No description available.",
+    "aliases": []
+  },
+  "copybook": {
+    "name": "copybook",
+    "signature": "int copybook(obj srcSerial, obj dstSerial)",
+    "description": "Copies the content of one book item to another. Returns 1 on success.",
+    "aliases": []
+  },
+  "findClosestBBoard": {
+    "name": "findClosestBBoard",
+    "signature": "obj findClosestBBoard(loc loc)",
+    "description": "Returns the serial of the nearest bulletin board to the given location.",
+    "aliases": []
+  },
+  "getBookPages": {
+    "name": "getBookPages",
+    "signature": "int getBookPages(obj serial)",
+    "description": "Returns the number of pages in a book item.",
+    "aliases": []
+  },
+  "getLizardishSyllable": {
+    "name": "getLizardishSyllable",
+    "signature": "string getLizardishSyllable(int arg1)",
+    "description": "Returns a lizard-man language syllable string by index.",
+    "aliases": []
+  },
+  "getMapPoint": {
+    "name": "getMapPoint",
+    "signature": "int getMapPoint(loc&amp; retloc, obj serial, int index)",
+    "description": "Returns the destination location stored at a given index in a map item.",
+    "aliases": []
+  },
+  "getOrcishSyllable": {
+    "name": "getOrcishSyllable",
+    "signature": "string getOrcishSyllable(int arg1)",
+    "description": "Returns an orcish language syllable string by index.",
+    "aliases": []
+  },
+  "getRattishSyllable": {
+    "name": "getRattishSyllable",
+    "signature": "string getRattishSyllable(int arg1)",
+    "description": "Returns a rat-man language syllable string by index.",
+    "aliases": []
+  },
+  "getROBookTitle": {
+    "name": "getROBookTitle",
+    "signature": "string getROBookTitle(int arg1)",
+    "description": "Returns the title string of a read-only book by book number.",
+    "aliases": []
+  },
+  "getWispishSyllable": {
+    "name": "getWispishSyllable",
+    "signature": "string getWispishSyllable(int arg1)",
+    "description": "Returns a wisp creature language syllable string by index.",
+    "aliases": []
+  },
+  "makeDice": {
+    "name": "makeDice",
+    "signature": "void makeDice(string&amp; out, string base, int numDice, int faces, string sep, int bonus)",
+    "description": "Constructs a dice notation string from components (e.g. numDice=2, faces=6, bonus=1 → &quot;2d6+1&quot;).",
+    "aliases": []
+  },
+  "setPostTime": {
+    "name": "setPostTime",
+    "signature": "void setPostTime(obj serial)",
+    "description": "Sets the posting timestamp on a bulletin board post item.",
+    "aliases": []
+  },
+  "splitDice": {
+    "name": "splitDice",
+    "signature": "void splitDice(string diceStr, string&amp; prefixOut, int&amp; numDiceOut, int&amp; facesOut, string&amp; sepOut, int&amp; bonusOut)",
+    "description": "Parses a dice string (e.g. &quot;2d6+1&quot;) into its component parts via out params.",
+    "aliases": []
+  },
+  "superTargetLoc": {
+    "name": "superTargetLoc",
+    "signature": "void superTargetLoc(obj serial, obj cursorId, int cursorType, int multiId)",
+    "description": "Opens an advanced location-targeting cursor with a multi-preview.",
+    "aliases": [
+      "supertargetloc"
+    ]
+  },
+  "supertargetloc": {
+    "name": "supertargetloc",
+    "signature": "void supertargetloc(obj serial, obj cursorId, int cursorType, int multiId)",
+    "description": "Opens an advanced location-targeting cursor with a multi-preview.",
+    "aliases": [
+      "superTargetLoc"
+    ]
+  },
+  "superTargetObj": {
+    "name": "superTargetObj",
+    "signature": "void superTargetObj(obj serial, obj cursorId, int cursorType)",
+    "description": "Opens an advanced object-targeting cursor with cursor type control.",
+    "aliases": [
+      "supertargetobj"
+    ]
+  },
+  "supertargetobj": {
+    "name": "supertargetobj",
+    "signature": "void supertargetobj(obj serial, obj cursorId, int cursorType)",
+    "description": "Opens an advanced object-targeting cursor with cursor type control.",
+    "aliases": [
+      "superTargetObj"
+    ]
+  },
+  "targetLoc": {
+    "name": "targetLoc",
+    "signature": "void targetLoc(obj serial, obj cursorId)",
+    "description": "Opens a location-targeting cursor for a player.",
+    "aliases": [
+      "targetloc"
+    ]
+  },
+  "targetloc": {
+    "name": "targetloc",
+    "signature": "void targetloc(obj serial, obj cursorId)",
+    "description": "Opens a location-targeting cursor for a player.",
+    "aliases": [
+      "targetLoc"
+    ]
+  },
+  "targetLocMulti": {
+    "name": "targetLocMulti",
+    "signature": "void targetLocMulti(obj serial, obj cursorId, int multiId, int xOff, int yOff, int facing)",
+    "description": "Opens a multi-placement targeting cursor for a player.",
+    "aliases": [
+      "targetlocmulti"
+    ]
+  },
+  "targetlocmulti": {
+    "name": "targetlocmulti",
+    "signature": "void targetlocmulti(obj serial, obj cursorId, int multiId, int xOff, int yOff, int facing)",
+    "description": "Opens a multi-placement targeting cursor for a player.",
+    "aliases": [
+      "targetLocMulti"
+    ]
+  },
+  "targetLocObjList": {
+    "name": "targetLocObjList",
+    "signature": "void targetLocObjList(obj serial, obj cursorId, int multiId, int xOff, int yOff, list list)",
+    "description": "Opens a location-targeting cursor that also provides a nearby object list.",
+    "aliases": []
+  },
+  "targetObj": {
+    "name": "targetObj",
+    "signature": "void targetObj(obj serial, obj cursorId)",
+    "description": "Opens an object-targeting cursor for a player, using the given cursor ID.",
+    "aliases": [
+      "targetobj"
+    ]
+  },
+  "targetobj": {
+    "name": "targetobj",
+    "signature": "void targetobj(obj serial, obj cursorId)",
+    "description": "Opens an object-targeting cursor for a player, using the given cursor ID.",
+    "aliases": [
+      "targetObj"
+    ]
+  },
+  "trackingTypeSelected": {
+    "name": "trackingTypeSelected",
+    "signature": "void trackingTypeSelected(list list, obj serial, int trackType, int categoryTypeId, loc filter)",
+    "description": "Handles the player's selection from a tracking type menu.",
+    "aliases": []
+  },
+  "getHint": {
+    "name": "getHint",
+    "signature": "int getHint(obj serial, int flags, int&amp; outInt1, obj&amp; outInt2, int&amp; outInt3, string&amp; outStr1, string&amp; outStr2, loc&amp; outLoc, obj&amp; outObjSerial, string&amp; outStr3, int&amp; outParam)",
+    "description": "Retrieves a hint record by serial and flags. Returns 1 if found.",
+    "aliases": []
+  },
+  "updateHint": {
+    "name": "updateHint",
+    "signature": "void updateHint(int hintId, obj serial, int flags, string name1, string name2, loc loc, obj objSerial, string name3, int param)",
+    "description": "Creates or updates a quest/NPC hint record for tracking.",
+    "aliases": []
+  },
+  "copyControllerInfo": {
+    "name": "copyControllerInfo",
+    "signature": "void copyControllerInfo(obj controlledSerial, obj controllerSerial)",
+    "description": "Copies controller (owner/follower) info from one mobile to another.",
+    "aliases": []
+  },
+  "setResurrectionResources": {
+    "name": "setResurrectionResources",
+    "signature": "void setResurrectionResources(obj serial)",
+    "description": "Sets the resources required for the mobile's resurrection.",
+    "aliases": []
+  }
+}
