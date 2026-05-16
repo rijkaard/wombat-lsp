@@ -4,16 +4,25 @@
   "description": "Language support for the Ultima Online (June 1998) Wombat scripting language",
   "version": "0.1.0",
   "publisher": "uo-june98",
-  "engines": { "vscode": "^1.75.0" },
-  "categories": ["Programming Languages"],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
   "activationEvents": [],
   "main": "./out/extension",
   "contributes": {
     "languages": [
       {
         "id": "wombat",
-        "aliases": ["Wombat Script", "wombat"],
-        "extensions": [".m"],
+        "aliases": [
+          "Wombat Script",
+          "wombat"
+        ],
+        "extensions": [
+          ".m"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -39,14 +48,18 @@
     "compile": "tsc -p ./tsconfig.json && cd server && npm run compile",
     "watch": "tsc -p ./tsconfig.json -w",
     "build-catalog": "cd server && node build-catalog.js",
+    "test": "node out/test/runTests.js",
     "vscode:prepublish": "npm run compile"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.10",
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.75.0",
+    "@vscode/test-electron": "^2.5.2",
+    "mocha": "^10.8.2",
     "typescript": "^5.0.0"
   }
 }
