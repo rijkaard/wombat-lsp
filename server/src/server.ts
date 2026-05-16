@@ -37,7 +37,8 @@ function loadCatalog(): void {
   try {
     const raw = JSON.parse(fs.readFileSync(catalogPath, 'utf8')) as Record<string, EngineFn>;
     for (const [key, entry] of Object.entries(raw)) {
-      engineCatalog.set(key.toLowerCase(), entry);
+      const lk = key.toLowerCase();
+      if (!engineCatalog.has(lk)) engineCatalog.set(lk, entry);
     }
   } catch (e) {
     connection.console.error(`Failed to load engine catalog: ${e}`);
