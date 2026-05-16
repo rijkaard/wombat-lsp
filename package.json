@@ -1,0 +1,52 @@
+{
+  "name": "wombat-language",
+  "displayName": "Wombat Script",
+  "description": "Language support for the Ultima Online (June 1998) Wombat scripting language",
+  "version": "0.1.0",
+  "publisher": "uo-june98",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Programming Languages"],
+  "activationEvents": [],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "wombat",
+        "aliases": ["Wombat Script", "wombat"],
+        "extensions": [".m"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "wombat",
+        "scopeName": "source.wombat",
+        "path": "./syntaxes/wombat.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Wombat Script",
+      "properties": {
+        "wombat.scriptsDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the Wombat scripts directory (for cross-file go-to-definition). Leave blank to use the directory of the current file."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./tsconfig.json && cd server && npm run compile",
+    "watch": "tsc -p ./tsconfig.json -w",
+    "build-catalog": "cd server && node build-catalog.js",
+    "vscode:prepublish": "npm run compile"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.0.0"
+  }
+}
