@@ -10,8 +10,9 @@
  *   L5   (blank)
  *   L6   // Get the armor class
  *   L7   int compute_ac(int base)          compute_ac  @ col 4 (definition)
+ *                                          base param  @ col 19
  *   L8   {
- *   L9       int result = base + armor_class;  result  @ col 8
+ *   L9       int result = base + armor_class;  result @ col 8, base(usage) @ col 17
  *   L10      return(result);
  *   L11  }
  *   L12  (blank)
@@ -22,12 +23,22 @@
  *   L16  }
  *
  * Fixture layout — child.m:
- *   L0   inherits parent;
+ *   L0   inherits parent;                  parent(module) @ col 9
  *   L1   (blank)
  *   L2   trigger use {
- *   L3       int hp = get_hp(10);   get_hp @ col 13
- *   L4       return(0x01);
- *   L5   }
+ *   L3       int hp = get_hp(10);          get_hp @ col 13
+ *   L4       int gs = get_grand_stat();    get_grand_stat @ col 13
+ *   L5       return(0x01);
+ *   L6   }
+ *
+ * Fixture layout — parent.m:
+ *   L0   inherits grandparent;             grandparent(module) @ col 9
+ *   L2   member int base_hp;
+ *   L5   int get_hp(int bonus)             get_hp @ col 4 (definition)
+ *
+ * Fixture layout — grandparent.m:
+ *   L0   member int grand_stat;
+ *   L2   int get_grand_stat()              get_grand_stat @ col 4 (definition)
  */
 
 import * as assert from 'assert';
@@ -321,7 +332,97 @@ suite('Wombat LSP', function () {
         locs[0].uri.fsPath.endsWith('parent.m'),
         `expected parent.m, got ${locs[0].uri.fsPath}`
       );
-      assert.strictEqual(locs[0].range.start.line, 3, `expected L3, got L${locs[0].range.start.line}`);
+      assert.strictEqual(locs[0].range.start.line, 5, `expected L5, got L${locs[0].range.start.line}`);
+    });
+
+    test('inherits directive: jumps to module file', async () => {
+      // "parent" at L0 col 9 in child.m → should open parent.m
+      const docUri = await openDoc('child.m');
+      await sleep(1000);
+      const locs = await vscode.commands.executeCommand<vscode.Location[]>(
+        'vscode.executeDefinitionProvider', docUri, new vscode.Position(0, 9)
+      );
+      assert.ok(locs && locs.length > 0, 'expected definition for inherits module name');
+      assert.ok(
+        locs[0].uri.fsPath.endsWith('parent.m'),
+        `expected parent.m, got ${locs[0].uri.fsPath}`
+      );
+    });
+
+    test('recursive inherited symbol → definition in grandparent file', async () => {
+      // get_grand_stat at L4 col 13 in child.m → defined in grandparent.m L2
+      const docUri = await openDoc('child.m');
+      await sleep(1000);
+      const locs = await vscode.commands.executeCommand<vscode.Location[]>(
+        'vscode.executeDefinitionProvider', docUri, new vscode.Position(4, 13)
+      );
+      assert.ok(locs && locs.length > 0, 'expected definition for grandparent function');
+      assert.ok(
+        locs[0].uri.fsPath.endsWith('grandparent.m'),
+        `expected grandparent.m, got ${locs[0].uri.fsPath}`
+      );
+      assert.strictEqual(locs[0].range.start.line, 2, `expected L2, got L${locs[0].range.start.line}`);
+    });
+
+    test('parameter: go-to-def jumps to function definition line', async () => {
+      // base at L9 col 17 in basic.m — param of compute_ac defined at L7
+      const docUri = await openDoc('basic.m');
+      await sleep(500);
+      const locs = await vscode.commands.executeCommand<vscode.Location[]>(
+        'vscode.executeDefinitionProvider', docUri, new vscode.Position(9, 17)
+      );
+      assert.ok(locs && locs.length > 0, 'expected definition for parameter');
+      assert.strictEqual(locs[0].uri.fsPath, uri('basic.m').fsPath);
+      assert.strictEqual(locs[0].range.start.line, 7, `expected L7, got L${locs[0].range.start.line}`);
+    });
+
+  });
+
+  // ── Additional hover tests ────────────────────────────────────────────────
+
+  suite('Hover (extended)', () => {
+
+    test('parameter: shows type without hallucinating inherited member', async () => {
+      // base at L9 col 17 in basic.m — param of compute_ac, NOT an inherited member
+      const docUri = await openDoc('basic.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(9, 17)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for parameter');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('base'), `param name missing — got: ${text}`);
+      assert.ok(text.includes('int'),  `param type missing — got: ${text}`);
+    });
+
+    test('recursive inherited symbol: shows signature and grandparent source file', async () => {
+      // get_grand_stat at L4 col 13 in child.m — defined 2 levels up in grandparent.m
+      const docUri = await openDoc('child.m');
+      await sleep(1000);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(4, 13)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for grandparent function');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('get_grand_stat'), `function name missing — got: ${text}`);
+      assert.ok(text.includes('grandparent.m'),  `source file missing — got: ${text}`);
+    });
+
+  });
+
+  // ── Additional completion tests ───────────────────────────────────────────
+
+  suite('Completion (extended)', () => {
+
+    test('recursive grandparent symbols appear in completion list', async () => {
+      const docUri = await openDoc('child.m');
+      await sleep(1000);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(4, 13)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const names = list.items.map(i => i.label.toString());
+      assert.ok(names.includes('get_grand_stat'), `grandparent function missing from completions: ${names.slice(0,20)}`);
     });
 
   });

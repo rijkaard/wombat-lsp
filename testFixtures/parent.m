@@ -1,3 +1,5 @@
+inherits grandparent;
+
 member int base_hp;
 
 // Compute hit points from base and bonus

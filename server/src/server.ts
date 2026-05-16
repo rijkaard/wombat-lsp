@@ -394,14 +394,27 @@ function symbolSignature(sym: UserSymbol): string {
 
 // ── Cross-file resolution ─────────────────────────────────────────────────────
 
-function getInheritedScriptPaths(text: string, currentUri: string, scriptsDir: string): string[] {
+function getInheritedScriptPaths(
+  text: string, currentUri: string, scriptsDir: string,
+  visited: Set<string> = new Set()
+): string[] {
   const dir = scriptsDir || path.dirname(filePathFromUri(currentUri));
-  const paths: string[] = [];
+  const result: string[] = [];
   for (const m of text.matchAll(/\binherits\s+([A-Za-z_][A-Za-z0-9_]*)\s*;/g)) {
     const candidate = path.join(dir, m[1] + '.m');
-    if (fs.existsSync(candidate)) paths.push(candidate);
+    if (!fs.existsSync(candidate) || visited.has(candidate)) continue;
+    visited.add(candidate);
+    result.push(candidate);
+    try {
+      const parentText = fs.readFileSync(candidate, 'utf8');
+      const transitive = getInheritedScriptPaths(
+        parentText, uriFromFilePath(candidate),
+        scriptsDir || path.dirname(candidate), visited
+      );
+      result.push(...transitive);
+    } catch { /* skip unreadable */ }
   }
-  return paths;
+  return result;
 }
 
 function filePathFromUri(uri: string): string {
@@ -560,7 +573,8 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
   if (engineFn) return { contents: engineHover(engineFn) };
 
   const syms = parseSymbols(text);
-  const sym  = syms.find(s => s.name === word && s.kind !== 'param');
+  // Include params — they shadow same-named members from inherited scripts.
+  const sym  = syms.find(s => s.name === word);
   if (sym) return { contents: userHover(sym) };
 
   for (const scriptPath of getInheritedScriptPaths(text, params.textDocument.uri, scriptsDirectory)) {
@@ -591,6 +605,21 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
   const word = wordAt(text, params.position);
   if (!word) return null;
 
+  // Check if the cursor is on the module name in an `inherits <module>;` directive.
+  const lines    = text.split('\n');
+  const lineText = (lines[params.position.line] ?? '').replace(/\r$/, '');
+  const inheritsM = lineText.match(/\binherits\s+([A-Za-z_][A-Za-z0-9_]*)\s*;/);
+  if (inheritsM && inheritsM[1] === word) {
+    const dir = scriptsDirectory || path.dirname(filePathFromUri(params.textDocument.uri));
+    const candidate = path.join(dir, word + '.m');
+    if (fs.existsSync(candidate)) {
+      return Location.create(
+        uriFromFilePath(candidate),
+        Range.create(Position.create(0, 0), Position.create(0, 0))
+      );
+    }
+  }
+
   if (engineCatalog.has(word.toLowerCase())) return null;
 
   const syms = parseSymbols(text);
@@ -606,7 +635,8 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
     );
   }
 
-  const varSym = syms.find(s => s.name === word && s.kind === 'variable');
+  const varSym = syms.find(s => s.name === word &&
+    (s.kind === 'variable' || s.kind === 'param'));
   if (varSym) {
     return Location.create(
       params.textDocument.uri,
