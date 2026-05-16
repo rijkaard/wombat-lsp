@@ -594,8 +594,10 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
 
   const syms = parseSymbols(text);
 
+  // Prefer the actual definition (function/trigger/member) over a forward declaration.
   const primary = syms.find(s => s.name === word &&
-    (s.kind === 'function' || s.kind === 'trigger' || s.kind === 'member' || s.kind === 'forward'));
+    (s.kind === 'function' || s.kind === 'trigger' || s.kind === 'member'))
+    ?? syms.find(s => s.name === word && s.kind === 'forward');
   if (primary) {
     return Location.create(
       params.textDocument.uri,

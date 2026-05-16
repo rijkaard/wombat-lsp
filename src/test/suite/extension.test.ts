@@ -270,9 +270,8 @@ suite('Wombat LSP', function () {
       );
       assert.ok(locs && locs.length > 0, 'expected definition location for forward');
       assert.strictEqual(locs[0].uri.fsPath, uri('basic.m').fsPath);
-      // Should resolve to the function definition (L7) because it's the primary match
-      assert.ok(locs[0].range.start.line === 7 || locs[0].range.start.line === 4,
-        `expected L4 or L7, got L${locs[0].range.start.line}`);
+      // Forward decl resolves to the function body (definition preferred over forward)
+      assert.strictEqual(locs[0].range.start.line, 7, `expected L7, got L${locs[0].range.start.line}`);
     });
 
     test('member name → declaration line', async () => {
