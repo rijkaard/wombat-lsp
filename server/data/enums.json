@@ -709,5 +709,252 @@
       "value": 1024,
       "hex": "0x400"
     }
+  ],
+  "Skill": [
+    {
+      "name": "Alchemy",
+      "value": 0,
+      "hex": "0"
+    },
+    {
+      "name": "Anatomy",
+      "value": 1,
+      "hex": "1"
+    },
+    {
+      "name": "Animal Lore",
+      "value": 2,
+      "hex": "2"
+    },
+    {
+      "name": "Item Identification",
+      "value": 3,
+      "hex": "3"
+    },
+    {
+      "name": "Arms Lore",
+      "value": 4,
+      "hex": "4"
+    },
+    {
+      "name": "Parrying",
+      "value": 5,
+      "hex": "5"
+    },
+    {
+      "name": "Begging",
+      "value": 6,
+      "hex": "6"
+    },
+    {
+      "name": "Blacksmithy",
+      "value": 7,
+      "hex": "7"
+    },
+    {
+      "name": "Bowcraft/Fletching",
+      "value": 8,
+      "hex": "8"
+    },
+    {
+      "name": "Peacemaking",
+      "value": 9,
+      "hex": "9"
+    },
+    {
+      "name": "Camping",
+      "value": 10,
+      "hex": "10"
+    },
+    {
+      "name": "Carpentry",
+      "value": 11,
+      "hex": "11"
+    },
+    {
+      "name": "Cartography",
+      "value": 12,
+      "hex": "12"
+    },
+    {
+      "name": "Cooking",
+      "value": 13,
+      "hex": "13"
+    },
+    {
+      "name": "Detecting Hidden",
+      "value": 14,
+      "hex": "14"
+    },
+    {
+      "name": "Enticement",
+      "value": 15,
+      "hex": "15"
+    },
+    {
+      "name": "Evaluating Intelligence",
+      "value": 16,
+      "hex": "16"
+    },
+    {
+      "name": "Healing",
+      "value": 17,
+      "hex": "17"
+    },
+    {
+      "name": "Fishing",
+      "value": 18,
+      "hex": "18"
+    },
+    {
+      "name": "Forensic Evaluation",
+      "value": 19,
+      "hex": "19"
+    },
+    {
+      "name": "Herding",
+      "value": 20,
+      "hex": "20"
+    },
+    {
+      "name": "Hiding",
+      "value": 21,
+      "hex": "21"
+    },
+    {
+      "name": "Provocation",
+      "value": 22,
+      "hex": "22"
+    },
+    {
+      "name": "Inscription",
+      "value": 23,
+      "hex": "23"
+    },
+    {
+      "name": "Lockpicking",
+      "value": 24,
+      "hex": "24"
+    },
+    {
+      "name": "Magery",
+      "value": 25,
+      "hex": "25"
+    },
+    {
+      "name": "Resisting Spells",
+      "value": 26,
+      "hex": "26"
+    },
+    {
+      "name": "Tactics",
+      "value": 27,
+      "hex": "27"
+    },
+    {
+      "name": "Snooping",
+      "value": 28,
+      "hex": "28"
+    },
+    {
+      "name": "Musicianship",
+      "value": 29,
+      "hex": "29"
+    },
+    {
+      "name": "Poisoning",
+      "value": 30,
+      "hex": "30"
+    },
+    {
+      "name": "Archery",
+      "value": 31,
+      "hex": "31"
+    },
+    {
+      "name": "Spirit Speak",
+      "value": 32,
+      "hex": "32"
+    },
+    {
+      "name": "Stealing",
+      "value": 33,
+      "hex": "33"
+    },
+    {
+      "name": "Tailoring",
+      "value": 34,
+      "hex": "34"
+    },
+    {
+      "name": "Animal Taming",
+      "value": 35,
+      "hex": "35"
+    },
+    {
+      "name": "Taste Identification",
+      "value": 36,
+      "hex": "36"
+    },
+    {
+      "name": "Tinkering",
+      "value": 37,
+      "hex": "37"
+    },
+    {
+      "name": "Tracking",
+      "value": 38,
+      "hex": "38"
+    },
+    {
+      "name": "Veterinary",
+      "value": 39,
+      "hex": "39"
+    },
+    {
+      "name": "Swordsmanship",
+      "value": 40,
+      "hex": "40"
+    },
+    {
+      "name": "Mace Fighting",
+      "value": 41,
+      "hex": "41"
+    },
+    {
+      "name": "Fencing",
+      "value": 42,
+      "hex": "42"
+    },
+    {
+      "name": "Wrestling",
+      "value": 43,
+      "hex": "43"
+    },
+    {
+      "name": "Lumberjacking",
+      "value": 44,
+      "hex": "44"
+    },
+    {
+      "name": "Mining",
+      "value": 45,
+      "hex": "45"
+    },
+    {
+      "name": "Meditation",
+      "value": 46,
+      "hex": "46"
+    },
+    {
+      "name": "Stealth",
+      "value": 47,
+      "hex": "47"
+    },
+    {
+      "name": "Remove Trap",
+      "value": 48,
+      "hex": "48"
+    }
   ]
 }

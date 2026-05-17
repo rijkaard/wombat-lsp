@@ -198,5 +198,195 @@
         "bitmask": true
       }
     ]
+  },
+  "handleWatchingSkill": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "testSkillReal": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "skillTestReal": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "testSkill": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "skillTest": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillSuccessChance": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "testAndLearnSkill": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillLevel": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillLevelReal": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillLevelRealStat": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillLevelNoStat": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillLevelNoStatNoMod": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "setSkillLevel": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "addSkillLevel": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "loseSkillLevel": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillMod": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "setSkillMod": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "modifySkillMod": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 1,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
+  },
+  "getSkillName": {
+    "params": [
+      {
+        "name": "skillId",
+        "pos": 0,
+        "enum": "Skill",
+        "bitmask": false
+      }
+    ]
   }
 }
