@@ -956,5 +956,228 @@
       "value": 48,
       "hex": "48"
     }
+  ],
+  "Direction": [
+    {
+      "name": "North",
+      "value": 0,
+      "hex": "0"
+    },
+    {
+      "name": "NorthEast",
+      "value": 1,
+      "hex": "1"
+    },
+    {
+      "name": "East",
+      "value": 2,
+      "hex": "2"
+    },
+    {
+      "name": "SouthEast",
+      "value": 3,
+      "hex": "3"
+    },
+    {
+      "name": "South",
+      "value": 4,
+      "hex": "4"
+    },
+    {
+      "name": "SouthWest",
+      "value": 5,
+      "hex": "5"
+    },
+    {
+      "name": "West",
+      "value": 6,
+      "hex": "6"
+    },
+    {
+      "name": "NorthWest",
+      "value": 7,
+      "hex": "7"
+    },
+    {
+      "name": "Running",
+      "value": 128,
+      "hex": "0x80"
+    }
+  ],
+  "StatId": [
+    {
+      "name": "Strength",
+      "value": 0,
+      "hex": "0"
+    },
+    {
+      "name": "Dexterity",
+      "value": 1,
+      "hex": "1"
+    },
+    {
+      "name": "Intelligence",
+      "value": 2,
+      "hex": "2"
+    }
+  ],
+  "Alignment": [
+    {
+      "name": "None",
+      "value": 0,
+      "hex": "0"
+    },
+    {
+      "name": "Good",
+      "value": 1,
+      "hex": "1"
+    },
+    {
+      "name": "Evil",
+      "value": 2,
+      "hex": "2"
+    },
+    {
+      "name": "Neutral",
+      "value": 3,
+      "hex": "3"
+    }
+  ],
+  "Layer": [
+    {
+      "name": "Invalid",
+      "value": 0,
+      "hex": "0x00"
+    },
+    {
+      "name": "RightHand",
+      "value": 1,
+      "hex": "0x01"
+    },
+    {
+      "name": "LeftHand",
+      "value": 2,
+      "hex": "0x02"
+    },
+    {
+      "name": "Shoes",
+      "value": 3,
+      "hex": "0x03"
+    },
+    {
+      "name": "Pants",
+      "value": 4,
+      "hex": "0x04"
+    },
+    {
+      "name": "Shirt",
+      "value": 5,
+      "hex": "0x05"
+    },
+    {
+      "name": "Helm",
+      "value": 6,
+      "hex": "0x06"
+    },
+    {
+      "name": "Gloves",
+      "value": 7,
+      "hex": "0x07"
+    },
+    {
+      "name": "Ring",
+      "value": 8,
+      "hex": "0x08"
+    },
+    {
+      "name": "Talisman",
+      "value": 9,
+      "hex": "0x09"
+    },
+    {
+      "name": "Necklace",
+      "value": 10,
+      "hex": "0x0A"
+    },
+    {
+      "name": "Hair",
+      "value": 11,
+      "hex": "0x0B"
+    },
+    {
+      "name": "Waist",
+      "value": 12,
+      "hex": "0x0C"
+    },
+    {
+      "name": "InnerTorso",
+      "value": 13,
+      "hex": "0x0D"
+    },
+    {
+      "name": "Bracelet",
+      "value": 14,
+      "hex": "0x0E"
+    },
+    {
+      "name": "Unused15",
+      "value": 15,
+      "hex": "0x0F"
+    },
+    {
+      "name": "FacialHair",
+      "value": 16,
+      "hex": "0x10"
+    },
+    {
+      "name": "MiddleTorso",
+      "value": 17,
+      "hex": "0x11"
+    },
+    {
+      "name": "Earrings",
+      "value": 18,
+      "hex": "0x12"
+    },
+    {
+      "name": "Arms",
+      "value": 19,
+      "hex": "0x13"
+    },
+    {
+      "name": "Cloak",
+      "value": 20,
+      "hex": "0x14"
+    },
+    {
+      "name": "Backpack",
+      "value": 21,
+      "hex": "0x15"
+    },
+    {
+      "name": "OuterTorso",
+      "value": 22,
+      "hex": "0x16"
+    },
+    {
+      "name": "OuterLegs",
+      "value": 23,
+      "hex": "0x17"
+    },
+    {
+      "name": "InnerLegs",
+      "value": 24,
+      "hex": "0x18"
+    },
+    {
+      "name": "Mount",
+      "value": 25,
+      "hex": "0x19"
+    },
+    {
+      "name": "BankBox",
+      "value": 29,
+      "hex": "0x1D"
+    }
   ]
 }

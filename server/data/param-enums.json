@@ -388,5 +388,175 @@
         "bitmask": false
       }
     ]
+  },
+  "walk": {
+    "params": [
+      {
+        "name": "dir",
+        "pos": 1,
+        "enum": "Direction",
+        "bitmask": false
+      }
+    ]
+  },
+  "run": {
+    "params": [
+      {
+        "name": "dir",
+        "pos": 1,
+        "enum": "Direction",
+        "bitmask": false
+      }
+    ]
+  },
+  "faceHere": {
+    "params": [
+      {
+        "name": "dir",
+        "pos": 1,
+        "enum": "Direction",
+        "bitmask": false
+      }
+    ]
+  },
+  "moveDir": {
+    "params": [
+      {
+        "name": "dir",
+        "pos": 1,
+        "enum": "Direction",
+        "bitmask": false
+      }
+    ]
+  },
+  "findGoodZ": {
+    "params": [
+      {
+        "name": "direction",
+        "pos": 2,
+        "enum": "Direction",
+        "bitmask": false
+      }
+    ]
+  },
+  "getStat": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "getRealStat": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "getStatMod": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "modifyStat": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "modifyRealStat": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "setStatMod": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "setRealStat": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "getStatAttributeMax": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "setStatAttributeMax": {
+    "params": [
+      {
+        "name": "statId",
+        "pos": 1,
+        "enum": "StatId",
+        "bitmask": false
+      }
+    ]
+  },
+  "setAlignment": {
+    "params": [
+      {
+        "name": "alignment",
+        "pos": 1,
+        "enum": "Alignment",
+        "bitmask": false
+      }
+    ]
+  },
+  "equipObj": {
+    "params": [
+      {
+        "name": "layer",
+        "pos": 2,
+        "enum": "Layer",
+        "bitmask": false
+      }
+    ]
+  },
+  "getItemAtSlot": {
+    "params": [
+      {
+        "name": "slot",
+        "pos": 1,
+        "enum": "Layer",
+        "bitmask": false
+      }
+    ]
   }
 }
