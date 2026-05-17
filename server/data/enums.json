@@ -1,0 +1,713 @@
+{
+  "EventType": [
+    {
+      "name": "Speech",
+      "value": 0,
+      "hex": "0x0"
+    },
+    {
+      "name": "GotAttacked",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "KilledTarget",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "Death",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "SawDeath",
+      "value": 5,
+      "hex": "0x5"
+    },
+    {
+      "name": "FightPulse",
+      "value": 6,
+      "hex": "0x6"
+    },
+    {
+      "name": "WasHit",
+      "value": 7,
+      "hex": "0x7"
+    },
+    {
+      "name": "IsHitting",
+      "value": 34,
+      "hex": "0x22"
+    },
+    {
+      "name": "MobIsHitting",
+      "value": 67,
+      "hex": "0x43"
+    },
+    {
+      "name": "UseItem",
+      "value": 23,
+      "hex": "0x17"
+    },
+    {
+      "name": "UseObject",
+      "value": 51,
+      "hex": "0x33"
+    },
+    {
+      "name": "LookedAt",
+      "value": 28,
+      "hex": "0x1C"
+    },
+    {
+      "name": "WasDropped",
+      "value": 27,
+      "hex": "0x1B"
+    },
+    {
+      "name": "WasGotten",
+      "value": 30,
+      "hex": "0x1E"
+    },
+    {
+      "name": "Give",
+      "value": 29,
+      "hex": "0x1D"
+    },
+    {
+      "name": "Equip",
+      "value": 44,
+      "hex": "0x2C"
+    },
+    {
+      "name": "Unequip",
+      "value": 45,
+      "hex": "0x2D"
+    },
+    {
+      "name": "IsStackableOn",
+      "value": 46,
+      "hex": "0x2E"
+    },
+    {
+      "name": "StackOnto",
+      "value": 47,
+      "hex": "0x2F"
+    },
+    {
+      "name": "TargetObject",
+      "value": 24,
+      "hex": "0x18"
+    },
+    {
+      "name": "TargetLocation",
+      "value": 25,
+      "hex": "0x19"
+    },
+    {
+      "name": "TargetObjectPre",
+      "value": 56,
+      "hex": "0x38"
+    },
+    {
+      "name": "Creation",
+      "value": 15,
+      "hex": "0xF"
+    },
+    {
+      "name": "ObjectLoaded",
+      "value": 54,
+      "hex": "0x36"
+    },
+    {
+      "name": "DeleteEntity",
+      "value": 43,
+      "hex": "0x2B"
+    },
+    {
+      "name": "Callback",
+      "value": 33,
+      "hex": "0x21"
+    },
+    {
+      "name": "Message",
+      "value": 22,
+      "hex": "0x16"
+    },
+    {
+      "name": "GumpResponse",
+      "value": 55,
+      "hex": "0x37"
+    },
+    {
+      "name": "StringResponse",
+      "value": 58,
+      "hex": "0x3A"
+    },
+    {
+      "name": "PickedObj",
+      "value": 36,
+      "hex": "0x24"
+    },
+    {
+      "name": "HueSelected",
+      "value": 37,
+      "hex": "0x25"
+    },
+    {
+      "name": "EnterRange",
+      "value": 16,
+      "hex": "0x10"
+    },
+    {
+      "name": "LeaveRange",
+      "value": 17,
+      "hex": "0x11"
+    },
+    {
+      "name": "ObjAccess",
+      "value": 61,
+      "hex": "0x3D"
+    },
+    {
+      "name": "StolenFrom",
+      "value": 60,
+      "hex": "0x3C"
+    },
+    {
+      "name": "LoginAppearance",
+      "value": 63,
+      "hex": "0x3F"
+    },
+    {
+      "name": "CheckTransfer",
+      "value": 64,
+      "hex": "0x40"
+    },
+    {
+      "name": "Transfer",
+      "value": 65,
+      "hex": "0x41"
+    },
+    {
+      "name": "FameChanged",
+      "value": 68,
+      "hex": "0x44"
+    },
+    {
+      "name": "KarmaChanged",
+      "value": 69,
+      "hex": "0x45"
+    },
+    {
+      "name": "MurderCountChanged",
+      "value": 70,
+      "hex": "0x46"
+    },
+    {
+      "name": "Shop",
+      "value": 59,
+      "hex": "0x3B"
+    },
+    {
+      "name": "CanBuy",
+      "value": 66,
+      "hex": "0x42"
+    }
+  ],
+  "EntityTypeTag": [
+    {
+      "name": "ETYPE_ITEM",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "ETYPE_CONTAINER",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "ETYPE_WEAPON",
+      "value": 3,
+      "hex": "0x3"
+    },
+    {
+      "name": "ETYPE_MOBILE",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "ETYPE_NPC",
+      "value": 5,
+      "hex": "0x5"
+    },
+    {
+      "name": "ETYPE_PLAYER",
+      "value": 6,
+      "hex": "0x6"
+    },
+    {
+      "name": "ETYPE_SHOPKEEPER",
+      "value": 7,
+      "hex": "0x7"
+    },
+    {
+      "name": "ETYPE_GUARD",
+      "value": 12,
+      "hex": "0xC"
+    },
+    {
+      "name": "ETYPE_MULTI",
+      "value": 8,
+      "hex": "0x8"
+    },
+    {
+      "name": "ETYPE_EGG",
+      "value": 9,
+      "hex": "0x9"
+    },
+    {
+      "name": "ETYPE_SIGNPOST",
+      "value": 10,
+      "hex": "0xA"
+    },
+    {
+      "name": "ETYPE_BOAT",
+      "value": 11,
+      "hex": "0xB"
+    }
+  ],
+  "ItemFlag": [
+    {
+      "name": "ItemFlag_Invisible",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "ItemFlag_Stackable",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "ItemFlag_Open",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "ItemFlag_Poisoned",
+      "value": 8,
+      "hex": "0x8"
+    },
+    {
+      "name": "ItemFlag_ServerOnly",
+      "value": 16,
+      "hex": "0x10"
+    },
+    {
+      "name": "ItemFlag_DeletePending",
+      "value": 32,
+      "hex": "0x20"
+    },
+    {
+      "name": "ItemFlag_Deleted",
+      "value": 64,
+      "hex": "0x40"
+    }
+  ],
+  "MobileFlag": [
+    {
+      "name": "MobileFlag_WarMode",
+      "value": 64,
+      "hex": "0x40"
+    }
+  ],
+  "PlayerFlag": [
+    {
+      "name": "PlayerIsMovePrevented",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "PlayerIsEditing",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "PlayerIsOnline",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "PlayerIsLoaded",
+      "value": 8,
+      "hex": "0x8"
+    },
+    {
+      "name": "PlayerIsManifesting",
+      "value": 32,
+      "hex": "0x20"
+    },
+    {
+      "name": "PlayerSpiritSpeak",
+      "value": 1024,
+      "hex": "0x400"
+    },
+    {
+      "name": "PlayerIsGameMaster",
+      "value": 4096,
+      "hex": "0x1000"
+    },
+    {
+      "name": "PlayerFlag_0x2000",
+      "value": 8192,
+      "hex": "0x2000"
+    },
+    {
+      "name": "PlayerIsDead",
+      "value": 16384,
+      "hex": "0x4000"
+    },
+    {
+      "name": "PlayerIsCounselor",
+      "value": 32768,
+      "hex": "0x8000"
+    },
+    {
+      "name": "PlayerIsGold",
+      "value": 131072,
+      "hex": "0x20000"
+    }
+  ],
+  "WeaponType_*": [
+    {
+      "name": "WeaponType_Slashing",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "WeaponType_Piercing",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "WeaponType_Bashing",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "WeaponType_Ranged",
+      "value": 8,
+      "hex": "0x8"
+    },
+    {
+      "name": "WeaponType_Shield",
+      "value": 16,
+      "hex": "0x10"
+    }
+  ],
+  "TIMER_EVENT_*": [
+    {
+      "name": "TIMER_EVENT_DELETE",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "TIMER_EVENT_DECAY_CONTAINER",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "TIMER_EVENT_IDLE_DISCONNECT",
+      "value": 3,
+      "hex": "0x3"
+    },
+    {
+      "name": "TIMER_EVENT_DOOR_CLOSE",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "TIMER_EVENT_CALLBACK",
+      "value": 5,
+      "hex": "0x5"
+    },
+    {
+      "name": "TIMER_EVENT_AI_SCHED_DELETE",
+      "value": 6,
+      "hex": "0x6"
+    },
+    {
+      "name": "TIMER_EVENT_SPEECH",
+      "value": 7,
+      "hex": "0x7"
+    },
+    {
+      "name": "TIMER_EVENT_VALUELESS_DECAY",
+      "value": 8,
+      "hex": "0x8"
+    },
+    {
+      "name": "TIMER_EVENT_ONLINE_CHECK",
+      "value": 9,
+      "hex": "0x9"
+    },
+    {
+      "name": "TIMER_EVENT_NPC_TICK",
+      "value": 10,
+      "hex": "0xA"
+    },
+    {
+      "name": "TIMER_EVENT_SET_STRING_PROP",
+      "value": 11,
+      "hex": "0xB"
+    },
+    {
+      "name": "TIMER_EVENT_WAR_MODE_CLEAR",
+      "value": 12,
+      "hex": "0xC"
+    },
+    {
+      "name": "TIMER_EVENT_SET_STRING_DETACH",
+      "value": 13,
+      "hex": "0xD"
+    },
+    {
+      "name": "TIMER_EVENT_UNFREEZE",
+      "value": 14,
+      "hex": "0xE"
+    },
+    {
+      "name": "TIMER_EVENT_UNSQUELCH",
+      "value": 15,
+      "hex": "0xF"
+    },
+    {
+      "name": "TIMER_EVENT_CLR_INVULN",
+      "value": 16,
+      "hex": "0x10"
+    },
+    {
+      "name": "TIMER_EVENT_CRIMINAL",
+      "value": 17,
+      "hex": "0x11"
+    },
+    {
+      "name": "TIMER_EVENT_SET_CHAOS",
+      "value": 18,
+      "hex": "0x12"
+    },
+    {
+      "name": "TIMER_EVENT_SET_ORDER",
+      "value": 19,
+      "hex": "0x13"
+    },
+    {
+      "name": "TIMER_EVENT_CTRL_TIMEOUT",
+      "value": 20,
+      "hex": "0x14"
+    }
+  ],
+  "WTYPE_*": [
+    {
+      "name": "WTYPE_INT",
+      "value": 0,
+      "hex": "0x0"
+    },
+    {
+      "name": "WTYPE_STRING",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "WTYPE_USTRING",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "WTYPE_LOC",
+      "value": 3,
+      "hex": "0x3"
+    },
+    {
+      "name": "WTYPE_OBJ",
+      "value": 4,
+      "hex": "0x4"
+    },
+    {
+      "name": "WTYPE_LIST",
+      "value": 5,
+      "hex": "0x5"
+    },
+    {
+      "name": "WTYPE_VOID",
+      "value": 6,
+      "hex": "0x6"
+    },
+    {
+      "name": "WTYPE_UNKNOWN",
+      "value": 7,
+      "hex": "0x7"
+    },
+    {
+      "name": "WTYPE_COUNT",
+      "value": 8,
+      "hex": "0x8"
+    }
+  ],
+  "FeatureFlag": [
+    {
+      "name": "FEAT_SKILL_LOCK",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SKILL_MEDITATION",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SKILL_STEALTH",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SKILL_REMOVE_TRAP",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_ECOLOGY",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_LIGHTS",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_CREATION_COLORS",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SPAWN_BUDGET",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SPAWN_STRICT_TAGS",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "FEAT_SKILL_TRACKING",
+      "value": 1,
+      "hex": "0x1"
+    }
+  ],
+  "AccountFlag": [
+    {
+      "name": "ACCT_BANNED",
+      "value": 1,
+      "hex": "0x1"
+    },
+    {
+      "name": "ACCT_GODMODE",
+      "value": 2,
+      "hex": "0x2"
+    }
+  ],
+  "TileFlag": [
+    {
+      "name": "TF_ARTICLE_A",
+      "value": 16384,
+      "hex": "0x4000"
+    },
+    {
+      "name": "TF_ARTICLE_AN",
+      "value": 32768,
+      "hex": "0x8000"
+    },
+    {
+      "name": "TF_ARTICLE_MASK",
+      "value": 49152,
+      "hex": "0xC000"
+    },
+    {
+      "name": "TF_WEAPON",
+      "value": 2,
+      "hex": "0x2"
+    },
+    {
+      "name": "TF_STACKABLE",
+      "value": 2048,
+      "hex": "0x800"
+    },
+    {
+      "name": "TF_MAP",
+      "value": 1048576,
+      "hex": "0x100000"
+    },
+    {
+      "name": "TF_CONTAINER",
+      "value": 2097152,
+      "hex": "0x200000"
+    },
+    {
+      "name": "TF_EQUIPPABLE",
+      "value": 4194304,
+      "hex": "0x400000"
+    },
+    {
+      "name": "TF_LIGHT",
+      "value": 8388608,
+      "hex": "0x800000"
+    },
+    {
+      "name": "TF_ARMOR",
+      "value": 134217728,
+      "hex": "0x8000000"
+    },
+    {
+      "name": "TF_DOOR",
+      "value": 536870912,
+      "hex": "0x20000000"
+    }
+  ],
+  "LandTileFlag": [
+    {
+      "name": "LTF_IMPASSABLE",
+      "value": 64,
+      "hex": "0x40"
+    },
+    {
+      "name": "LTF_WET",
+      "value": 128,
+      "hex": "0x80"
+    }
+  ],
+  "TerrainTileFlag": [
+    {
+      "name": "TF_SURFACE",
+      "value": 512,
+      "hex": "0x200"
+    },
+    {
+      "name": "TF_IMPASSABLE",
+      "value": 64,
+      "hex": "0x40"
+    },
+    {
+      "name": "TF_WET",
+      "value": 128,
+      "hex": "0x80"
+    },
+    {
+      "name": "TF_BRIDGE",
+      "value": 1024,
+      "hex": "0x400"
+    }
+  ]
+}

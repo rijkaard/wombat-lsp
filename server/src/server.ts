@@ -17,7 +17,9 @@ import {
   Range,
   Position,
   MarkupContent,
-  InsertTextFormat
+  InsertTextFormat,
+  Diagnostic,
+  DiagnosticSeverity
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
@@ -25,23 +27,89 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 
 interface EngineFn {
   name: string;
+  cSignature?: string;
   signature: string;
   description: string;
   aliases: string[];
 }
 
-const engineCatalog = new Map<string, EngineFn>();
+// exact key → entry (preserves original casing from catalog)
+const engineCatalog      = new Map<string, EngineFn>();
+// lowercase key → canonical entry (prefers mixed-case names for completion labels)
+const engineCatalogLower = new Map<string, EngineFn>();
 
 function loadCatalog(): void {
   const catalogPath = path.join(__dirname, '..', 'data', 'catalog.json');
   try {
     const raw = JSON.parse(fs.readFileSync(catalogPath, 'utf8')) as Record<string, EngineFn>;
     for (const [key, entry] of Object.entries(raw)) {
+      engineCatalog.set(key, entry);
       const lk = key.toLowerCase();
-      if (!engineCatalog.has(lk)) engineCatalog.set(lk, entry);
+      const existing = engineCatalogLower.get(lk);
+      const isMixed = entry.name !== entry.name.toLowerCase();
+      const existingIsMixed = existing && existing.name !== existing.name.toLowerCase();
+      if (!existing || (isMixed && !existingIsMixed)) {
+        engineCatalogLower.set(lk, entry);
+      }
     }
   } catch (e) {
     connection.console.error(`Failed to load engine catalog: ${e}`);
+  }
+}
+
+function lookupEngine(word: string): { fn: EngineFn; exact: boolean } | null {
+  const exact = engineCatalog.get(word);
+  if (exact) return { fn: exact, exact: true };
+  const fallback = engineCatalogLower.get(word.toLowerCase());
+  if (fallback) return { fn: fallback, exact: false };
+  return null;
+}
+
+// ── Enum catalog ──────────────────────────────────────────────────────────────
+
+interface EnumEntry {
+  name: string;
+  value: number;
+  hex: string;
+}
+
+interface ParamEnumSpec {
+  name: string;
+  pos: number;
+  enum: string;
+  bitmask: boolean;
+}
+
+interface ParamEnumInfo {
+  params: ParamEnumSpec[];
+}
+
+// enumCatalog: enumName -> sorted entries
+const enumCatalog    = new Map<string, EnumEntry[]>();
+// paramEnumCatalog: lowercase fn name -> param enum specs
+const paramEnumCatalog = new Map<string, ParamEnumInfo>();
+
+function loadEnums(): void {
+  try {
+    const raw = JSON.parse(fs.readFileSync(
+      path.join(__dirname, '..', 'data', 'enums.json'), 'utf8'
+    )) as Record<string, EnumEntry[]>;
+    for (const [name, entries] of Object.entries(raw)) {
+      enumCatalog.set(name, entries.slice().sort((a, b) => a.value - b.value));
+    }
+  } catch (e) {
+    connection.console.error(`Failed to load enums: ${e}`);
+  }
+
+  try {
+    const raw = JSON.parse(fs.readFileSync(
+      path.join(__dirname, '..', 'data', 'param-enums.json'), 'utf8'
+    )) as Record<string, ParamEnumInfo>;
+    for (const [fn, info] of Object.entries(raw)) {
+      paramEnumCatalog.set(fn.toLowerCase(), info);
+    }
+  } catch (e) {
+    connection.console.error(`Failed to load param-enums: ${e}`);
   }
 }
 
@@ -442,6 +510,7 @@ let scriptsDirectory = '';
 connection.onInitialize((params: InitializeParams): InitializeResult => {
   scriptsDirectory = params.initializationOptions?.scriptsDirectory ?? '';
   loadCatalog();
+  loadEnums();
 
   return {
     capabilities: {
@@ -476,12 +545,61 @@ function wordAt(text: string, pos: Position): string {
   return line.slice(s, e);
 }
 
+// Detect the engine function name and 0-based parameter index at the given position.
+// Walks the raw text backwards from the cursor, tracking paren depth and commas.
+function callContextAt(text: string, pos: Position): { fnName: string; paramIndex: number } | null {
+  const lines = text.split('\n');
+  let offset = 0;
+  for (let i = 0; i < pos.line; i++) offset += (lines[i] ?? '').length + 1;
+  offset += pos.character;
+
+  let depth = 0;
+  let commas = 0;
+  let inStr = false;
+  let i = offset - 1;
+
+  while (i >= 0) {
+    const ch = text[i];
+    // Naïve string-skip: if we hit a quote, scan back to its opening quote
+    if (ch === '"' && !inStr) { inStr = true; i--; continue; }
+    if (inStr) { if (ch === '"') inStr = false; i--; continue; }
+    if (ch === ')' || ch === ']') { depth++; i--; continue; }
+    if (ch === '(' || ch === '[') {
+      if (depth > 0) { depth--; i--; continue; }
+      // Found the call-site opening paren at depth 0; look for identifier before it
+      let j = i - 1;
+      while (j >= 0 && (text[j] === ' ' || text[j] === '\t')) j--;
+      if (j >= 0 && /\w/.test(text[j])) {
+        let e = j;
+        while (e > 0 && /\w/.test(text[e - 1])) e--;
+        const fnName = text.slice(e, j + 1);
+        if (paramEnumCatalog.has(fnName.toLowerCase())) {
+          return { fnName, paramIndex: commas };
+        }
+      }
+      return null;
+    }
+    if (ch === ',' && depth === 0) { commas++; }
+    i--;
+  }
+  return null;
+}
+
+function enumEntryHover(entry: EnumEntry, enumName: string, bitmask: boolean): MarkupContent {
+  const bmNote = bitmask ? ' *(bitmask)*' : '';
+  return {
+    kind: MarkupKind.Markdown,
+    value: `\`${entry.hex}\` — **${entry.name}** (${enumName}${bmNote})`
+  };
+}
+
 function engineHover(fn: EngineFn): MarkupContent {
   const desc    = fn.description ? `\n\n${fn.description}` : '';
   const aliases = fn.aliases.length ? `\n\n*Aliases: ${fn.aliases.join(', ')}*` : '';
+  const cSig    = fn.cSignature ? `\n\n\`\`\`c\n${fn.cSignature}\n\`\`\`` : '';
   return {
     kind: MarkupKind.Markdown,
-    value: `\`\`\`wombat\n${fn.signature}\n\`\`\`\n\n🔧 *Engine built-in*${desc}${aliases}`
+    value: `\`\`\`wombat\n${fn.signature}\n\`\`\`${cSig}\n\n🔧 *Engine built-in*${desc}${aliases}`
   };
 }
 
@@ -503,7 +621,30 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
   const items: CompletionItem[] = [];
   const seen  = new Set<string>();
 
-  for (const [, fn] of engineCatalog) {
+  // Enum value completions when inside an enum-annotated engine function parameter
+  const ctx = callContextAt(text, params.position);
+  if (ctx) {
+    const info = paramEnumCatalog.get(ctx.fnName.toLowerCase());
+    const spec = info?.params.find(p => p.pos === ctx.paramIndex);
+    if (spec) {
+      const entries = enumCatalog.get(spec.enum) ?? [];
+      const bmNote  = spec.bitmask ? ' (bitmask)' : '';
+      for (const entry of entries) {
+        seen.add(entry.name);
+        items.push({
+          label: entry.hex,
+          kind: CompletionItemKind.EnumMember,
+          detail: `${entry.name}${bmNote}`,
+          documentation: { kind: MarkupKind.Markdown, value: `**${entry.name}** — \`${entry.hex}\` (${spec.enum}${bmNote})` },
+          insertText: entry.hex,
+          insertTextFormat: InsertTextFormat.PlainText,
+          sortText: '0_' + entry.hex.padStart(12, '0')
+        });
+      }
+    }
+  }
+
+  for (const [, fn] of engineCatalogLower) {
     if (seen.has(fn.name)) continue;
     seen.add(fn.name);
     items.push({
@@ -569,8 +710,34 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
   const word = wordAt(text, params.position);
   if (!word) return null;
 
-  const engineFn = engineCatalog.get(word.toLowerCase());
-  if (engineFn) return { contents: engineHover(engineFn) };
+  const engineMatch = lookupEngine(word);
+  if (engineMatch) return { contents: engineHover(engineMatch.fn) };
+
+  // Enum value hover: word is an integer literal inside an enum-annotated engine call
+  if (/^(0x[0-9A-Fa-f]+|[0-9]+)$/.test(word)) {
+    const ctx = callContextAt(text, params.position);
+    if (ctx) {
+      const info = paramEnumCatalog.get(ctx.fnName.toLowerCase());
+      const spec = info?.params.find(p => p.pos === ctx.paramIndex);
+      if (spec) {
+        const entries = enumCatalog.get(spec.enum) ?? [];
+        const numVal = word.startsWith('0x') || word.startsWith('0X')
+          ? parseInt(word, 16) : parseInt(word, 10);
+        const entry = entries.find(e => e.value === numVal);
+        if (entry) {
+          return { contents: enumEntryHover(entry, spec.enum, spec.bitmask) };
+        }
+        // Value not in enum — show the enum name + list of valid values
+        const enumList = entries.map(e => `\`${e.hex}\` ${e.name}`).join(', ');
+        return {
+          contents: {
+            kind: MarkupKind.Markdown,
+            value: `*${spec.enum}* — known values: ${enumList}`
+          }
+        };
+      }
+    }
+  }
 
   const syms = parseSymbols(text);
   // Include params — they shadow same-named members from inherited scripts.
@@ -620,7 +787,7 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
     }
   }
 
-  if (engineCatalog.has(word.toLowerCase())) return null;
+  if (lookupEngine(word)) return null;
 
   const syms = parseSymbols(text);
 
@@ -660,6 +827,42 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
 
   return null;
 });
+
+// ── Diagnostics ───────────────────────────────────────────────────────────────
+
+function validateDocument(doc: TextDocument): void {
+  const text = doc.getText();
+  const lines = text.split('\n');
+  const diagnostics: Diagnostic[] = [];
+  const wordRe = /\b([A-Za-z_]\w*)\b/g;
+  let match: RegExpExecArray | null;
+  while ((match = wordRe.exec(text)) !== null) {
+    const word = match[1];
+    const result = lookupEngine(word);
+    if (result && !result.exact) {
+      const offset = match.index;
+      let line = 0, col = 0, remaining = offset;
+      for (const ln of lines) {
+        if (remaining <= ln.length) { col = remaining; break; }
+        remaining -= ln.length + 1;
+        line++;
+      }
+      diagnostics.push({
+        severity: DiagnosticSeverity.Warning,
+        range: Range.create(
+          Position.create(line, col),
+          Position.create(line, col + word.length)
+        ),
+        message: `'${word}' does not match engine function name exactly — did you mean '${result.fn.name}'?`,
+        source: 'wombat'
+      });
+    }
+  }
+  connection.sendDiagnostics({ uri: doc.uri, diagnostics });
+}
+
+documents.onDidChangeContent(change => validateDocument(change.document));
+documents.onDidOpen(e => validateDocument(e.document));
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 

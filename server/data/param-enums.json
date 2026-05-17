@@ -1,0 +1,202 @@
+{
+  "isinlist": {
+    "params": [
+      {
+        "name": "type",
+        "pos": 1,
+        "enum": "WTYPE_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "callbackadvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 2,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "removecallbackadvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 1,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "hascallbackadvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 1,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "scripttrig": {
+    "params": [
+      {
+        "name": "trigType",
+        "pos": 1,
+        "enum": "EventType",
+        "bitmask": false
+      }
+    ]
+  },
+  "dodamagetype": {
+    "params": [
+      {
+        "name": "type",
+        "pos": 3,
+        "enum": "WeaponType_*",
+        "bitmask": true
+      }
+    ]
+  },
+  "setmobflag": {
+    "params": [
+      {
+        "name": "flagId",
+        "pos": 1,
+        "enum": "MobileFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getmobflag": {
+    "params": [
+      {
+        "name": "flagId",
+        "pos": 1,
+        "enum": "MobileFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getobjectsinrangewithflags": {
+    "params": [
+      {
+        "name": "flags",
+        "pos": 3,
+        "enum": "ItemFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getnumallobjectsinrangewithflags": {
+    "params": [
+      {
+        "name": "flags",
+        "pos": 2,
+        "enum": "ItemFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "isInList": {
+    "params": [
+      {
+        "name": "type",
+        "pos": 1,
+        "enum": "WTYPE_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "callbackAdvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 2,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "removeCallbackAdvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 1,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "hasCallbackAdvanced": {
+    "params": [
+      {
+        "name": "eventType",
+        "pos": 1,
+        "enum": "TIMER_EVENT_*",
+        "bitmask": false
+      }
+    ]
+  },
+  "scriptTrig": {
+    "params": [
+      {
+        "name": "trigType",
+        "pos": 1,
+        "enum": "EventType",
+        "bitmask": false
+      }
+    ]
+  },
+  "doDamageType": {
+    "params": [
+      {
+        "name": "type",
+        "pos": 3,
+        "enum": "WeaponType_*",
+        "bitmask": true
+      }
+    ]
+  },
+  "setMobFlag": {
+    "params": [
+      {
+        "name": "flagId",
+        "pos": 1,
+        "enum": "MobileFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getMobFlag": {
+    "params": [
+      {
+        "name": "flagId",
+        "pos": 1,
+        "enum": "MobileFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getObjectsInRangeWithFlags": {
+    "params": [
+      {
+        "name": "flags",
+        "pos": 3,
+        "enum": "ItemFlag",
+        "bitmask": true
+      }
+    ]
+  },
+  "getNumAllObjectsInRangeWithFlags": {
+    "params": [
+      {
+        "name": "flags",
+        "pos": 2,
+        "enum": "ItemFlag",
+        "bitmask": true
+      }
+    ]
+  }
+}

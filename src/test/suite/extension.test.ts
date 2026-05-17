@@ -39,6 +39,11 @@
  * Fixture layout — grandparent.m:
  *   L0   member int grand_stat;
  *   L2   int get_grand_stat()              get_grand_stat @ col 4 (definition)
+ *
+ * Fixture layout — enum-test.m:
+ *   L1   callbackAdvanced(this, 10, 5, 0); 5(eventType) @ col 31 [TIMER_EVENT_CALLBACK]
+ *   L2   scriptTrig(this, 0x10, 0);        0x10(trigType) @ col 21 [EnterRange]
+ *   L3   setMobFlag(this, 0x40);           0x40(flagId) @ col 21 [MobileFlag_WarMode]
  */
 
 import * as assert from 'assert';
@@ -423,6 +428,92 @@ suite('Wombat LSP', function () {
       assert.ok(list && list.items.length > 0, 'expected completion items');
       const names = list.items.map(i => i.label.toString());
       assert.ok(names.includes('get_grand_stat'), `grandparent function missing from completions: ${names.slice(0,20)}`);
+    });
+
+  });
+
+  // ── Enum hover and completion ─────────────────────────────────────────────
+  //
+  // Fixture layout — enum-test.m (0-indexed):
+  //   L0   trigger use {
+  //   L1       callbackAdvanced(this, 10, 5, 0);
+  //            callbackAdvanced @ col 4   5(eventType) @ col 31 [param index 2]
+  //   L2       scriptTrig(this, 0x10, 0);
+  //            scriptTrig @ col 4   0x10(trigType) @ col 21 [param index 1]
+  //   L3       setMobFlag(this, 0x40);
+  //            setMobFlag @ col 4   0x40(flagId) @ col 21 [param index 1]
+  //   L4   }
+
+  suite('Enum hover', () => {
+
+    test('known decimal enum value shows name and enum', async () => {
+      // 5 at L1 col 31 = TIMER_EVENT_CALLBACK in callbackAdvanced eventType
+      const docUri = await openDoc('enum-test.m');
+      await sleep(1000);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(1, 31)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for enum value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('TIMER_EVENT_CALLBACK'), `enum name missing — got: ${text}`);
+      assert.ok(text.includes('TIMER_EVENT_*') || text.includes('TIMER_EVENT_CALLBACK'), `enum group missing — got: ${text}`);
+    });
+
+    test('known hex enum value shows name and enum', async () => {
+      // 0x10 at L2 col 21 = EnterRange in scriptTrig trigType
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(2, 21)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for hex enum value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('EnterRange'), `enum member name missing — got: ${text}`);
+      assert.ok(text.includes('EventType'),  `enum type name missing — got: ${text}`);
+    });
+
+    test('known hex flag value shows name and enum', async () => {
+      // 0x40 at L3 col 21 = MobileFlag_WarMode in setMobFlag flagId
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(3, 21)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for flag value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('MobileFlag'), `enum group missing — got: ${text}`);
+    });
+
+  });
+
+  suite('Enum completion', () => {
+
+    test('TIMER_EVENT_* values offered at eventType param position', async () => {
+      // cursor at L1 col 31 = inside eventType arg of callbackAdvanced
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(1, 31)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const labels = list.items.map(i => i.label.toString());
+      // TIMER_EVENT_CALLBACK = 5 = 0x5
+      assert.ok(labels.some(l => /^0x5$/i.test(l) || l === '0x5'), `TIMER_EVENT_CALLBACK hex missing: ${labels.slice(0,15)}`);
+      // Should have many TIMER_EVENT entries
+      assert.ok(labels.filter(l => /^0x/.test(l)).length >= 5, `too few enum completions: ${labels.slice(0,15)}`);
+    });
+
+    test('EventType values offered at trigType param position', async () => {
+      // cursor at L2 col 21 = inside trigType arg of scriptTrig
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(2, 21)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const labels = list.items.map(i => i.label.toString());
+      // EnterRange = 0x10
+      assert.ok(labels.some(l => /^0x10$/i.test(l)), `EnterRange hex missing: ${labels.slice(0,15)}`);
     });
 
   });
