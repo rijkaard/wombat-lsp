@@ -4,6 +4,18 @@
   "description": "Language support for the Ultima Online (June 1998) Wombat scripting language",
   "version": "0.1.0",
   "publisher": "uo-june98",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uo-june98/wombat-lsp"
+  },
+  "keywords": [
+    "wombat",
+    "ultima online",
+    "uo",
+    "language server",
+    "syntax highlighting"
+  ],
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -47,9 +59,11 @@
   "scripts": {
     "compile": "tsc -p ./tsconfig.json && cd server && npm run compile",
     "watch": "tsc -p ./tsconfig.json -w",
+    "bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify && esbuild server/src/server.ts --bundle --outfile=server/out/server.js --external:vscode --format=cjs --platform=node --minify",
     "build-catalog": "cd server && node build-catalog.js",
     "test": "node out/test/runTests.js",
-    "vscode:prepublish": "npm run compile"
+    "package": "vsce package",
+    "vscode:prepublish": "npm run bundle"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
@@ -59,6 +73,8 @@
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.75.0",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.1",
+    "esbuild": "^0.28.0",
     "mocha": "^10.8.2",
     "typescript": "^5.0.0"
   }
