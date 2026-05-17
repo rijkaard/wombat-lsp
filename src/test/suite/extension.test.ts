@@ -40,10 +40,15 @@
  *   L0   member int grand_stat;
  *   L2   int get_grand_stat()              get_grand_stat @ col 4 (definition)
  *
- * Fixture layout — enum-test.m:
- *   L1   callbackAdvanced(this, 10, 5, 0); 5(eventType) @ col 31 [TIMER_EVENT_CALLBACK]
- *   L2   scriptTrig(this, 0x10, 0);        0x10(trigType) @ col 21 [EnterRange]
- *   L3   setMobFlag(this, 0x40);           0x40(flagId) @ col 21 [MobileFlag_WarMode]
+ * Fixture layout — enum-test.m (0-indexed):
+ *   L1   callbackAdvanced(this, 10, 5, 0); 5(eventType)  @ col 31 [TIMER_EVENT_CALLBACK]
+ *   L2   scriptTrig(this, 0x10, 0);        0x10(trigType) @ col 21 [EnterRange/EventType]
+ *   L3   setMobFlag(this, 0x40);           0x40(flagId)   @ col 21 [MobileFlag_WarMode]
+ *   L4   walk(this, 4);                    4(dir)         @ col 15 [South/Direction]
+ *   L5   getStat(this, 0);                 0(statId)      @ col 18 [Strength/StatId]
+ *   L6   setAlignment(this, 2);            2(alignment)   @ col 23 [Evil/Alignment]
+ *   L7   equipObj(sword, this, 1);         1(layer)       @ col 26 [RightHand/Layer]
+ *   L8   getSkillLevel(this, 25);          25(skillId)    @ col 24 [Magery/Skill]
  */
 
 import * as assert from 'assert';
@@ -435,14 +440,14 @@ suite('Wombat LSP', function () {
   // ── Enum hover and completion ─────────────────────────────────────────────
   //
   // Fixture layout — enum-test.m (0-indexed):
-  //   L0   trigger use {
-  //   L1       callbackAdvanced(this, 10, 5, 0);
-  //            callbackAdvanced @ col 4   5(eventType) @ col 31 [param index 2]
-  //   L2       scriptTrig(this, 0x10, 0);
-  //            scriptTrig @ col 4   0x10(trigType) @ col 21 [param index 1]
-  //   L3       setMobFlag(this, 0x40);
-  //            setMobFlag @ col 4   0x40(flagId) @ col 21 [param index 1]
-  //   L4   }
+  //   L1   callbackAdvanced(this, 10, 5, 0);  5     @ col 31 [TIMER_EVENT_CALLBACK]
+  //   L2   scriptTrig(this, 0x10, 0);         0x10  @ col 21 [EnterRange/EventType]
+  //   L3   setMobFlag(this, 0x40);            0x40  @ col 21 [MobileFlag_WarMode]
+  //   L4   walk(this, 4);                     4     @ col 15 [South/Direction]
+  //   L5   getStat(this, 0);                  0     @ col 18 [Strength/StatId]
+  //   L6   setAlignment(this, 2);             2     @ col 23 [Evil/Alignment]
+  //   L7   equipObj(sword, this, 1);          1     @ col 26 [RightHand/Layer]
+  //   L8   getSkillLevel(this, 25);           25    @ col 24 [Magery/Skill]
 
   suite('Enum hover', () => {
 
@@ -514,6 +519,130 @@ suite('Wombat LSP', function () {
       const labels = list.items.map(i => i.label.toString());
       // EnterRange = 0x10
       assert.ok(labels.some(l => /^0x10$/i.test(l)), `EnterRange hex missing: ${labels.slice(0,15)}`);
+    });
+
+    test('Direction values offered at dir param position', async () => {
+      // cursor at L4 col 15 = dir arg of walk
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(4, 15)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const labels = list.items.map(i => i.label.toString());
+      // South = 4 (decimal), Running = 0x80 (hex)
+      assert.ok(labels.includes('4'),    `South (4) missing from Direction completions: ${labels.slice(0,15)}`);
+      assert.ok(labels.includes('0x80'), `Running (0x80) missing from Direction completions: ${labels.slice(0,15)}`);
+    });
+
+    test('StatId values offered at statId param position', async () => {
+      // cursor at L5 col 18 = statId arg of getStat
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(5, 18)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const items = list.items;
+      const enumItems = items.filter(i => i.kind === vscode.CompletionItemKind.EnumMember);
+      assert.ok(enumItems.length === 3, `expected 3 StatId entries, got ${enumItems.length}`);
+      const labels = enumItems.map(i => i.label.toString());
+      assert.ok(labels.includes('0') && labels.includes('1') && labels.includes('2'),
+        `StatId values missing: ${labels}`);
+    });
+
+    test('Layer values offered at layer param position', async () => {
+      // cursor at L7 col 26 = layer arg of equipObj
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(7, 26)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const labels = list.items.map(i => i.label.toString());
+      // RightHand = 0x01
+      assert.ok(labels.some(l => /^0x01$/i.test(l)), `RightHand (0x01) missing from Layer completions: ${labels.slice(0,15)}`);
+    });
+
+    test('Skill values offered at skillId param position', async () => {
+      // cursor at L8 col 24 = skillId arg of getSkillLevel
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const list = await vscode.commands.executeCommand<vscode.CompletionList>(
+        'vscode.executeCompletionItemProvider', docUri, new vscode.Position(8, 24)
+      );
+      assert.ok(list && list.items.length > 0, 'expected completion items');
+      const items = list.items;
+      const enumItems = items.filter(i => i.kind === vscode.CompletionItemKind.EnumMember);
+      assert.ok(enumItems.length === 49, `expected 49 Skill entries, got ${enumItems.length}`);
+      const labels = enumItems.map(i => i.label.toString());
+      assert.ok(labels.includes('25'), `Magery (25) missing from Skill completions: ${labels.slice(0,15)}`);
+    });
+
+  });
+
+  // ── Enum hover — new groups ───────────────────────────────────────────────
+
+  suite('Enum hover (new groups)', () => {
+
+    test('Direction: walk dir=4 shows South', async () => {
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(4, 15)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for Direction value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('South'),     `Direction name missing — got: ${text}`);
+      assert.ok(text.includes('Direction'), `Direction group missing — got: ${text}`);
+    });
+
+    test('StatId: getStat statId=0 shows Strength', async () => {
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(5, 18)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for StatId value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('Strength'), `StatId name missing — got: ${text}`);
+      assert.ok(text.includes('StatId'),   `StatId group missing — got: ${text}`);
+    });
+
+    test('Alignment: setAlignment value=2 shows Evil', async () => {
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(6, 23)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for Alignment value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('Evil'),      `Alignment name missing — got: ${text}`);
+      assert.ok(text.includes('Alignment'), `Alignment group missing — got: ${text}`);
+    });
+
+    test('Layer: equipObj layer=1 shows RightHand', async () => {
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(7, 26)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for Layer value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('RightHand'), `Layer name missing — got: ${text}`);
+      assert.ok(text.includes('Layer'),     `Layer group missing — got: ${text}`);
+    });
+
+    test('Skill: getSkillLevel skillId=25 shows Magery', async () => {
+      const docUri = await openDoc('enum-test.m');
+      await sleep(500);
+      const hovers = await vscode.commands.executeCommand<vscode.Hover[]>(
+        'vscode.executeHoverProvider', docUri, new vscode.Position(8, 24)
+      );
+      assert.ok(hovers && hovers.length > 0, 'expected hover for Skill value');
+      const text = hoverText(hovers);
+      assert.ok(text.includes('Magery'), `Skill name missing — got: ${text}`);
+      assert.ok(text.includes('Skill'),  `Skill group missing — got: ${text}`);
     });
 
   });
