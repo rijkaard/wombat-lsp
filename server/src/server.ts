@@ -113,6 +113,68 @@ function loadEnums(): void {
   }
 }
 
+// ── Trigger implicit variables ────────────────────────────────────────────────
+// Maps trigger name → variables injected by the runtime for that trigger.
+// 'all' holds vars present in every trigger.  Mirrors the table in symtab.c.
+
+const TRIGGER_VARS: Record<string, string[]> = {
+  'all':               ['this'],
+  'use':               ['user'],
+  'ooruse':            ['user'],
+  'use_on':            ['user', 'usedon', 'target', 'place'],
+  'targetobj':         ['user', 'usedon', 'target', 'place'],
+  'oortargetobj':      ['user', 'usedon'],
+  'objaccess':         ['user', 'usedon'],
+  'targetloc':         ['user', 'place', 'objtype'],
+  'typeselected':      ['user', 'usedon', 'objtype', 'listindex'],
+  'hueselected':       ['user', 'objhue'],
+  'give':              ['givenobj', 'giver'],
+  'wasgotten':         ['getter'],
+  'wasdropped':        ['dropper'],
+  'death':             ['attacker', 'corpse'],
+  'sawdeath':          ['victim', 'attacker', 'corpse'],
+  'pkpost':            ['killee', 'killer'],
+  'washit':            ['attacker', 'damamt'],
+  'ishitting':         ['victim', 'damamt'],
+  'mobishitting':      ['victim'],
+  'gotattacked':       ['attacker'],
+  'killedtarget':      ['attacker'],
+  'speech':            ['speaker', 'arg'],
+  'message':           ['sender', 'args'],
+  'callback':          ['sender', 'args'],
+  'convofunc':         ['talker'],
+  'textentry':         ['sender', 'button', 'text'],
+  'genericgump':       ['entryList'],
+  'equip':             ['equippedon'],
+  'unequip':           ['unequippedfrom'],
+  'lookedat':          ['looker'],
+  'canbuy':            ['buyer'],
+  'isstackableon':     ['stackon'],
+  'multirecycle':      ['oldtype'],
+  'typechange':        ['oldtype'],
+  'transaccountcheck': ['target', 'transok'],
+  'transresponse':     ['target', 'transok'],
+  'enterrange':        ['target'],
+  'leaverange':        ['target'],
+  'acquiredesire':     ['target'],
+  'foundfood':         ['target'],
+  'time':              ['target'],
+};
+
+// Union of all implicit vars across all triggers
+const IMPLICIT_VAR_SET = new Set<string>();
+for (const vars of Object.values(TRIGGER_VARS)) {
+  for (const v of vars) IMPLICIT_VAR_SET.add(v);
+}
+
+// Returns trigger names that inject a given variable
+function triggersProvidingVar(varName: string): string[] {
+  return Object.entries(TRIGGER_VARS)
+    .filter(([k, vs]) => k !== 'all' && vs.includes(varName))
+    .map(([k]) => k)
+    .sort();
+}
+
 // ── Tokenizer ─────────────────────────────────────────────────────────────────
 // Hand-written lexer so we can correctly skip strings, handle CRLF, and
 // associate doc-comments with the symbol that follows them — without needing
@@ -135,7 +197,8 @@ interface Tok {
 
 const TYPE_KWS  = new Set(['int','obj','void','string','float','list','loc','str']);
 const OTHER_KWS = new Set([
-  'if','else','switch','case','default','break','for','while','return',
+  'if','else','switch','case','default','break','continue','goto',
+  'for','while','return',
   'function','trigger','member','forward','inherits','NULL'
 ]);
 
@@ -460,6 +523,54 @@ function symbolSignature(sym: UserSymbol): string {
   return `${sym.type} ${sym.name}`;
 }
 
+// ── Trigger context tracking ──────────────────────────────────────────────────
+
+interface TriggerContext { name: string; startLine: number; endLine: number; }
+
+function parseTriggerContexts(src: string): TriggerContext[] {
+  const toks = tokenize(src);
+  const contexts: TriggerContext[] = [];
+  let i = 0;
+  while (i < toks.length) {
+    if (toks[i]?.kind === 'kw' && toks[i].text === 'trigger') {
+      i++;
+      if (toks[i]?.kind === 'number') i++;
+      const nameTok = (toks[i]?.kind === 'ident' || toks[i]?.kind === 'kw') ? toks[i] : null;
+      const name = nameTok?.text ?? '';
+      i++;
+      if (toks[i]?.kind === 'lparen') {
+        let d = 1; i++;
+        while (i < toks.length && d > 0) {
+          if (toks[i].kind === 'lparen') d++;
+          if (toks[i].kind === 'rparen') d--;
+          i++;
+        }
+      }
+      while (i < toks.length && toks[i].kind !== 'lbrace') i++;
+      if (i >= toks.length) break;
+      const startLine = toks[i].line;
+      i++;
+      let depth = 1, endLine = startLine;
+      while (i < toks.length && depth > 0) {
+        if (toks[i].kind === 'lbrace') depth++;
+        if (toks[i].kind === 'rbrace') { depth--; endLine = toks[i].line; }
+        i++;
+      }
+      contexts.push({ name, startLine, endLine });
+    } else {
+      i++;
+    }
+  }
+  return contexts;
+}
+
+function triggerNameAtPos(text: string, pos: Position): string | null {
+  for (const ctx of parseTriggerContexts(text)) {
+    if (pos.line > ctx.startLine && pos.line <= ctx.endLine) return ctx.name;
+  }
+  return null;
+}
+
 // ── Cross-file resolution ─────────────────────────────────────────────────────
 
 function getInheritedScriptPaths(
@@ -605,9 +716,27 @@ function engineHover(fn: EngineFn): MarkupContent {
 
 function userHover(sym: UserSymbol): MarkupContent {
   const doc = sym.docComment ? `\n\n${sym.docComment}` : '';
+  let extra = '';
+  if (sym.kind === 'trigger') {
+    const vars = [...(TRIGGER_VARS['all'] ?? []), ...(TRIGGER_VARS[sym.name] ?? [])];
+    if (vars.length) {
+      extra = `\n\n⚡ Implicit variables: ${vars.map(v => `\`${v}\``).join(', ')}`;
+    }
+  }
   return {
     kind: MarkupKind.Markdown,
-    value: `\`\`\`wombat\n${symbolSignature(sym)}\n\`\`\`${doc}`
+    value: `\`\`\`wombat\n${symbolSignature(sym)}\n\`\`\`${doc}${extra}`
+  };
+}
+
+function implicitVarHover(varName: string): MarkupContent {
+  const triggers = triggersProvidingVar(varName);
+  const provided = triggers.length
+    ? `\n\nInjected by: ${triggers.map(t => `\`${t}\``).join(', ')}`
+    : '';
+  return {
+    kind: MarkupKind.Markdown,
+    value: `\`\`\`wombat\n${varName}\n\`\`\`\n\n⚡ *Runtime-injected trigger variable*${provided}`
   };
 }
 
@@ -691,7 +820,30 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
     } catch { /* skip unreadable files */ }
   }
 
-  for (const kw of ['if','else','switch','case','default','break','for','while','return',
+  // Implicit trigger variables — context-aware when inside a trigger body
+  const trigName = triggerNameAtPos(text, params.position);
+  const implVars = trigName
+    ? [...(TRIGGER_VARS['all'] ?? []), ...(TRIGGER_VARS[trigName] ?? [])]
+    : [...IMPLICIT_VAR_SET];
+  for (const v of implVars) {
+    if (seen.has(v)) continue;
+    seen.add(v);
+    const trigList = triggersProvidingVar(v);
+    const detail = trigList.length ? `Injected by: ${trigList.join(', ')}` : 'Universal implicit variable';
+    items.push({
+      label: v,
+      kind: CompletionItemKind.Variable,
+      detail,
+      documentation: {
+        kind: MarkupKind.Markdown,
+        value: `⚡ *Runtime-injected trigger variable*\n\n${detail}`
+      },
+      sortText: '2_' + v
+    });
+  }
+
+  for (const kw of ['if','else','switch','case','default','break','continue','goto',
+                    'for','while','return',
                     'member','function','trigger','forward','inherits','NULL()',
                     'int','obj','void','string','float','list','loc','str']) {
     items.push({ label: kw, kind: CompletionItemKind.Keyword, sortText: '9_' + kw });
@@ -712,6 +864,8 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
 
   const engineMatch = lookupEngine(word);
   if (engineMatch) return { contents: engineHover(engineMatch.fn) };
+
+  if (IMPLICIT_VAR_SET.has(word)) return { contents: implicitVarHover(word) };
 
   // Enum value hover: word is an integer literal inside an enum-annotated engine call
   if (/^(0x[0-9A-Fa-f]+|[0-9]+)$/.test(word)) {
@@ -832,32 +986,89 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
 
 function validateDocument(doc: TextDocument): void {
   const text = doc.getText();
-  const lines = text.split('\n');
   const diagnostics: Diagnostic[] = [];
-  const wordRe = /\b([A-Za-z_]\w*)\b/g;
-  let match: RegExpExecArray | null;
-  while ((match = wordRe.exec(text)) !== null) {
-    const word = match[1];
-    const result = lookupEngine(word);
-    if (result && !result.exact) {
-      const offset = match.index;
-      let line = 0, col = 0, remaining = offset;
-      for (const ln of lines) {
-        if (remaining <= ln.length) { col = remaining; break; }
-        remaining -= ln.length + 1;
-        line++;
+
+  // Build valid-name set ──────────────────────────────────────────────────────
+  const validNames = new Set<string>(IMPLICIT_VAR_SET);
+
+  // Current-file declared symbols
+  for (const s of parseSymbols(text)) validNames.add(s.name);
+
+  // Inherited members and functions
+  for (const p of getInheritedScriptPaths(text, doc.uri, scriptsDirectory)) {
+    try {
+      for (const s of parseSymbols(fs.readFileSync(p, 'utf8'))) {
+        if (s.kind !== 'param' && s.kind !== 'variable') validNames.add(s.name);
       }
-      diagnostics.push({
-        severity: DiagnosticSeverity.Warning,
-        range: Range.create(
-          Position.create(line, col),
-          Position.create(line, col + word.length)
-        ),
-        message: `'${word}' does not match engine function name exactly — did you mean '${result.fn.name}'?`,
-        source: 'wombat'
-      });
+    } catch { /* skip unreadable */ }
+  }
+
+  // Engine (both casings)
+  for (const name of engineCatalog.keys())      validNames.add(name);
+  for (const name of engineCatalogLower.keys()) validNames.add(name);
+
+  // Goto labels: add both definitions (IDENT ':') and references ('goto' IDENT)
+  const toks = tokenize(text);
+  for (let i = 0; i < toks.length; i++) {
+    if (toks[i].kind === 'ident' && toks[i + 1]?.kind === 'other' && toks[i + 1].text === ':') {
+      validNames.add(toks[i].text);
+    }
+    if (toks[i].kind === 'kw' && toks[i].text === 'goto' && toks[i + 1]?.kind === 'ident') {
+      validNames.add(toks[i + 1].text);
     }
   }
+
+  // Check each identifier token ───────────────────────────────────────────────
+  for (let i = 0; i < toks.length; i++) {
+    const t = toks[i];
+    if (t.kind !== 'ident') continue;
+
+    // L"..." wide-string prefix
+    if (toks[i + 1]?.kind === 'string') continue;
+
+    // Field access after '.'
+    const prev = toks[i - 1];
+    if (prev?.kind === 'other' && prev.text === '.') continue;
+
+    // Declaration positions — the declared name is already in validNames via parseSymbols
+    if (prev?.kind === 'type_kw') continue;
+    if (prev?.kind === 'kw' && (
+        prev.text === 'trigger'  ||
+        prev.text === 'inherits' ||
+        prev.text === 'goto'     ||
+        prev.text === 'member'   ||
+        prev.text === 'function' ||
+        prev.text === 'forward'
+    )) continue;
+
+    // Label definition: IDENT ':'
+    if (toks[i + 1]?.kind === 'other' && toks[i + 1].text === ':') continue;
+
+    const name = t.text;
+    if (validNames.has(name)) continue;
+
+    // Case-sensitivity warning for engine functions
+    const engineMatch = lookupEngine(name);
+    if (engineMatch) {
+      if (!engineMatch.exact) {
+        diagnostics.push({
+          severity: DiagnosticSeverity.Warning,
+          range: Range.create(Position.create(t.line, t.col), Position.create(t.line, t.col + name.length)),
+          message: `'${name}' does not match engine function name exactly — did you mean '${engineMatch.fn.name}'?`,
+          source: 'wombat'
+        });
+      }
+      continue;
+    }
+
+    diagnostics.push({
+      severity: DiagnosticSeverity.Error,
+      range: Range.create(Position.create(t.line, t.col), Position.create(t.line, t.col + name.length)),
+      message: `Undefined symbol '${name}'`,
+      source: 'wombat'
+    });
+  }
+
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
 
