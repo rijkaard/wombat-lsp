@@ -9,7 +9,7 @@ async function main() {
   await runTests({
     extensionDevelopmentPath,
     extensionTestsPath,
-    launchArgs: [workspacePath, '--disable-extensions']
+    launchArgs: [workspacePath, '--disable-extensions', '--disable-gpu', '--no-sandbox']
   });
 }
 
