@@ -113,12 +113,15 @@ function loadEnums(): void {
   }
 }
 
+// ── Ambient variables (always available in any script context) ────────────────
+// 'this' refers to the item the script is attached to; it is not trigger-specific.
+const AMBIENT_VARS: readonly string[] = ['this'];
+
 // ── Trigger implicit variables ────────────────────────────────────────────────
 // Maps trigger name → variables injected by the runtime for that trigger.
-// 'all' holds vars present in every trigger.  Mirrors the table in symtab.c.
+// Mirrors the table in symtab.c (excludes 'this' which is always available).
 
 const TRIGGER_VARS: Record<string, string[]> = {
-  'all':               ['this'],
   'use':               ['user'],
   'ooruse':            ['user'],
   'use_on':            ['user', 'usedon', 'target', 'place'],
@@ -161,8 +164,8 @@ const TRIGGER_VARS: Record<string, string[]> = {
   'time':              ['target'],
 };
 
-// Union of all implicit vars across all triggers
-const IMPLICIT_VAR_SET = new Set<string>();
+// Union of all implicit vars across all triggers plus ambient vars
+const IMPLICIT_VAR_SET = new Set<string>(AMBIENT_VARS);
 for (const vars of Object.values(TRIGGER_VARS)) {
   for (const v of vars) IMPLICIT_VAR_SET.add(v);
 }
@@ -777,7 +780,7 @@ function userHover(sym: UserSymbol): MarkupContent {
   const doc = sym.docComment ? `\n\n${sym.docComment}` : '';
   let extra = '';
   if (sym.kind === 'trigger') {
-    const vars = [...(TRIGGER_VARS['all'] ?? []), ...(TRIGGER_VARS[sym.name] ?? [])];
+    const vars = TRIGGER_VARS[sym.name] ?? [];
     if (vars.length) {
       extra = `\n\n⚡ Implicit variables: ${vars.map(v => `\`${v}\``).join(', ')}`;
     }
@@ -789,6 +792,12 @@ function userHover(sym: UserSymbol): MarkupContent {
 }
 
 function implicitVarHover(varName: string): MarkupContent {
+  if (varName === 'this') {
+    return {
+      kind: MarkupKind.Markdown,
+      value: `\`\`\`wombat\nthis\n\`\`\`\n\nThe item this script is attached to. Always available in any script context.`
+    };
+  }
   const triggers = triggersProvidingVar(varName);
   const provided = triggers.length
     ? `\n\nInjected by: ${triggers.map(t => `\`${t}\``).join(', ')}`
@@ -825,15 +834,13 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
   // ── After 'trigger' keyword → offer trigger type names ─────────────────────
   if (cursorCtx.kind === 'after_trigger_kw') {
     for (const [name, vars] of Object.entries(TRIGGER_VARS)) {
-      if (name === 'all') continue;
-      const allVars = [...(TRIGGER_VARS['all'] ?? []), ...vars];
       add({
         label: name,
         kind: CompletionItemKind.Event,
         detail: `trigger ${name}`,
         documentation: {
           kind: MarkupKind.Markdown,
-          value: `⚡ Implicit variables: ${allVars.map(v => `\`${v}\``).join(', ')}`
+          value: vars.length ? `⚡ Implicit variables: ${vars.map(v => `\`${v}\``).join(', ')}` : '*(no trigger-specific implicit variables)*'
         },
         sortText: '0_' + name
       });
@@ -902,18 +909,22 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
     });
   }
 
-  // Implicit trigger variables (only when inside a trigger body)
+  // 'this' is always available in any body context
+  add({
+    label: 'this',
+    kind: CompletionItemKind.Variable,
+    detail: 'The item this script is attached to',
+    sortText: '1_this'
+  });
+
+  // Trigger-specific implicit variables (only when inside a trigger body)
   if (cursorCtx.kind === 'trigger_body') {
-    const trigVars = [
-      ...(TRIGGER_VARS['all']                  ?? []),
-      ...(TRIGGER_VARS[cursorCtx.triggerName]  ?? [])
-    ];
+    const trigVars = TRIGGER_VARS[cursorCtx.triggerName] ?? [];
     for (const v of trigVars) {
-      const triggers = triggersProvidingVar(v);
       add({
         label: v,
         kind: CompletionItemKind.Variable,
-        detail: triggers.length ? `Injected by: ${triggers.join(', ')}` : 'Universal implicit variable',
+        detail: `Injected by: ${cursorCtx.triggerName}`,
         documentation: { kind: MarkupKind.Markdown, value: '⚡ *Runtime-injected trigger variable*' },
         sortText: '1_' + v
       });
