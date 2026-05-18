@@ -639,18 +639,28 @@ function getInheritedScriptPaths(
   text: string, currentUri: string, scriptsDir: string,
   visited: Set<string> = new Set()
 ): string[] {
-  const dir = scriptsDir || path.dirname(filePathFromUri(currentUri));
+  const fileDir  = path.dirname(filePathFromUri(currentUri));
+  // Candidate search order: file's own directory first, then scriptsDir (if
+  // different), so that decoded and Q-coded script trees each resolve their own
+  // parent files regardless of what scriptsDir is configured to.
+  const searchDirs = scriptsDir && scriptsDir !== fileDir
+    ? [fileDir, scriptsDir]
+    : [fileDir];
+
   const result: string[] = [];
   for (const m of text.matchAll(/\binherits\s+([A-Za-z_][A-Za-z0-9_]*)\s*;/g)) {
-    const candidate = path.join(dir, m[1] + '.m');
-    if (!fs.existsSync(candidate) || visited.has(candidate)) continue;
+    let candidate: string | null = null;
+    for (const d of searchDirs) {
+      const c = path.join(d, m[1] + '.m');
+      if (fs.existsSync(c) && !visited.has(c)) { candidate = c; break; }
+    }
+    if (!candidate) continue;
     visited.add(candidate);
     result.push(candidate);
     try {
       const parentText = fs.readFileSync(candidate, 'utf8');
       const transitive = getInheritedScriptPaths(
-        parentText, uriFromFilePath(candidate),
-        scriptsDir || path.dirname(candidate), visited
+        parentText, uriFromFilePath(candidate), scriptsDir, visited
       );
       result.push(...transitive);
     } catch { /* skip unreadable */ }
