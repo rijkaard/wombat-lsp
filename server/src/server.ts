@@ -195,7 +195,7 @@ interface Tok {
   col: number;
 }
 
-const TYPE_KWS  = new Set(['int','obj','void','string','float','list','loc','str']);
+const TYPE_KWS  = new Set(['int','obj','void','string','ustring','float','list','loc','str']);
 const OTHER_KWS = new Set([
   'if','else','switch','case','default','break','continue','goto',
   'for','while','return',
@@ -571,6 +571,65 @@ function triggerNameAtPos(text: string, pos: Position): string | null {
   return null;
 }
 
+// ── Cursor context ────────────────────────────────────────────────────────────
+
+function braceDepthAt(text: string, pos: Position): number {
+  const lines = text.split('\n');
+  let end = 0;
+  for (let i = 0; i < pos.line; i++) end += (lines[i]?.length ?? 0) + 1;
+  end += pos.character;
+
+  let depth = 0, inStr = false, inLine = false;
+  for (let i = 0; i < end; i++) {
+    const ch = text[i];
+    if (ch === '\n')                     { inLine = false; continue; }
+    if (inLine)                          continue;
+    if (inStr) {
+      if (ch === '\\')                   i++;
+      else if (ch === '"')               inStr = false;
+      continue;
+    }
+    if (ch === '/' && text[i+1] === '/') { inLine = true; i++; continue; }
+    if (ch === '/' && text[i+1] === '*') {
+      i += 2;
+      while (i < end && !(text[i] === '*' && text[i+1] === '/')) i++;
+      i++;
+      continue;
+    }
+    if (ch === '"')  { inStr = true; continue; }
+    if (ch === '{')  depth++;
+    if (ch === '}')  depth--;
+  }
+  return depth;
+}
+
+type CursorCtx =
+  | { kind: 'module_root' }
+  | { kind: 'after_trigger_kw' }
+  | { kind: 'trigger_body'; triggerName: string }
+  | { kind: 'function_body' };
+
+function computeCursorCtx(text: string, pos: Position): CursorCtx {
+  if (braceDepthAt(text, pos) === 0) {
+    // Check whether last meaningful token was 'trigger'
+    const lines = text.split('\n');
+    let end = 0;
+    for (let i = 0; i < pos.line; i++) end += (lines[i]?.length ?? 0) + 1;
+    end += pos.character;
+    const prefix = tokenize(text.slice(0, end));
+    for (let i = prefix.length - 1; i >= 0; i--) {
+      const t = prefix[i];
+      if (t.kind === 'line_comment' || t.kind === 'block_comment') continue;
+      if (t.kind === 'kw' && t.text === 'trigger') return { kind: 'after_trigger_kw' };
+      break;
+    }
+    return { kind: 'module_root' };
+  }
+  const trigName = triggerNameAtPos(text, pos);
+  if (trigName !== null) return { kind: 'trigger_body', triggerName: trigName };
+  return { kind: 'function_body' };
+}
+
 // ── Cross-file resolution ─────────────────────────────────────────────────────
 
 function getInheritedScriptPaths(
@@ -742,25 +801,81 @@ function implicitVarHover(varName: string): MarkupContent {
 
 // ── Completion ────────────────────────────────────────────────────────────────
 
+const TYPE_KW_LIST  = ['int','obj','void','string','ustring','float','list','loc','str'] as const;
+const CTRL_KW_LIST  = ['if','else','switch','case','default','break','continue','goto',
+                       'for','while','return','NULL'] as const;
+
 connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
 
-  const text  = doc.getText();
+  const text = doc.getText();
+  const pos  = params.position;
+  const seen = new Set<string>();
   const items: CompletionItem[] = [];
-  const seen  = new Set<string>();
 
-  // Enum value completions when inside an enum-annotated engine function parameter
-  const ctx = callContextAt(text, params.position);
-  if (ctx) {
-    const info = paramEnumCatalog.get(ctx.fnName.toLowerCase());
-    const spec = info?.params.find(p => p.pos === ctx.paramIndex);
+  function add(item: CompletionItem): void {
+    if (seen.has(item.label)) return;
+    seen.add(item.label);
+    items.push(item);
+  }
+
+  const cursorCtx = computeCursorCtx(text, pos);
+
+  // ── After 'trigger' keyword → offer trigger type names ─────────────────────
+  if (cursorCtx.kind === 'after_trigger_kw') {
+    for (const [name, vars] of Object.entries(TRIGGER_VARS)) {
+      if (name === 'all') continue;
+      const allVars = [...(TRIGGER_VARS['all'] ?? []), ...vars];
+      add({
+        label: name,
+        kind: CompletionItemKind.Event,
+        detail: `trigger ${name}`,
+        documentation: {
+          kind: MarkupKind.Markdown,
+          value: `⚡ Implicit variables: ${allVars.map(v => `\`${v}\``).join(', ')}`
+        },
+        sortText: '0_' + name
+      });
+    }
+    return items;
+  }
+
+  // ── Module root → structural + type keywords + current-file symbols ─────────
+  if (cursorCtx.kind === 'module_root') {
+    for (const kw of ['member', 'function', 'trigger', 'forward', 'inherits']) {
+      add({ label: kw, kind: CompletionItemKind.Keyword, sortText: '0_' + kw });
+    }
+    for (const kw of TYPE_KW_LIST) {
+      add({ label: kw, kind: CompletionItemKind.Keyword, sortText: '1_' + kw });
+    }
+    for (const sym of parseSymbols(text)) {
+      if (sym.kind !== 'function' && sym.kind !== 'forward' &&
+          sym.kind !== 'member' && sym.kind !== 'trigger') continue;
+      add({
+        label: sym.name,
+        kind: sym.kind === 'trigger' ? CompletionItemKind.Event :
+              sym.kind === 'member'  ? CompletionItemKind.Field :
+              CompletionItemKind.Function,
+        detail: symbolSignature(sym),
+        sortText: '2_' + sym.name
+      });
+    }
+    return items;
+  }
+
+  // ── Inside function/trigger body ─────────────────────────────────────────────
+
+  // Enum values for annotated engine function parameters (highest priority)
+  const callCtx = callContextAt(text, pos);
+  if (callCtx) {
+    const info = paramEnumCatalog.get(callCtx.fnName.toLowerCase());
+    const spec = info?.params.find(p => p.pos === callCtx.paramIndex);
     if (spec) {
       const entries = enumCatalog.get(spec.enum) ?? [];
       const bmNote  = spec.bitmask ? ' (bitmask)' : '';
       for (const entry of entries) {
-        seen.add(entry.name);
-        items.push({
+        add({
           label: entry.hex,
           kind: CompletionItemKind.EnumMember,
           detail: `${entry.name}${bmNote}`,
@@ -773,81 +888,79 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
     }
   }
 
+  // User-defined symbols from current file
+  for (const sym of parseSymbols(text)) {
+    if (sym.kind === 'trigger') continue;
+    add({
+      label: sym.name,
+      kind: sym.kind === 'function' || sym.kind === 'forward' ? CompletionItemKind.Function :
+            sym.kind === 'member' ? CompletionItemKind.Field :
+            CompletionItemKind.Variable,
+      detail: symbolSignature(sym),
+      documentation: sym.docComment ? { kind: MarkupKind.PlainText, value: sym.docComment } : undefined,
+      sortText: '1_' + sym.name
+    });
+  }
+
+  // Implicit trigger variables (only when inside a trigger body)
+  if (cursorCtx.kind === 'trigger_body') {
+    const trigVars = [
+      ...(TRIGGER_VARS['all']                  ?? []),
+      ...(TRIGGER_VARS[cursorCtx.triggerName]  ?? [])
+    ];
+    for (const v of trigVars) {
+      const triggers = triggersProvidingVar(v);
+      add({
+        label: v,
+        kind: CompletionItemKind.Variable,
+        detail: triggers.length ? `Injected by: ${triggers.join(', ')}` : 'Universal implicit variable',
+        documentation: { kind: MarkupKind.Markdown, value: '⚡ *Runtime-injected trigger variable*' },
+        sortText: '1_' + v
+      });
+    }
+  }
+
+  // Inherited symbols
+  for (const scriptPath of getInheritedScriptPaths(text, params.textDocument.uri, scriptsDirectory)) {
+    try {
+      const inherited = fs.readFileSync(scriptPath, 'utf8');
+      for (const sym of parseSymbols(inherited)) {
+        if (sym.kind === 'param' || sym.kind === 'variable' || sym.kind === 'trigger') continue;
+        add({
+          label: sym.name,
+          kind: sym.kind === 'function' || sym.kind === 'forward' ? CompletionItemKind.Function : CompletionItemKind.Field,
+          detail: `[${path.basename(scriptPath)}] ${symbolSignature(sym)}`,
+          sortText: '2_' + sym.name
+        });
+      }
+    } catch { /* skip unreadable */ }
+  }
+
+  // Engine functions
   for (const [, fn] of engineCatalogLower) {
-    if (seen.has(fn.name)) continue;
-    seen.add(fn.name);
-    items.push({
+    add({
       label: fn.name,
       kind: CompletionItemKind.Function,
       detail: fn.signature,
       documentation: { kind: MarkupKind.Markdown, value: fn.description || '*Engine built-in*' },
       insertText: fn.name,
       insertTextFormat: InsertTextFormat.PlainText,
-      sortText: '1_' + fn.name
+      sortText: '3_' + fn.name
     });
   }
 
-  for (const sym of parseSymbols(text)) {
-    if (seen.has(sym.name) || sym.kind === 'param') continue;
-    seen.add(sym.name);
-    const kind =
-      sym.kind === 'function' || sym.kind === 'forward' ? CompletionItemKind.Function :
-      sym.kind === 'trigger'  ? CompletionItemKind.Event :
-      sym.kind === 'member'   ? CompletionItemKind.Field :
-      CompletionItemKind.Variable;
-    items.push({
-      label: sym.name,
-      kind,
-      detail: symbolSignature(sym),
-      documentation: sym.docComment ? { kind: MarkupKind.PlainText, value: sym.docComment } : undefined,
-      sortText: '2_' + sym.name
-    });
+  // Type keywords (for local declarations)
+  for (const kw of TYPE_KW_LIST) {
+    add({ label: kw, kind: CompletionItemKind.Keyword, sortText: '4_' + kw });
   }
 
-  for (const scriptPath of getInheritedScriptPaths(text, params.textDocument.uri, scriptsDirectory)) {
-    try {
-      const inherited = fs.readFileSync(scriptPath, 'utf8');
-      for (const sym of parseSymbols(inherited)) {
-        if (seen.has(sym.name) || sym.kind === 'param' || sym.kind === 'variable') continue;
-        seen.add(sym.name);
-        items.push({
-          label: sym.name,
-          kind: sym.kind === 'function' || sym.kind === 'forward' ? CompletionItemKind.Function : CompletionItemKind.Field,
-          detail: `[${path.basename(scriptPath)}] ${symbolSignature(sym)}`,
-          sortText: '3_' + sym.name
-        });
-      }
-    } catch { /* skip unreadable files */ }
+  // Control-flow keywords
+  for (const kw of CTRL_KW_LIST) {
+    add({ label: kw, kind: CompletionItemKind.Keyword, sortText: '5_' + kw });
   }
 
-  // Implicit trigger variables — context-aware when inside a trigger body
-  const trigName = triggerNameAtPos(text, params.position);
-  const implVars = trigName
-    ? [...(TRIGGER_VARS['all'] ?? []), ...(TRIGGER_VARS[trigName] ?? [])]
-    : [...IMPLICIT_VAR_SET];
-  for (const v of implVars) {
-    if (seen.has(v)) continue;
-    seen.add(v);
-    const trigList = triggersProvidingVar(v);
-    const detail = trigList.length ? `Injected by: ${trigList.join(', ')}` : 'Universal implicit variable';
-    items.push({
-      label: v,
-      kind: CompletionItemKind.Variable,
-      detail,
-      documentation: {
-        kind: MarkupKind.Markdown,
-        value: `⚡ *Runtime-injected trigger variable*\n\n${detail}`
-      },
-      sortText: '2_' + v
-    });
-  }
-
-  for (const kw of ['if','else','switch','case','default','break','continue','goto',
-                    'for','while','return',
-                    'member','function','trigger','forward','inherits','NULL()',
-                    'int','obj','void','string','float','list','loc','str']) {
-    items.push({ label: kw, kind: CompletionItemKind.Keyword, sortText: '9_' + kw });
-  }
+  // 'member' keyword — usable inside bodies per Wombat spec
+  add({ label: 'member', kind: CompletionItemKind.Keyword, sortText: '5_member' });
 
   return items;
 });
@@ -985,6 +1098,15 @@ connection.onDefinition((params: TextDocumentPositionParams): Definition | null 
 // ── Diagnostics ───────────────────────────────────────────────────────────────
 
 function validateDocument(doc: TextDocument): void {
+  try {
+    validateDocumentImpl(doc);
+  } catch (e) {
+    connection.console.error(`wombat: validateDocument crashed: ${e}`);
+    connection.sendDiagnostics({ uri: doc.uri, diagnostics: [] });
+  }
+}
+
+function validateDocumentImpl(doc: TextDocument): void {
   const text = doc.getText();
   const diagnostics: Diagnostic[] = [];
 
@@ -1007,8 +1129,9 @@ function validateDocument(doc: TextDocument): void {
   for (const name of engineCatalog.keys())      validNames.add(name);
   for (const name of engineCatalogLower.keys()) validNames.add(name);
 
-  // Goto labels: add both definitions (IDENT ':') and references ('goto' IDENT)
   const toks = tokenize(text);
+
+  // Goto labels: both definitions (IDENT ':') and targets ('goto' IDENT)
   for (let i = 0; i < toks.length; i++) {
     if (toks[i].kind === 'ident' && toks[i + 1]?.kind === 'other' && toks[i + 1].text === ':') {
       validNames.add(toks[i].text);
@@ -1016,6 +1139,15 @@ function validateDocument(doc: TextDocument): void {
     if (toks[i].kind === 'kw' && toks[i].text === 'goto' && toks[i + 1]?.kind === 'ident') {
       validNames.add(toks[i + 1].text);
     }
+  }
+
+  // Returns the previous non-comment token before index i, or undefined
+  function prevNonComment(i: number): Tok | undefined {
+    for (let k = i - 1; k >= 0; k--) {
+      const t = toks[k];
+      if (t.kind !== 'line_comment' && t.kind !== 'block_comment') return t;
+    }
+    return undefined;
   }
 
   // Check each identifier token ───────────────────────────────────────────────
@@ -1026,11 +1158,12 @@ function validateDocument(doc: TextDocument): void {
     // L"..." wide-string prefix
     if (toks[i + 1]?.kind === 'string') continue;
 
-    // Field access after '.'
-    const prev = toks[i - 1];
-    if (prev?.kind === 'other' && prev.text === '.') continue;
+    const prev = prevNonComment(i);
 
-    // Declaration positions — the declared name is already in validNames via parseSymbols
+    // Member access (field after '.' or ':')
+    if (prev?.kind === 'other' && (prev.text === '.' || prev.text === ':')) continue;
+
+    // Declaration positions — name already in validNames via parseSymbols
     if (prev?.kind === 'type_kw') continue;
     if (prev?.kind === 'kw' && (
         prev.text === 'trigger'  ||
@@ -1054,7 +1187,7 @@ function validateDocument(doc: TextDocument): void {
         diagnostics.push({
           severity: DiagnosticSeverity.Warning,
           range: Range.create(Position.create(t.line, t.col), Position.create(t.line, t.col + name.length)),
-          message: `'${name}' does not match engine function name exactly — did you mean '${engineMatch.fn.name}'?`,
+          message: `'${name}' does not match engine function name — did you mean '${engineMatch.fn.name}'?`,
           source: 'wombat'
         });
       }
