@@ -349,6 +349,23 @@ function parseSymbols(src: string): UserSymbol[] {
       if (t.kind === 'lbrace') { depth++; eat(); continue; }
       if (t.kind === 'rbrace') { depth--; eat(); continue; }
 
+      // member TYPE NAME [= ...] ; → script-level member declared inside a function body
+      if (t.kind === 'kw' && t.text === 'member') {
+        eat(); // 'member'
+        if (at()?.kind === 'type_kw') {
+          const typeTok = eat()!;
+          if (at()?.kind === 'ident') {
+            const nameTok = eat()!;
+            symbols.push({ name: nameTok.text, kind: 'member', type: typeTok.text,
+              line: nameTok.line, col: nameTok.col });
+          }
+        }
+        while (i < toks.length &&
+               at()?.kind !== 'semi' && at()?.kind !== 'lbrace' && at()?.kind !== 'rbrace') eat();
+        if (at()?.kind === 'semi') eat();
+        continue;
+      }
+
       // TYPE NAME [not followed by '('] → local variable
       if (t.kind === 'type_kw') {
         const typeTok = eat()!;
