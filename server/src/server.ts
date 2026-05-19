@@ -999,6 +999,11 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
   const engineMatch = lookupEngine(word);
   if (engineMatch) return { contents: engineHover(engineMatch.fn) };
 
+  const syms = parseSymbols(text);
+  // Params shadow same-named implicit trigger variables — check them first.
+  const paramSym = syms.find(s => s.name === word && s.kind === 'param');
+  if (paramSym) return { contents: userHover(paramSym) };
+
   if (IMPLICIT_VAR_SET.has(word)) return { contents: implicitVarHover(word) };
 
   // Enum value hover: word is an integer literal inside an enum-annotated engine call
@@ -1027,7 +1032,6 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
     }
   }
 
-  const syms = parseSymbols(text);
   // Include params — they shadow same-named members from inherited scripts.
   const sym  = syms.find(s => s.name === word);
   if (sym) return { contents: userHover(sym) };
