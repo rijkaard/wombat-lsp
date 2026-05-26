@@ -17,6 +17,15 @@
       "append"
     ]
   },
+  "getDirectionInternal": {
+    "name": "getDirectionInternal",
+    "cSignature": "int CalcDirection(const CLocation *loc1, const CLocation *loc2)",
+    "signature": "int getDirectionInternal(loc, loc)",
+    "description": "Returns the 8-direction compass code (0=N, 1=NE, ... 7=NW) for the heading from loc1 to loc2. Felucca-map wrapping selects the shorter dx/dy path, and the octant boundaries use a 2:1 ratio.",
+    "aliases": [
+      "append"
+    ]
+  },
   "prepend": {
     "name": "prepend",
     "cSignature": "void Script_prepend(CList *list, uintptr_t typeTag, uintptr_t value)",
