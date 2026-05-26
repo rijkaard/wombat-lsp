@@ -232,7 +232,7 @@
   },
   "split": {
     "name": "split",
-    "cSignature": "void Script_splitCommaDelimitedString(CList *list, CString *str)",
+    "cSignature": "void Script_split(CList *list, CString *str)",
     "signature": "split(list list, string str)",
     "description": "Splits `str` on commas (stripping leading whitespace per token) and appends each token as a string to `list` (clears list first).",
     "aliases": [
@@ -355,14 +355,14 @@
   },
   "getArrayStrElem": {
     "name": "getArrayStrElem",
-    "cSignature": "CString *Script_getArrayStrElem(CString *retval, int id, int x, int y)",
+    "cSignature": "CString * Script_getArrayStrElem(CString *retval, int id, int x, int y)",
     "signature": "string getArrayStrElem(int id, int x, int y)",
     "description": "Returns the string element at column `x`, row `y` in array `id`, or an empty string if not found or element is NULL.",
     "aliases": []
   },
   "getArrayUStrElem": {
     "name": "getArrayUStrElem",
-    "cSignature": "CUString *Script_getArrayUStrElem(CUString *retval, int id, int x, int y)",
+    "cSignature": "CUString * Script_getArrayUStrElem(CUString *retval, int id, int x, int y)",
     "signature": "ustring getArrayUStrElem(int id, int x, int y)",
     "description": "Returns the unicode string element at column `x`, row `y` in array `id`, or an empty ustring if not found or element is NULL.",
     "aliases": []
@@ -840,7 +840,7 @@
   },
   "callGuards": {
     "name": "callGuards",
-    "cSignature": "void Script_callGuards2(uint32_t serial1, uint32_t serial2, int range)",
+    "cSignature": "void Script_callGuards(uint32_t serial, CLocation *loc, int range)\nvoid Script_callGuards2(uint32_t serial1, uint32_t serial2, int range)",
     "signature": "void callGuards(obj mobile, obj target, int range)",
     "description": "Summons guards toward serial1's location, attributed to serial1, targeting serial2 within range.",
     "aliases": []
@@ -875,7 +875,7 @@
   },
   "getObjVar": {
     "name": "getObjVar",
-    "cSignature": "uint32_t Script_getObjVar_obj(uint32_t serial, CString *varname)",
+    "cSignature": "int Script_getObjVar(uint32_t serial, CString *varname)\nint Script_getObjVar_int(uint32_t serial, CString *varname)\nCString * Script_getObjVar_str(CString *retbuf, uint32_t serial, CString *varname)\nCLocation * Script_getObjVar_loc(CLocation *retbuf, uint32_t serial, CString *varname)\nuint32_t Script_getObjVar_obj(uint32_t serial, CString *varname)",
     "signature": "obj getObjVar(obj entity, string varname)",
     "description": "Returns the object-serial ObjVar named `varname`, or 0 when absent.",
     "aliases": [
@@ -902,7 +902,7 @@
   },
   "getobjvar_str": {
     "name": "getobjvar_str",
-    "cSignature": "CString *Script_getObjVar_str(CString *retbuf, uint32_t serial, CString *varname)",
+    "cSignature": "CString * Script_getObjVar_str(CString *retbuf, uint32_t serial, CString *varname)",
     "signature": "getobjvar_str(obj entity, string varname)",
     "description": "Returns the string-typed ObjVar named `varname`, or an empty string when absent.",
     "aliases": [
@@ -911,7 +911,7 @@
   },
   "getobjvar_loc": {
     "name": "getobjvar_loc",
-    "cSignature": "CLocation *Script_getObjVar_loc(CLocation *retbuf, uint32_t serial, CString *varname)",
+    "cSignature": "CLocation * Script_getObjVar_loc(CLocation *retbuf, uint32_t serial, CString *varname)",
     "signature": "getobjvar_loc(obj entity, string varname)",
     "description": "Returns the location-typed ObjVar named `varname`, falling back to `(-1, -1, 0)` when absent.",
     "aliases": [
@@ -1139,7 +1139,7 @@
   },
   "getDirection": {
     "name": "getDirection",
-    "cSignature": "CString *Script_getDirection(CString *dest, CLocation *loc1, CLocation *loc2)",
+    "cSignature": "CString * Script_getDirection(CString *dest, CLocation *loc1, CLocation *loc2)",
     "signature": "string getDirection(loc from, loc to)",
     "description": "Returns a human-readable compass bearing string from `from` to `to` (\"to the north\", \"to the southeast\", etc.); returns \"right here\" for distances under 10 tiles.",
     "aliases": []
@@ -1153,14 +1153,14 @@
   },
   "getDistance": {
     "name": "getDistance",
-    "cSignature": "CString *Script_getDistance(CString *dest, CLocation *loc1, CLocation *loc2)",
+    "cSignature": "CString * Script_getDistance(CString *dest, CLocation *loc1, CLocation *loc2)",
     "signature": "string getDistance(loc a, loc b)",
     "description": "Returns a human-readable distance phrase (\"right here\", \"just a short way\", \"a fair distance\", \"a long way\", etc.) bucketed in tens of tiles.",
     "aliases": []
   },
   "interpose": {
     "name": "interpose",
-    "cSignature": "CLocation *Script_interpose(CLocation *outLoc, CLocation *loc1, const CLocation *loc2)",
+    "cSignature": "CLocation * Script_interpose(CLocation *outLoc, CLocation *loc1, const CLocation *loc2)",
     "signature": "loc interpose(loc a, loc b)",
     "description": "Stores the midpoint between `a` and `b` (z taken from `a`) in the return location; also overwrites `a` with the midpoint as a side effect.",
     "aliases": []
@@ -1399,35 +1399,35 @@
   },
   "bark": {
     "name": "bark",
-    "cSignature": "void Script_barkUnicode(uint32_t serial, CUString *text)",
+    "cSignature": "void Script_bark(uint32_t serial, CString *text)\nvoid Script_barkUnicode(uint32_t serial, CUString *text)",
     "signature": "void bark(obj entity, ustring text)",
     "description": "Unicode overload of `bark`; speaks unicode text from the entity, sending it as a unicode system message when the entity is held by a player.",
     "aliases": []
   },
   "ebark": {
     "name": "ebark",
-    "cSignature": "void Script_ebarkUnicode(uint32_t serial, CUString *text)",
+    "cSignature": "void Script_ebark(uint32_t serial, CString *text)\nvoid Script_ebarkUnicode(uint32_t serial, CUString *text)",
     "signature": "void ebark(obj entity, ustring text)",
     "description": "Unicode overload of `ebark`; broadcasts unicode text from the entity as an emote.",
     "aliases": []
   },
   "barkTo": {
     "name": "barkTo",
-    "cSignature": "void Script_barkToUnicode(uint32_t speakerSerial, uint32_t targetSerial, CUString *text)",
+    "cSignature": "void Script_barkTo(uint32_t speakerSerial, uint32_t targetSerial, CString *text)\nvoid Script_barkToUnicode(uint32_t speakerSerial, uint32_t targetSerial, CUString *text)",
     "signature": "void barkTo(obj speaker, obj target, ustring text)",
     "description": "Unicode overload of `barkTo`; directed speech to a single player.",
     "aliases": []
   },
   "ebarkTo": {
     "name": "ebarkTo",
-    "cSignature": "void Script_ebarkToUnicode(uint32_t speakerSerial, uint32_t targetSerial, CUString *text)",
+    "cSignature": "void Script_ebarkTo(uint32_t speakerSerial, uint32_t targetSerial, CString *text)\nvoid Script_ebarkToUnicode(uint32_t speakerSerial, uint32_t targetSerial, CUString *text)",
     "signature": "void ebarkTo(obj speaker, obj target, ustring text)",
     "description": "Unicode overload of `ebarkTo`; directed emote to a single player.",
     "aliases": []
   },
   "barkToHued": {
     "name": "barkToHued",
-    "cSignature": "void Script_barkToHuedUnicode(uint32_t speakerSerial, uint32_t targetSerial, int hue, CUString *text)",
+    "cSignature": "void Script_barkToHued(uint32_t speakerSerial, uint32_t targetSerial, int hue, CString *text)\nvoid Script_barkToHuedUnicode(uint32_t speakerSerial, uint32_t targetSerial, int hue, CUString *text)",
     "signature": "void barkToHued(obj speaker, obj target, int hue, ustring text)",
     "description": "Unicode overload of `barkToHued`; directed speech at explicit hue to a single player.",
     "aliases": []
@@ -1471,33 +1471,33 @@
     "name": "getWeight",
     "cSignature": "int Script_getWeight(uint32_t serial)",
     "signature": "int getWeight(obj)",
-    "description": "Returns the entity's total weight (including contained items) via `VT_GET_WEIGHT`.",
+    "description": "Returns the entity's weight (including any contained items).",
     "aliases": []
   },
   "getLocation": {
     "name": "getLocation",
-    "cSignature": "CLocation *Script_getLocation(CLocation *retloc, uint32_t serial)",
+    "cSignature": "CLocation * Script_getLocation(CLocation *retloc, uint32_t serial)",
     "signature": "loc getLocation(obj)",
     "description": "Returns the entity's effective world location, walking the parent chain for contained items; falls back to `(-1, -1, 0)` when the entity is missing.",
     "aliases": []
   },
   "getRelayLoc": {
     "name": "getRelayLoc",
-    "cSignature": "CLocation *Script_getRelayLoc(CLocation *retloc, uint32_t serial)",
+    "cSignature": "CLocation * Script_getRelayLoc(CLocation *retloc, uint32_t serial)",
     "signature": "loc getRelayLoc(obj)",
     "description": "Returns the map origin `(g_mapStartX, g_mapStartY, 0)`; the `serial` argument is ignored entirely.",
     "aliases": []
   },
   "whereIs": {
     "name": "whereIs",
-    "cSignature": "CLocation *Script_whereIs(CLocation *retloc, uint32_t serial)",
+    "cSignature": "CLocation * Script_whereIs(CLocation *retloc, uint32_t serial)",
     "signature": "loc whereIs(obj)",
     "description": "Like `getLocation`: returns the root container's world location via `VT_GET_LOCATION`, falling back to `(-1, -1, 0)` when the entity is missing.",
     "aliases": []
   },
   "getMasterObjLoc": {
     "name": "getMasterObjLoc",
-    "cSignature": "CLocation *Script_getMasterObjLoc(CLocation *retloc, int index)",
+    "cSignature": "CLocation * Script_getMasterObjLoc(CLocation *retloc, int index)",
     "signature": "loc getMasterObjLoc(int)",
     "description": "Returns the world location of the `index`-th master-object slot (`g_mapStartX + index`, `g_mapStartY`, 0); falls back to `(-1, -1, 0)` for indices outside [0, 127].",
     "aliases": []
@@ -1744,14 +1744,14 @@
     "name": "getCanCarry",
     "cSignature": "int Script_getCanCarry(uint32_t serial)",
     "signature": "int getCanCarry(obj)",
-    "description": "Returns the mobile's maximum carry weight via `CMobile_GetMaxWeight`.",
+    "description": "Returns the mobile's maximum carry weight.",
     "aliases": []
   },
   "getSkillTotal": {
     "name": "getSkillTotal",
     "cSignature": "int Script_getSkillTotal(uint32_t serial)",
     "signature": "int getSkillTotal(obj)",
-    "description": "Returns the sum of all base skills on the mobile by iterating over every skill index from `CSkillManager_GetMaxSkills`.",
+    "description": "Returns the sum of every base skill on the mobile.",
     "aliases": []
   },
   "getCappedSkillTotal": {
@@ -1945,21 +1945,21 @@
   },
   "getHeShe": {
     "name": "getHeShe",
-    "cSignature": "CString *Script_getHeShe(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getHeShe(CString *out, uint32_t serial)",
     "signature": "string getHeShe(obj)",
     "description": "Returns `\"he\"`, `\"she\"`, or `\"it\"` based on the mobile's sex (0 = male, 1 = female, other = neuter).",
     "aliases": []
   },
   "getHimHer": {
     "name": "getHimHer",
-    "cSignature": "CString *Script_getHimHer(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getHimHer(CString *out, uint32_t serial)",
     "signature": "string getHimHer(obj)",
     "description": "Returns `\"him\"`, `\"her\"`, or `\"it\"` based on the mobile's sex (0 = male, 1 = female, other = neuter).",
     "aliases": []
   },
   "getHisHer": {
     "name": "getHisHer",
-    "cSignature": "CString *Script_getHisHer(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getHisHer(CString *out, uint32_t serial)",
     "signature": "string getHisHer(obj)",
     "description": "Returns `\"his\"`, `\"her\"`, or `\"its\"` based on the mobile's sex (0 = male, 1 = female, other = neuter).",
     "aliases": []
@@ -2401,7 +2401,7 @@
   },
   "getSkillName": {
     "name": "getSkillName",
-    "cSignature": "CString *Script_getSkillName(CString *out, int skillId)",
+    "cSignature": "CString * Script_getSkillName(CString *out, int skillId)",
     "signature": "string getSkillName(int skillId)",
     "description": "Stores the display name of `skillId` in the output string and returns it.",
     "aliases": []
@@ -2576,7 +2576,7 @@
   },
   "getWeaponName": {
     "name": "getWeaponName",
-    "cSignature": "CString *Script_getWeaponName(CString *out, uint32_t weaponSerial)",
+    "cSignature": "CString * Script_getWeaponName(CString *out, uint32_t weaponSerial)",
     "signature": "string getWeaponName(obj weapon)",
     "description": "Stores the weapon's display name in `out`; returns an empty string when invalid.",
     "aliases": []
@@ -3126,14 +3126,14 @@
   },
   "getName": {
     "name": "getName",
-    "cSignature": "CString *Script_getName(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getName(CString *out, uint32_t serial)",
     "signature": "string getName(obj entity)",
     "description": "Returns the entity's display name, or an empty string when the entity is not found.",
     "aliases": []
   },
   "getRealName": {
     "name": "getRealName",
-    "cSignature": "CString *Script_getRealName(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getRealName(CString *out, uint32_t serial)",
     "signature": "string getRealName(obj mobile)",
     "description": "Returns the mobile's real (non-disguised) name, or an empty string when the mobile is not found.",
     "aliases": []
@@ -3154,7 +3154,7 @@
   },
   "getTitledName": {
     "name": "getTitledName",
-    "cSignature": "CString *Script_getTitledName(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_getTitledName(CString *out, uint32_t serial)",
     "signature": "string getTitledName(obj player)",
     "description": "Returns the player's paperdoll title string (e.g. \"Lord John Smith\"), or \"Flobbitz\" when the player is not found.",
     "aliases": []
@@ -3266,7 +3266,7 @@
   },
   "getNameByType": {
     "name": "getNameByType",
-    "cSignature": "CString *Script_getNameByType(CString *dest, int typeId)",
+    "cSignature": "CString * Script_getNameByType(CString *dest, int typeId)",
     "signature": "string getNameByType(int typeId)",
     "description": "Returns the tiledata name string for `typeId`; returns \"BUG!\" for out-of-range values. _(builtin [500])_",
     "aliases": []
@@ -3512,7 +3512,7 @@
   },
   "getHome": {
     "name": "getHome",
-    "cSignature": "CLocation *Script_getHome(CLocation *retloc, uint32_t serial)",
+    "cSignature": "CLocation * Script_getHome(CLocation *retloc, uint32_t serial)",
     "signature": "loc getHome(obj serial)",
     "description": "Returns the NPC's home location; falls back to (-1, -1, 0) for invalid serials. _(builtin [490])_",
     "aliases": []
@@ -3526,7 +3526,7 @@
   },
   "getCreationLoc": {
     "name": "getCreationLoc",
-    "cSignature": "CLocation *Script_getCreationLoc(CLocation *retloc, uint32_t serial)",
+    "cSignature": "CLocation * Script_getCreationLoc(CLocation *retloc, uint32_t serial)",
     "signature": "loc getCreationLoc(obj serial)",
     "description": "Returns the entity's creation-time location; falls back to (-1, -1, 0) for invalid serials. _(builtin [492])_",
     "aliases": []
@@ -3540,7 +3540,7 @@
   },
   "getArticle": {
     "name": "getArticle",
-    "cSignature": "CString *Script_getArticle(CString *dest, int typeId)",
+    "cSignature": "CString * Script_getArticle(CString *dest, int typeId)",
     "signature": "string getArticle(int typeId)",
     "description": "Returns the article prefix for the tile type (\"a\", \"an\", \"the\", or \"\"); returns \"BUG!\" for out-of-range typeId. _(builtin [520])_",
     "aliases": []
@@ -3561,7 +3561,7 @@
   },
   "getResourceName": {
     "name": "getResourceName",
-    "cSignature": "CString *Script_getResourceName(CString *outStr, CString *inStr, int resId)",
+    "cSignature": "CString * Script_getResourceName(CString *outStr, CString *inStr, int resId)",
     "signature": "string getResourceName(string inStr, int resId)",
     "description": "Looks up the resource type by internal name `inStr` and returns its localized name selected by `resId` (0=food, 1=name1, 2=name2, 3=name3). _(builtin [550])_",
     "aliases": []
@@ -3610,7 +3610,7 @@
   },
   "objToStr": {
     "name": "objToStr",
-    "cSignature": "CString *Script_objToStr(CString *out, uint32_t serial)",
+    "cSignature": "CString * Script_objToStr(CString *out, uint32_t serial)",
     "signature": "string objToStr(obj serial)",
     "description": "Converts `serial` to its decimal string representation. _(builtin [521])_",
     "aliases": []
@@ -3673,14 +3673,14 @@
   },
   "getROBookTitle": {
     "name": "getROBookTitle",
-    "cSignature": "CString *Script_getROBookTitle(CString *out, int bookNum)",
+    "cSignature": "CString * Script_getROBookTitle(CString *out, int bookNum)",
     "signature": "string getROBookTitle(int bookNum)",
     "description": "Returns the title string for read-only book number `bookNum`. _(builtin [705])_",
     "aliases": []
   },
   "getMoonPhaseStr": {
     "name": "getMoonPhaseStr",
-    "cSignature": "CString *Script_getMoonPhaseStr(CString *out, int phase)",
+    "cSignature": "CString * Script_getMoonPhaseStr(CString *out, int phase)",
     "signature": "string getMoonPhaseStr(int phase)",
     "description": "Returns a one-character moon-phase glyph (char 0x80 + phase) for valid phases 0–7, or \" invalid phase \" for out-of-range values. _(builtin [581])_",
     "aliases": []
@@ -3967,7 +3967,7 @@
   },
   "getMultiComponentOffset": {
     "name": "getMultiComponentOffset",
-    "cSignature": "CLocation *Script_getMultiComponentOffset(CLocation *outLoc, uint32_t serial)",
+    "cSignature": "CLocation * Script_getMultiComponentOffset(CLocation *outLoc, uint32_t serial)",
     "signature": "loc getMultiComponentOffset(obj entity)",
     "description": "Returns the entity's XYZ offset relative to its multi master, or (-1,-1,-1) when the entity is not a multi component.",
     "aliases": []
@@ -4918,28 +4918,28 @@
   },
   "getRattishSyllable": {
     "name": "getRattishSyllable",
-    "cSignature": "CString *Script_getRattishSyllable(CString *out, int index)",
+    "cSignature": "CString * Script_getRattishSyllable(CString *out, int index)",
     "signature": "string getRattishSyllable(int index)",
     "description": "Returns the (index % 103)-th syllable from the Ratman language table.",
     "aliases": []
   },
   "getLizardishSyllable": {
     "name": "getLizardishSyllable",
-    "cSignature": "CString *Script_getLizardishSyllable(CString *out, int index)",
+    "cSignature": "CString * Script_getLizardishSyllable(CString *out, int index)",
     "signature": "string getLizardishSyllable(int index)",
     "description": "Returns the (index % 73)-th syllable from the Lizardman language table.",
     "aliases": []
   },
   "getWispishSyllable": {
     "name": "getWispishSyllable",
-    "cSignature": "CString *Script_getWispishSyllable(CString *out, int index)",
+    "cSignature": "CString * Script_getWispishSyllable(CString *out, int index)",
     "signature": "string getWispishSyllable(int index)",
     "description": "Returns the (index % 43)-th syllable from the Wisp language table.",
     "aliases": []
   },
   "getOrcishSyllable": {
     "name": "getOrcishSyllable",
-    "cSignature": "CString *Script_getOrcishSyllable(CString *out, int index)",
+    "cSignature": "CString * Script_getOrcishSyllable(CString *out, int index)",
     "signature": "string getOrcishSyllable(int index)",
     "description": "Returns the (index % 215)-th syllable from the Orcish language table.",
     "aliases": []
@@ -5024,28 +5024,28 @@
     "name": "isOrderGuard",
     "cSignature": "int Script_isOrderGuard(uint32_t serial)",
     "signature": "int isOrderGuard(obj mobile)",
-    "description": "Returns 1 if the mobile is using the Order virtue shield or has the \"order\" ObjVar with an active Order timer (type 0x13).",
+    "description": "Returns 1 if the mobile is an order guard: uses an order shield, or has the \"order\" tag with an active WombatTimer type 0x13.",
     "aliases": []
   },
   "isChaosGuard": {
     "name": "isChaosGuard",
     "cSignature": "int Script_isChaosGuard(uint32_t serial)",
     "signature": "int isChaosGuard(obj mobile)",
-    "description": "Returns 1 if the mobile is using the Chaos shield or has the \"chaos\" ObjVar with an active Chaos timer (type 0x12).",
+    "description": "Returns 1 if the mobile is a chaos guard: uses a chaos shield, or has the \"chaos\" tag with an active WombatTimer type 0x12.",
     "aliases": []
   },
   "isUsingVirtueShield": {
     "name": "isUsingVirtueShield",
     "cSignature": "int Script_isUsingVirtueShield(uint32_t serial)",
     "signature": "int isUsingVirtueShield(obj mobile)",
-    "description": "Returns 1 if the mobile is using either the Order or Chaos virtue shield.",
+    "description": "Returns 1 if the mobile is using either an order shield or a chaos shield.",
     "aliases": []
   },
   "isVirtueGuard": {
     "name": "isVirtueGuard",
     "cSignature": "int Script_isVirtueGuard(uint32_t serial)",
     "signature": "int isVirtueGuard(obj mobile)",
-    "description": "Returns 1 if the mobile qualifies as either an Order guard or a Chaos guard.",
+    "description": "Returns 1 if the mobile qualifies as either an order guard or a chaos guard.",
     "aliases": []
   },
   "isInArea": {
@@ -5090,5 +5090,357 @@
     "aliases": [
       "strContains"
     ]
+  },
+  "TK_IF": {
+    "name": "TK_IF",
+    "cSignature": "void Handler_IF(int condition, char *jumpTarget)",
+    "signature": "void TK_IF(int)",
+    "description": "Jumps the current thread's stream to jumpTarget when the condition is false, skipping past the if-body to the else/endif.",
+    "aliases": []
+  },
+  "TK_ELSE": {
+    "name": "TK_ELSE",
+    "cSignature": "void Handler_ELSE(char *jumpTarget)",
+    "signature": "void TK_ELSE()",
+    "description": "Unconditionally jumps the current thread to jumpTarget, skipping the ELSE body when the matching IF already ran.",
+    "aliases": []
+  },
+  "TK_ENDIF": {
+    "name": "TK_ENDIF",
+    "cSignature": "void Handler_ENDIF(void)",
+    "signature": "void TK_ENDIF()",
+    "description": "No-op marker.",
+    "aliases": []
+  },
+  "TK_WHILE": {
+    "name": "TK_WHILE",
+    "cSignature": "void Handler_WHILE(int condition, char *jumpTarget)",
+    "signature": "void TK_WHILE(int)",
+    "description": "Jumps past the loop body to endwhile when the condition is false.",
+    "aliases": []
+  },
+  "TK_ENDWHILE": {
+    "name": "TK_ENDWHILE",
+    "cSignature": "void Handler_ENDWHILE(char *jumpTarget)",
+    "signature": "void TK_ENDWHILE()",
+    "description": "Jumps back to the while condition and clears the break flag so the loop can re-test on the next iteration.",
+    "aliases": []
+  },
+  "TK_FOR": {
+    "name": "TK_FOR",
+    "cSignature": "void Handler_FOR(int arg1, int arg2)",
+    "signature": "void TK_FOR(int, int)",
+    "description": "No-op marker; FOR loop control is implemented by ExecuteHandler.",
+    "aliases": []
+  },
+  "TK_ENDFOR": {
+    "name": "TK_ENDFOR",
+    "cSignature": "void Handler_ENDFOR_NOP(int arg1)",
+    "signature": "void TK_ENDFOR()",
+    "description": "No-op marker.",
+    "aliases": []
+  },
+  "TK_CONTINUE": {
+    "name": "TK_CONTINUE",
+    "cSignature": "void Handler_ENDFOR(char *jumpTarget)",
+    "signature": "void TK_CONTINUE()",
+    "description": "Like Handler_ENDWHILE: jumps back to the loop top and clears the break flag.",
+    "aliases": []
+  },
+  "TK_BREAK": {
+    "name": "TK_BREAK",
+    "cSignature": "void Handler_FOR_BODY(char *jumpTarget)",
+    "signature": "void TK_BREAK()",
+    "description": "Unconditional jump used to skip the for-loop body.",
+    "aliases": []
+  },
+  "TK_GOTO": {
+    "name": "TK_GOTO",
+    "cSignature": "void Handler_GOTO2(char *jumpTarget)",
+    "signature": "void TK_GOTO(int)",
+    "description": "Unconditional jump to jumpTarget.",
+    "aliases": []
+  },
+  "TK_SWITCH": {
+    "name": "TK_SWITCH",
+    "cSignature": "void Handler_CASE(int caseValue, ResultNode *caseChain)",
+    "signature": "void TK_SWITCH(int)",
+    "description": "Walks the case chain to find an entry whose value matches caseValue and jumps to its target. Falls through to the default branch (marked with sentinel value -666) when no match is found.",
+    "aliases": []
+  },
+  "TK_ENDSWITCH": {
+    "name": "TK_ENDSWITCH",
+    "cSignature": "void Handler_ENDIF2(void)",
+    "signature": "void TK_ENDSWITCH()",
+    "description": "No-op marker.",
+    "aliases": []
+  },
+  "TK_CASE": {
+    "name": "TK_CASE",
+    "cSignature": "void Handler_SWITCH(void)",
+    "signature": "void TK_CASE()",
+    "description": "no-op marker The actual switch dispatch is done by ExecuteHandler (0x00406F90).",
+    "aliases": []
+  },
+  "TK_DEFAULT": {
+    "name": "TK_DEFAULT",
+    "cSignature": "void Handler_SWITCH2(void)",
+    "signature": "void TK_DEFAULT()",
+    "description": "No-op marker.",
+    "aliases": []
+  },
+  "TK_RETURN": {
+    "name": "TK_RETURN",
+    "cSignature": "void Handler_RETURN_VOID(void)\nvoid Handler_RETURN_INT(int value)\nvoid Handler_RETURN_LOC(CLocation *locPtr)\nvoid Handler_RETURN_INT2(int value)\nvoid Handler_RETURN_STR(CString *str)",
+    "signature": "void TK_RETURN()",
+    "description": "Pushes a 4-byte zero placeholder onto the scope and nulls the stream to terminate a void-returning function or trigger.",
+    "aliases": []
+  },
+  "oprnull": {
+    "name": "oprnull",
+    "cSignature": "int Opr_null(int a)",
+    "signature": "int oprnull(int)",
+    "description": "Identity passthrough.",
+    "aliases": []
+  },
+  "oprplus": {
+    "name": "oprplus",
+    "cSignature": "int Opr_plus_int(int a, int b)\nCString * Opr_plus_str_str(CString *out, CString *a, CString *b)\nCString * Opr_plus_str_int(CString *out, CString *str, int value)\nCString * Opr_plus_str_loc(CString *out, CString *str, const CLocation *loc)",
+    "signature": "int oprplus(int, int)",
+    "description": "(int variant) Returns a + b.",
+    "aliases": []
+  },
+  "oprminus": {
+    "name": "oprminus",
+    "cSignature": "int Opr_minus(int a, int b)",
+    "signature": "int oprminus(int, int)",
+    "description": "Returns a - b.",
+    "aliases": []
+  },
+  "oprmult": {
+    "name": "oprmult",
+    "cSignature": "int Opr_mult(int a, int b)",
+    "signature": "int oprmult(int, int)",
+    "description": "Returns a * b.",
+    "aliases": []
+  },
+  "oprdiv": {
+    "name": "oprdiv",
+    "cSignature": "int Opr_div(int a, int b)",
+    "signature": "int oprdiv(int, int)",
+    "description": "Returns a / b, or INT_MAX when b is zero.",
+    "aliases": []
+  },
+  "oprand": {
+    "name": "oprand",
+    "cSignature": "int Opr_and(int a, int b)",
+    "signature": "int oprand(int, int)",
+    "description": "Logical AND: returns 1 when both operands are non-zero.",
+    "aliases": []
+  },
+  "opror": {
+    "name": "opror",
+    "cSignature": "int Opr_or(int a, int b)",
+    "signature": "int opror(int, int)",
+    "description": "Logical OR: returns 1 when either operand is non-zero.",
+    "aliases": []
+  },
+  "oprxor": {
+    "name": "oprxor",
+    "cSignature": "int Opr_xor(int a, int b)",
+    "signature": "int oprxor(int, int)",
+    "description": "Returns a ^ b.",
+    "aliases": []
+  },
+  "oprequiv": {
+    "name": "oprequiv",
+    "cSignature": "int Opr_equiv_int(int a, int b)\nint Opr_equiv_str(CString *a, CString *b)\nint Opr_equiv_loc(const CLocation *loc1, const CLocation *loc2)\nint Opr_equiv_obj(int a, int b)",
+    "signature": "int oprequiv(int, int)",
+    "description": "(int variant) Returns a == b.",
+    "aliases": []
+  },
+  "oprnequiv": {
+    "name": "oprnequiv",
+    "cSignature": "int Opr_nequiv_int(int a, int b)\nint Opr_nequiv_str(CString *a, CString *b)\nint Opr_nequiv_loc(const CLocation *loc1, const CLocation *loc2)\nint Opr_nequiv_obj(int a, int b)",
+    "signature": "int oprnequiv(int, int)",
+    "description": "(int variant) Returns a != b.",
+    "aliases": []
+  },
+  "oprgt": {
+    "name": "oprgt",
+    "cSignature": "int Opr_gt(int a, int b)",
+    "signature": "int oprgt(int, int)",
+    "description": "Returns a > b.",
+    "aliases": []
+  },
+  "oprlt": {
+    "name": "oprlt",
+    "cSignature": "int Opr_lt(int a, int b)",
+    "signature": "int oprlt(int, int)",
+    "description": "Returns a < b.",
+    "aliases": []
+  },
+  "oprmod": {
+    "name": "oprmod",
+    "cSignature": "int Opr_mod(int a, int b)",
+    "signature": "int oprmod(int, int)",
+    "description": "Returns a % b.",
+    "aliases": []
+  },
+  "oprgteq": {
+    "name": "oprgteq",
+    "cSignature": "int Opr_gteq(int a, int b)",
+    "signature": "int oprgteq(int, int)",
+    "description": "Returns a >= b.",
+    "aliases": []
+  },
+  "oprlteq": {
+    "name": "oprlteq",
+    "cSignature": "int Opr_lteq(int a, int b)",
+    "signature": "int oprlteq(int, int)",
+    "description": "Returns a <= b.",
+    "aliases": []
+  },
+  "oprnot": {
+    "name": "oprnot",
+    "cSignature": "int Opr_not(int a)",
+    "signature": "int oprnot(int)",
+    "description": "Returns the logical NOT of a.",
+    "aliases": []
+  },
+  "oprlist": {
+    "name": "oprlist",
+    "cSignature": "int Opr_listuni(CList *list, int index)\nCList * Opr_listlist(CList *list, int index)\nint Opr_listint(CList *list, int index)\nCString * Opr_liststr(CString *dest, CList *list, int index)\nCUString * Opr_listustr(CUString *dest, CList *list, int index)\nCLocation * Opr_listloc(CLocation *outLoc, CList *list, int index)\nint Opr_listobj(CList *list, int index)\nCString * Opr_strindex(CString *dest, CString *source, int index)",
+    "signature": "any oprlist(list, int)",
+    "description": "(universal variant) No-op stub returning 0.",
+    "aliases": []
+  },
+  "oprinc": {
+    "name": "oprinc",
+    "cSignature": "void Opr_inc(int *ptr)",
+    "signature": "void oprinc(int)",
+    "description": "Increments *ptr in place.",
+    "aliases": []
+  },
+  "oprdec": {
+    "name": "oprdec",
+    "cSignature": "void Opr_dec(int *ptr)",
+    "signature": "void oprdec(int)",
+    "description": "Decrements *ptr in place.",
+    "aliases": []
+  },
+  "assignint": {
+    "name": "assignint",
+    "cSignature": "void Opr_assignint(int *dst, int value)",
+    "signature": "void assignint(int, int)",
+    "description": "Stores value through dst.",
+    "aliases": []
+  },
+  "assignstr": {
+    "name": "assignstr",
+    "cSignature": "void Opr_assignstr(CString *dst, CString *src)",
+    "signature": "void assignstr(string, string)",
+    "description": "Copies src into dst.",
+    "aliases": []
+  },
+  "assignust": {
+    "name": "assignust",
+    "cSignature": "void Opr_assignust(CUString *dst, CUString *src)",
+    "signature": "void assignust(ustr, ustr)",
+    "description": "Copies the unicode src into dst.",
+    "aliases": []
+  },
+  "assignobj": {
+    "name": "assignobj",
+    "cSignature": "void Opr_assignobj(int *dst, int serial)",
+    "signature": "void assignobj(obj, obj)",
+    "description": "Stores serial through dst (object handles are 32-bit serials).",
+    "aliases": []
+  },
+  "assignloc": {
+    "name": "assignloc",
+    "cSignature": "void Opr_assignloc(CLocation *dst, const CLocation *src)",
+    "signature": "void assignloc(loc, loc)",
+    "description": "Copies the 6-byte location from src to dst.",
+    "aliases": []
+  },
+  "assignlist": {
+    "name": "assignlist",
+    "cSignature": "void Opr_assignlist(CList *dst, CList *src)",
+    "signature": "void assignlist(list, list)",
+    "description": "Replaces the contents of dst with a shallow copy of every entry from src.",
+    "aliases": []
+  },
+  "assignintstr": {
+    "name": "assignintstr",
+    "cSignature": "void Opr_assignintstr(int *dst, CString *src)",
+    "signature": "void assignintstr(int, string)",
+    "description": "Parses src with atoi and stores the result through dst.",
+    "aliases": []
+  },
+  "assignstrint": {
+    "name": "assignstrint",
+    "cSignature": "void Opr_assignstrint(CString *dst, int value)",
+    "signature": "void assignstrint(string, int)",
+    "description": "Assigns the decimal representation of value to dst.",
+    "aliases": []
+  },
+  "assignustint": {
+    "name": "assignustint",
+    "cSignature": "void Opr_assignustint(CUString *dst, int value)",
+    "signature": "void assignustint(ustr, int)",
+    "description": "Assigns the decimal representation of value to the unicode dst.",
+    "aliases": []
+  },
+  "assignlocint": {
+    "name": "assignlocint",
+    "cSignature": "void Opr_assignlocint(CLocation *dst, int x, int y, int z)",
+    "signature": "void assignlocint(loc, int, int, int)",
+    "description": "Builds a location at (x, y, z) and stores it in dst.",
+    "aliases": []
+  },
+  "objtoint": {
+    "name": "objtoint",
+    "cSignature": "int Opr_objtoint(int serial)",
+    "signature": "int objtoint(obj)",
+    "description": "Returns the object serial unchanged (object handles are 32-bit ints).",
+    "aliases": []
+  },
+  "concat": {
+    "name": "concat",
+    "cSignature": "void Opr_concat(CString *dst, CString *src)",
+    "signature": "void concat(string, string)",
+    "description": "Appends src to dst in place.",
+    "aliases": []
+  },
+  "barkstr": {
+    "name": "barkstr",
+    "cSignature": "void Opr_barkstr(void)",
+    "signature": "void barkstr(string)",
+    "description": "Debug stub, no-op.",
+    "aliases": []
+  },
+  "barkint": {
+    "name": "barkint",
+    "cSignature": "void Opr_barkint(void)",
+    "signature": "void barkint(int)",
+    "description": "Debug stub, no-op.",
+    "aliases": []
+  },
+  "takeMoney": {
+    "name": "takeMoney",
+    "cSignature": "uint32_t Script_containsObjType(uint32_t containerSerial, int type)",
+    "signature": "obj takeMoney(obj, int)",
+    "description": "Searches a container for an item of the given bodyType. Returns the serial of the found item, or 0 if not found. Binary iterates container->contents but passes the container itself to the recursive helper each time.",
+    "aliases": [
+      "containsObjType"
+    ]
+  },
+  "createPlaceHolder": {
+    "name": "createPlaceHolder",
+    "cSignature": "void Script_createPlaceHolder(uint32_t serial)",
+    "signature": "void createPlaceHolder(obj)",
+    "description": "Creates a placeholder CItem at the same location as entity, copying its bodyType and ObjVar tags. The placeholder is a server-only item used by the spawn/resource bank management system.",
+    "aliases": []
   }
 }
