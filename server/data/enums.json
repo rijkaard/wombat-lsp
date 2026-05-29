@@ -712,311 +712,311 @@
   ],
   "Skill": [
     {
-      "name": "Alchemy",
+      "name": "SKILL_ALCHEMY",
       "value": 0,
       "hex": "0"
     },
     {
-      "name": "Anatomy",
+      "name": "SKILL_ANATOMY",
       "value": 1,
       "hex": "1"
     },
     {
-      "name": "Animal Lore",
+      "name": "SKILL_ANIMAL_LORE",
       "value": 2,
       "hex": "2"
     },
     {
-      "name": "Item Identification",
+      "name": "SKILL_ITEM_ID",
       "value": 3,
       "hex": "3"
     },
     {
-      "name": "Arms Lore",
+      "name": "SKILL_ARMS_LORE",
       "value": 4,
       "hex": "4"
     },
     {
-      "name": "Parrying",
+      "name": "SKILL_PARRYING",
       "value": 5,
       "hex": "5"
     },
     {
-      "name": "Begging",
+      "name": "SKILL_BEGGING",
       "value": 6,
       "hex": "6"
     },
     {
-      "name": "Blacksmithy",
+      "name": "SKILL_BLACKSMITHY",
       "value": 7,
       "hex": "7"
     },
     {
-      "name": "Bowcraft/Fletching",
+      "name": "SKILL_BOWCRAFT",
       "value": 8,
       "hex": "8"
     },
     {
-      "name": "Peacemaking",
+      "name": "SKILL_PEACEMAKING",
       "value": 9,
       "hex": "9"
     },
     {
-      "name": "Camping",
+      "name": "SKILL_CAMPING",
       "value": 10,
-      "hex": "10"
+      "hex": "0xA"
     },
     {
-      "name": "Carpentry",
+      "name": "SKILL_CARPENTRY",
       "value": 11,
-      "hex": "11"
+      "hex": "0xB"
     },
     {
-      "name": "Cartography",
+      "name": "SKILL_CARTOGRAPHY",
       "value": 12,
-      "hex": "12"
+      "hex": "0xC"
     },
     {
-      "name": "Cooking",
+      "name": "SKILL_COOKING",
       "value": 13,
-      "hex": "13"
+      "hex": "0xD"
     },
     {
-      "name": "Detecting Hidden",
+      "name": "SKILL_DETECT_HIDDEN",
       "value": 14,
-      "hex": "14"
+      "hex": "0xE"
     },
     {
-      "name": "Enticement",
+      "name": "SKILL_ENTICEMENT",
       "value": 15,
-      "hex": "15"
+      "hex": "0xF"
     },
     {
-      "name": "Evaluating Intelligence",
+      "name": "SKILL_EVAL_INT",
       "value": 16,
-      "hex": "16"
+      "hex": "0x10"
     },
     {
-      "name": "Healing",
+      "name": "SKILL_HEALING",
       "value": 17,
-      "hex": "17"
+      "hex": "0x11"
     },
     {
-      "name": "Fishing",
+      "name": "SKILL_FISHING",
       "value": 18,
-      "hex": "18"
+      "hex": "0x12"
     },
     {
-      "name": "Forensic Evaluation",
+      "name": "SKILL_FORENSIC",
       "value": 19,
-      "hex": "19"
+      "hex": "0x13"
     },
     {
-      "name": "Herding",
+      "name": "SKILL_HERDING",
       "value": 20,
-      "hex": "20"
+      "hex": "0x14"
     },
     {
-      "name": "Hiding",
+      "name": "SKILL_HIDING",
       "value": 21,
-      "hex": "21"
+      "hex": "0x15"
     },
     {
-      "name": "Provocation",
+      "name": "SKILL_PROVOCATION",
       "value": 22,
-      "hex": "22"
+      "hex": "0x16"
     },
     {
-      "name": "Inscription",
+      "name": "SKILL_INSCRIPTION",
       "value": 23,
-      "hex": "23"
+      "hex": "0x17"
     },
     {
-      "name": "Lockpicking",
+      "name": "SKILL_LOCKPICKING",
       "value": 24,
-      "hex": "24"
+      "hex": "0x18"
     },
     {
-      "name": "Magery",
+      "name": "SKILL_MAGERY",
       "value": 25,
-      "hex": "25"
+      "hex": "0x19"
     },
     {
-      "name": "Resisting Spells",
+      "name": "SKILL_MAGIC_RESIST",
       "value": 26,
-      "hex": "26"
+      "hex": "0x1A"
     },
     {
-      "name": "Tactics",
+      "name": "SKILL_TACTICS",
       "value": 27,
-      "hex": "27"
+      "hex": "0x1B"
     },
     {
-      "name": "Snooping",
+      "name": "SKILL_SNOOPING",
       "value": 28,
-      "hex": "28"
+      "hex": "0x1C"
     },
     {
-      "name": "Musicianship",
+      "name": "SKILL_MUSICIANSHIP",
       "value": 29,
-      "hex": "29"
+      "hex": "0x1D"
     },
     {
-      "name": "Poisoning",
+      "name": "SKILL_POISONING",
       "value": 30,
-      "hex": "30"
+      "hex": "0x1E"
     },
     {
-      "name": "Archery",
+      "name": "SKILL_ARCHERY",
       "value": 31,
-      "hex": "31"
+      "hex": "0x1F"
     },
     {
-      "name": "Spirit Speak",
+      "name": "SKILL_SPIRIT_SPEAK",
       "value": 32,
-      "hex": "32"
+      "hex": "0x20"
     },
     {
-      "name": "Stealing",
+      "name": "SKILL_STEALING",
       "value": 33,
-      "hex": "33"
+      "hex": "0x21"
     },
     {
-      "name": "Tailoring",
+      "name": "SKILL_TAILORING",
       "value": 34,
-      "hex": "34"
+      "hex": "0x22"
     },
     {
-      "name": "Animal Taming",
+      "name": "SKILL_ANIMAL_TAMING",
       "value": 35,
-      "hex": "35"
+      "hex": "0x23"
     },
     {
-      "name": "Taste Identification",
+      "name": "SKILL_TASTE_ID",
       "value": 36,
-      "hex": "36"
+      "hex": "0x24"
     },
     {
-      "name": "Tinkering",
+      "name": "SKILL_TINKERING",
       "value": 37,
-      "hex": "37"
+      "hex": "0x25"
     },
     {
-      "name": "Tracking",
+      "name": "SKILL_TRACKING",
       "value": 38,
-      "hex": "38"
+      "hex": "0x26"
     },
     {
-      "name": "Veterinary",
+      "name": "SKILL_VETERINARY",
       "value": 39,
-      "hex": "39"
+      "hex": "0x27"
     },
     {
-      "name": "Swordsmanship",
+      "name": "SKILL_SWORDSMANSHIP",
       "value": 40,
-      "hex": "40"
+      "hex": "0x28"
     },
     {
-      "name": "Mace Fighting",
+      "name": "SKILL_MACE_FIGHTING",
       "value": 41,
-      "hex": "41"
+      "hex": "0x29"
     },
     {
-      "name": "Fencing",
+      "name": "SKILL_FENCING",
       "value": 42,
-      "hex": "42"
+      "hex": "0x2A"
     },
     {
-      "name": "Wrestling",
+      "name": "SKILL_WRESTLING",
       "value": 43,
-      "hex": "43"
+      "hex": "0x2B"
     },
     {
-      "name": "Lumberjacking",
+      "name": "SKILL_LUMBERJACKING",
       "value": 44,
-      "hex": "44"
+      "hex": "0x2C"
     },
     {
-      "name": "Mining",
+      "name": "SKILL_MINING",
       "value": 45,
-      "hex": "45"
+      "hex": "0x2D"
     },
     {
-      "name": "Meditation",
+      "name": "SKILL_MEDITATION",
       "value": 46,
-      "hex": "46"
+      "hex": "0x2E"
     },
     {
-      "name": "Stealth",
+      "name": "SKILL_STEALTH",
       "value": 47,
-      "hex": "47"
+      "hex": "0x2F"
     },
     {
-      "name": "Remove Trap",
+      "name": "SKILL_REMOVE_TRAP",
       "value": 48,
-      "hex": "48"
+      "hex": "0x30"
+    },
+    {
+      "name": "SKILL_COUNT",
+      "value": 49,
+      "hex": "0x31"
     }
   ],
   "Direction": [
     {
-      "name": "North",
+      "name": "DIR_NORTH",
       "value": 0,
       "hex": "0"
     },
     {
-      "name": "NorthEast",
+      "name": "DIR_NORTHEAST",
       "value": 1,
       "hex": "1"
     },
     {
-      "name": "East",
+      "name": "DIR_EAST",
       "value": 2,
       "hex": "2"
     },
     {
-      "name": "SouthEast",
+      "name": "DIR_SOUTHEAST",
       "value": 3,
       "hex": "3"
     },
     {
-      "name": "South",
+      "name": "DIR_SOUTH",
       "value": 4,
       "hex": "4"
     },
     {
-      "name": "SouthWest",
+      "name": "DIR_SOUTHWEST",
       "value": 5,
       "hex": "5"
     },
     {
-      "name": "West",
+      "name": "DIR_WEST",
       "value": 6,
       "hex": "6"
     },
     {
-      "name": "NorthWest",
+      "name": "DIR_NORTHWEST",
       "value": 7,
       "hex": "7"
-    },
-    {
-      "name": "Running",
-      "value": 128,
-      "hex": "0x80"
     }
   ],
   "StatId": [
     {
-      "name": "Strength",
+      "name": "STAT_STR",
       "value": 0,
       "hex": "0"
     },
     {
-      "name": "Dexterity",
+      "name": "STAT_DEX",
       "value": 1,
       "hex": "1"
     },
     {
-      "name": "Intelligence",
+      "name": "STAT_INT",
       "value": 2,
       "hex": "2"
     }
@@ -1045,137 +1045,142 @@
   ],
   "Layer": [
     {
-      "name": "Invalid",
-      "value": 0,
-      "hex": "0x00"
-    },
-    {
-      "name": "RightHand",
+      "name": "EQUIP_RIGHT_HAND",
       "value": 1,
-      "hex": "0x01"
+      "hex": "1"
     },
     {
-      "name": "LeftHand",
+      "name": "EQUIP_LEFT_HAND",
       "value": 2,
-      "hex": "0x02"
+      "hex": "2"
     },
     {
-      "name": "Shoes",
+      "name": "EQUIP_SHOES",
       "value": 3,
-      "hex": "0x03"
+      "hex": "3"
     },
     {
-      "name": "Pants",
+      "name": "EQUIP_PANTS",
       "value": 4,
-      "hex": "0x04"
+      "hex": "4"
     },
     {
-      "name": "Shirt",
+      "name": "EQUIP_SHIRT",
       "value": 5,
-      "hex": "0x05"
+      "hex": "5"
     },
     {
-      "name": "Helm",
+      "name": "EQUIP_HELMET",
       "value": 6,
-      "hex": "0x06"
+      "hex": "6"
     },
     {
-      "name": "Gloves",
+      "name": "EQUIP_GLOVES",
       "value": 7,
-      "hex": "0x07"
+      "hex": "7"
     },
     {
-      "name": "Ring",
+      "name": "EQUIP_RING",
       "value": 8,
-      "hex": "0x08"
+      "hex": "8"
     },
     {
-      "name": "Talisman",
-      "value": 9,
-      "hex": "0x09"
-    },
-    {
-      "name": "Necklace",
+      "name": "EQUIP_NECK",
       "value": 10,
-      "hex": "0x0A"
+      "hex": "0xA"
     },
     {
-      "name": "Hair",
+      "name": "EQUIP_HAIR",
       "value": 11,
-      "hex": "0x0B"
+      "hex": "0xB"
     },
     {
-      "name": "Waist",
+      "name": "EQUIP_WAIST",
       "value": 12,
-      "hex": "0x0C"
+      "hex": "0xC"
     },
     {
-      "name": "InnerTorso",
+      "name": "EQUIP_INNER_TORSO",
       "value": 13,
-      "hex": "0x0D"
+      "hex": "0xD"
     },
     {
-      "name": "Bracelet",
+      "name": "EQUIP_OUTER_TORSO",
       "value": 14,
-      "hex": "0x0E"
+      "hex": "0xE"
     },
     {
-      "name": "Unused15",
+      "name": "EQUIP_BRACELET",
       "value": 15,
-      "hex": "0x0F"
+      "hex": "0xF"
     },
     {
-      "name": "FacialHair",
+      "name": "EQUIP_FACIAL_HAIR",
       "value": 16,
       "hex": "0x10"
     },
     {
-      "name": "MiddleTorso",
+      "name": "EQUIP_MIDDLE_TORSO",
       "value": 17,
       "hex": "0x11"
     },
     {
-      "name": "Earrings",
+      "name": "EQUIP_EARRINGS",
       "value": 18,
       "hex": "0x12"
     },
     {
-      "name": "Arms",
+      "name": "EQUIP_ARMS",
       "value": 19,
       "hex": "0x13"
     },
     {
-      "name": "Cloak",
+      "name": "EQUIP_CLOAK",
       "value": 20,
       "hex": "0x14"
     },
     {
-      "name": "Backpack",
+      "name": "EQUIP_BACKPACK",
       "value": 21,
       "hex": "0x15"
     },
     {
-      "name": "OuterTorso",
+      "name": "EQUIP_OUTER_LEGS",
       "value": 22,
       "hex": "0x16"
     },
     {
-      "name": "OuterLegs",
+      "name": "EQUIP_INNER_LEGS",
       "value": 23,
       "hex": "0x17"
     },
     {
-      "name": "InnerLegs",
+      "name": "EQUIP_BEARD",
       "value": 24,
       "hex": "0x18"
     },
     {
-      "name": "Mount",
+      "name": "EQUIP_MOUNT",
       "value": 25,
       "hex": "0x19"
     },
     {
-      "name": "BankBox",
+      "name": "EQUIP_NPC_SELL",
+      "value": 26,
+      "hex": "0x1A"
+    },
+    {
+      "name": "EQUIP_NPC_BUY",
+      "value": 27,
+      "hex": "0x1B"
+    },
+    {
+      "name": "EQUIP_NPC_OFFERED",
+      "value": 28,
+      "hex": "0x1C"
+    },
+    {
+      "name": "EQUIP_BANK",
       "value": 29,
       "hex": "0x1D"
     }

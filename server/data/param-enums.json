@@ -558,5 +558,29 @@
         "bitmask": false
       }
     ]
+  },
+  "apply_stat_effect": {
+    "params": [{ "name": "statId", "pos": 1, "enum": "StatId", "bitmask": false }]
+  },
+  "apply_stat_effect_if_absent": {
+    "params": [{ "name": "statId", "pos": 1, "enum": "StatId", "bitmask": false }]
+  },
+  "apply_stat_mod": {
+    "params": [{ "name": "statId", "pos": 1, "enum": "StatId", "bitmask": false }]
+  },
+  "check_move_steps": {
+    "params": [{ "name": "dir", "pos": 1, "enum": "Direction", "bitmask": false }]
+  },
+  "remove_stat_effect": {
+    "params": [{ "name": "statId", "pos": 1, "enum": "StatId", "bitmask": false }]
+  },
+  "roll_skill_check": {
+    "params": [{ "name": "skillId", "pos": 1, "enum": "Skill", "bitmask": false }]
+  },
+  "teleport_off_plank": {
+    "params": [{ "name": "dir", "pos": 2, "enum": "Direction", "bitmask": false }]
+  },
+  "apply_stat_spell": {
+    "params": [{ "name": "statId", "pos": 2, "enum": "StatId", "bitmask": false }]
   }
 }
