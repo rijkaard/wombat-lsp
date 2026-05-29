@@ -88,14 +88,37 @@ interface ParamEnumInfo {
 const enumCatalog    = new Map<string, EnumEntry[]>();
 // paramEnumCatalog: lowercase fn name -> param enum specs
 const paramEnumCatalog = new Map<string, ParamEnumInfo>();
+// enumNameLookup: constant name -> { typeName, entry } — for hover and validation
+const enumNameLookup = new Map<string, { typeName: string; entry: EnumEntry }>();
 
 function loadEnums(): void {
   try {
-    const raw = JSON.parse(fs.readFileSync(
-      path.join(__dirname, '..', 'data', 'enums.json'), 'utf8'
-    )) as Record<string, EnumEntry[]>;
-    for (const [name, entries] of Object.entries(raw)) {
+    const dataDir     = path.join(__dirname, '..', 'data');
+    const generatedPath = path.join(dataDir, 'enums.generated.json');
+    const basePath      = path.join(dataDir, 'enums.json');
+
+    // Load base (committed fallback)
+    const base = JSON.parse(fs.readFileSync(basePath, 'utf8')) as Record<string, EnumEntry[]>;
+
+    // Merge generated over base if the generated file exists
+    let merged: Record<string, EnumEntry[]>;
+    if (fs.existsSync(generatedPath)) {
+      const generated = JSON.parse(fs.readFileSync(generatedPath, 'utf8')) as Record<string, EnumEntry[]>;
+      merged = { ...base, ...generated };
+    } else {
+      merged = base;
+    }
+
+    for (const [name, entries] of Object.entries(merged)) {
       enumCatalog.set(name, entries.slice().sort((a, b) => a.value - b.value));
+    }
+    // Build reverse lookup: constant name -> type + entry
+    for (const [typeName, entries] of enumCatalog) {
+      for (const entry of entries) {
+        if (!enumNameLookup.has(entry.name)) {
+          enumNameLookup.set(entry.name, { typeName, entry });
+        }
+      }
     }
   } catch (e) {
     connection.console.error(`Failed to load enums: ${e}`);
@@ -773,9 +796,7 @@ function callContextAt(text: string, pos: Position): { fnName: string; paramInde
         let e = j;
         while (e > 0 && /\w/.test(text[e - 1])) e--;
         const fnName = text.slice(e, j + 1);
-        if (paramEnumCatalog.has(fnName.toLowerCase())) {
-          return { fnName, paramIndex: commas };
-        }
+        return { fnName, paramIndex: commas };
       }
       return null;
     }
@@ -910,11 +931,11 @@ connection.onCompletion((params: TextDocumentPositionParams): CompletionItem[] =
       const bmNote  = spec.bitmask ? ' (bitmask)' : '';
       for (const entry of entries) {
         add({
-          label: entry.hex,
+          label: entry.name,
           kind: CompletionItemKind.EnumMember,
-          detail: `${entry.name}${bmNote}`,
+          detail: `${entry.hex}${bmNote}`,
           documentation: { kind: MarkupKind.Markdown, value: `**${entry.name}** — \`${entry.hex}\` (${spec.enum}${bmNote})` },
-          insertText: entry.hex,
+          insertText: entry.name,
           insertTextFormat: InsertTextFormat.PlainText,
           sortText: '0_' + entry.hex.padStart(12, '0')
         });
@@ -1022,6 +1043,28 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
   if (paramSym) return { contents: userHover(paramSym) };
 
   if (IMPLICIT_VAR_SET.has(word)) return { contents: implicitVarHover(word) };
+
+  // Enum constant name hover: e.g. SKILL_ALCHEMY, DIR_NORTH, TIMER_EVENT_CALLBACK
+  const enumHit = enumNameLookup.get(word);
+  if (enumHit) {
+    const ctx = callContextAt(text, params.position);
+    let contextNote = '';
+    if (ctx) {
+      const info = paramEnumCatalog.get(ctx.fnName.toLowerCase());
+      const spec = info?.params.find(p => p.pos === ctx.paramIndex);
+      if (spec) {
+        contextNote = spec.enum === enumHit.typeName
+          ? `\n\n✓ *Correct type (\`${spec.enum}\`) for \`${ctx.fnName}\` arg ${ctx.paramIndex}*`
+          : `\n\n⚠ *Wrong type: expected \`${spec.enum}\` for \`${ctx.fnName}\` arg ${ctx.paramIndex}*`;
+      }
+    }
+    return {
+      contents: {
+        kind: MarkupKind.Markdown,
+        value: `\`${enumHit.entry.hex}\` — **${enumHit.entry.name}** (${enumHit.typeName})${contextNote}`
+      }
+    };
+  }
 
   // Enum value hover: word is an integer literal inside an enum-annotated engine call
   if (/^(0x[0-9A-Fa-f]+|[0-9]+)$/.test(word)) {
@@ -1171,6 +1214,9 @@ function validateDocumentImpl(doc: TextDocument): void {
   for (const name of engineCatalog.keys())      validNames.add(name);
   for (const name of engineCatalogLower.keys()) validNames.add(name);
 
+  // Enum constant names (e.g. SKILL_ALCHEMY, DIR_NORTH, TIMER_EVENT_CALLBACK)
+  for (const name of enumNameLookup.keys()) validNames.add(name);
+
   const toks = tokenize(text);
 
   // Goto labels: both definitions (IDENT ':') and targets ('goto' IDENT)
@@ -1242,6 +1288,64 @@ function validateDocumentImpl(doc: TextDocument): void {
       message: `Undefined symbol '${name}'`,
       source: 'wombat'
     });
+  }
+
+  // ── Enum type-checking pass ──────────────────────────────────────────────────
+  // Walk tokens forward with a call-frame stack.
+  // When an enum constant is found at an annotated param position, check the type.
+  {
+    interface FwdFrame { fnName: string; paramIdx: number; depth: number; }
+    const stack: FwdFrame[] = [];
+    let depth = 0;
+
+    const nextNonComment = (start: number): Tok | undefined => {
+      for (let k = start; k < toks.length; k++) {
+        const t = toks[k];
+        if (t.kind !== 'line_comment' && t.kind !== 'block_comment') return t;
+      }
+      return undefined;
+    };
+
+    for (let i = 0; i < toks.length; i++) {
+      const tok = toks[i];
+      if (tok.kind === 'line_comment' || tok.kind === 'block_comment') continue;
+
+      if (tok.kind === 'ident') {
+        const next = nextNonComment(i + 1);
+        if (next?.kind === 'lparen') {
+          stack.push({ fnName: tok.text, paramIdx: 0, depth: depth + 1 });
+        } else if (enumNameLookup.has(tok.text) && stack.length > 0) {
+          const frame = stack[stack.length - 1];
+          if (frame.depth === depth) {
+            const info = paramEnumCatalog.get(frame.fnName.toLowerCase());
+            const spec = info?.params.find(p => p.pos === frame.paramIdx);
+            if (spec) {
+              const hit = enumNameLookup.get(tok.text)!;
+              if (hit.typeName !== spec.enum) {
+                diagnostics.push({
+                  severity: DiagnosticSeverity.Error,
+                  range: Range.create(
+                    Position.create(tok.line, tok.col),
+                    Position.create(tok.line, tok.col + tok.text.length)
+                  ),
+                  message: `Enum type mismatch: '${tok.text}' is ${hit.typeName}, expected ${spec.enum}`,
+                  source: 'wombat'
+                });
+              }
+            }
+          }
+        }
+      } else if (tok.kind === 'lparen') {
+        depth++;
+      } else if (tok.kind === 'rparen') {
+        if (stack.length > 0 && stack[stack.length - 1].depth === depth) stack.pop();
+        depth--;
+      } else if (tok.kind === 'comma') {
+        if (stack.length > 0 && stack[stack.length - 1].depth === depth) {
+          stack[stack.length - 1].paramIdx++;
+        }
+      }
+    }
   }
 
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
