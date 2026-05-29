@@ -59,6 +59,7 @@
   "scripts": {
     "compile": "tsc -p ./tsconfig.json && cd server && npm run compile",
     "watch": "tsc -p ./tsconfig.json -w",
+    "gen-enums": "node gen-enums.mjs",
     "bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify && esbuild server/src/server.ts --bundle --outfile=server/out/server.js --external:vscode --format=cjs --platform=node --minify",
     "build-catalog": "cd server && node build-catalog.js",
     "test": "node out/test/runTests.js",
