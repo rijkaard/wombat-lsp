@@ -1034,10 +1034,16 @@ connection.onHover((params: TextDocumentPositionParams): Hover | null => {
   const word = wordAt(text, params.position);
   if (!word) return null;
 
-  const engineMatch = lookupEngine(word);
-  if (engineMatch) return { contents: engineHover(engineMatch.fn) };
-
   const syms = parseSymbols(text);
+
+  // If the cursor is on a trigger declaration line, show trigger info — not the
+  // engine built-in that happens to share the same name (e.g. "callback").
+  const triggerDecl = syms.find(s => s.kind === 'trigger' && s.name === word && s.line === params.position.line);
+  if (!triggerDecl) {
+    const engineMatch = lookupEngine(word);
+    if (engineMatch) return { contents: engineHover(engineMatch.fn) };
+  }
+
   // Params shadow same-named implicit trigger variables — check them first.
   const paramSym = syms.find(s => s.name === word && s.kind === 'param');
   if (paramSym) return { contents: userHover(paramSym) };
